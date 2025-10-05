@@ -152,17 +152,17 @@ const TeamCarousel: React.FC = () => {
             <div key={idx} className="px-2">
               <div
                 className={`bg-white rounded-xl shadow-lg transition-transform duration-500 ${
-                  isCenter
-                    ? "scale-110"
-                    : "scale-90 h-[380px] grayscale"
+                  isCenter ? "scale-110" : "scale-90 h-[380px] grayscale"
                 }`}
-                style={{ height: "470px", width: "100%"}}
+                style={{ height: "470px", width: "100%" }}
               >
                 {/* Top image portion */}
                 <div className="h-2/3 w-full flex items-center justify-center">
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
+                    width={300} 
+                    height={300} 
                     className={`max-w-full max-h-full object-contain transition-transform duration-500 ${
                       isCenter ? "scale-105" : "scale-90"
                     }`}
@@ -259,7 +259,7 @@ function ContactFormSection() {
           Get In <span className="text-[#8C5BFF]">Touch</span>
         </div>
         <div className="text-[#6d6a7c] text-[20px] font-normal mb-8 text-center">
-          Have questions about events? <br /> 
+          Have questions about events? <br />
           Reach out to ensure clarity, transparency, and smooth collaboration.
         </div>
         <div className="about-contact-names-row flex gap-6 w-full mb-4">

@@ -134,10 +134,16 @@ const Footer: React.FC = () => {
                 className="w-12 h-12 md:w-16 md:h-16 object-contain"
                 priority
               />
-              <span className="text-[#8C5BFF] text-xl md:text-2xl font-semibold">
-                Finance Committee
-              </span>
+              <div className="flex flex-col">
+                <span className="text-[#8C5BFF] text-xl md:text-2xl font-semibold">
+                  Finance Committee
+                </span>
+                <span className="text-[#6d6a7c] text-sm md:text-base font-medium">
+                  FOSTIIMA Chapter
+                </span>
+              </div>
             </div>
+
             <p className="text-gray-300 text-sm sm:text-base">
               Organizing campus events, managing budgets responsibly, and
               ensuring every allocation is transparent for the benefit of all

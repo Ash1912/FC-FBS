@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
     <>
       <section
         ref={ref}
-        className="min-h-[90vh] pt-[140px] h-auto pb-16 bg-gradient-to-br from-[#faf5ff] via-[#f3e8ff] via-[#e9d5ff] to-[#c4b5fd]
+        className="min-h-[100vh] pt-[140px] h-auto pb-20 bg-gradient-to-br from-[#faf5ff] via-[#f3e8ff] via-[#e9d5ff] to-[#c4b5fd]
  relative overflow-hidden z-10"
       >
         <motion.div
@@ -143,12 +143,13 @@ const Hero: React.FC = () => {
             animate={isInView ? "visible" : "hidden"}
             transition={{ duration: 0.8, ease: easeOut }}
             aria-label="Demo image"
+            className="bg-transparent"
           >
             <Image
-              src="/images/landingpageimage.png"
+              src="/images/landingimg.png"
               alt="Hero demo visual"
-              width={880}
-              height={660}
+              width={900}
+              height={700}
               className="object-cover w-full h-auto"
               priority
             />

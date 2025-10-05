@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo  } from "react";
 import { toast } from "react-hot-toast";
 
 function BlogCard({
@@ -70,7 +70,8 @@ function BlogCard({
           {title}
         </h3>
         <p className="text-[#6d6a7c] text-[17px] mb-4">{summary}</p>
-        <div className="flex gap-2 flex-wrap mb-4">
+      </div>
+      <div className="flex gap-2 flex-wrap mb-4">
           {category.map((cat, i) => (
             <span
               key={i}
@@ -80,7 +81,6 @@ function BlogCard({
             </span>
           ))}
         </div>
-      </div>
       <div
         style={{
           display: "flex",
@@ -368,15 +368,17 @@ export default function BlogPage() {
     "Other",
   ];
 
-  const allowedEmails = [
-    "19122000ashishmishra@gmail.com",
-    "27ashish.mishra@fostiima.org"
-  ];
-  const userEmail =
-    typeof window !== "undefined"
-      ? localStorage.getItem("fcUserEmail")
-      : null;
-  const canEdit = allowedEmails.includes(userEmail || "");
+  const allowedEmails = useMemo(() => [
+  "ashishmishra19122000@gmail.com",
+  "19122000ashishmishra@gmail.com",
+  "27ashish.mishra@fostiima.org",
+], []);
+  const [canEdit, setCanEdit] = useState(false);
+
+  useEffect(() => {
+  const email = localStorage.getItem("fcUserEmail");
+  setCanEdit(allowedEmails.includes(email || ""));
+}, [allowedEmails]);
 
   const handleEditBlog = (blog: (typeof blogs)[0]) => {
     setIsEditing(true);
@@ -887,15 +889,9 @@ export default function BlogPage() {
                 <div className="text-[#a1a1b5] font-bold text-[22px] mb-3">
                   Committee Contact
                 </div>
-                <div className="text-[#313053] text-[18px] mb-2">
-                  Address: 
-                </div>
-                <div className="text-[#313053] text-[18px] mb-2">
-                  Email: 
-                </div>
-                <div className="text-[#313053] text-[18px] mb-2">
-                  Phone: 
-                </div>
+                <div className="text-[#313053] text-[18px] mb-2">Address:</div>
+                <div className="text-[#313053] text-[18px] mb-2">Email:</div>
+                <div className="text-[#313053] text-[18px] mb-2">Phone:</div>
               </div>
             </div>
             <div className="flex-2 min-w-[400px]">

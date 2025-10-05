@@ -315,7 +315,7 @@ const Hero1: React.FC = () => {
 
           <div className="w-full md:w-1/2 h-[300px] bg-[#c2b3f5] rounded-lg flex items-center justify-center">
             <video
-              src="/icons/"
+              src="/icons/actionvideo.mp4"
               autoPlay
               loop
               muted

@@ -196,7 +196,7 @@ const SignUp = () => {
             type="text"
             name="name"
             autoComplete="name"
-            placeholder="Your First Name"
+            placeholder="Your Full Name"
             ref={nameRef}
             required
             className="w-full p-3 border-2 border-gray-500 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#6A4EFF] transition-all duration-300 focus:scale-[1.02] hover:border-[#B8AAFF]"

@@ -10,7 +10,6 @@ export default function Home() {
       <Suspense fallback={<div>Loading...</div>}>
         <Hero />
       </Suspense>
-      {/* Removed fixed auth buttons at bottom right */}
     </div>
   );
 }
