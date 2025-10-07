@@ -138,13 +138,27 @@ const TeamCarousel: React.FC = () => {
     prevArrow: <PrevArrow />,
     beforeChange: (_: number, next: number) => setCurrentSlide(next),
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3, centerMode: true } },
-      { breakpoint: 768, settings: { slidesToShow: 1, centerMode: true } },
+      {
+        breakpoint: 1024, // Tablet
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: true,
+        },
+      },
+      {
+        breakpoint: 768, // Mobile
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
     ],
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-1 py-6">
+    <div className="max-w-6xl mx-auto px-1 py-14">
       <Slider {...settings}>
         {teamMembers.map((member, idx) => {
           const isCenter = idx === currentSlide % teamMembers.length;
@@ -152,25 +166,31 @@ const TeamCarousel: React.FC = () => {
             <div key={idx} className="px-2">
               <div
                 className={`bg-white rounded-xl shadow-lg transition-transform duration-500 ${
-                  isCenter ? "scale-110" : "scale-90 h-[380px] grayscale"
-                }`}
-                style={{ height: "470px", width: "100%" }}
+                  isCenter
+                    ? "scale-110 w-[90%] sm:w-[80%] md:w-[45%]"
+                    : "scale-90 w-[95%] sm:w-[85%] md:w-[60%] grayscale"
+                } mt-6.5 md:mt-0 mx-auto`}
+                style={{ height: "500px", width: "100%" }}
               >
                 {/* Top image portion */}
-                <div className="h-2/3 w-full flex items-center justify-center">
+                <div className="h-2/3 w-full flex items-center justify-center md:pt-2 lg:pt-0 overflow-hidden">
                   <Image
                     src={member.image}
                     alt={member.name}
-                    width={300} 
-                    height={300} 
-                    className={`max-w-full max-h-full object-contain transition-transform duration-500 ${
-                      isCenter ? "scale-105" : "scale-90"
-                    }`}
+                    width={300}
+                    height={300}
+                    className={`object-contain max-h-full transition-transform duration-500
+      ${
+        isCenter
+          ? "scale-95 sm:scale-100 md:scale-105 lg:scale-110"
+          : "scale-80 sm:scale-90 md:scale-95"
+      }
+    `}
                   />
                 </div>
 
                 {/* Bottom profile details */}
-                <div className="h-1/3 p-1 text-center flex flex-col justify-start">
+                <div className="h-1/3 p-1 text-center flex flex-col justify-start mt-3">
                   <h3 className="text-lg font-semibold text-[#3c3450]">
                     {member.name}
                   </h3>
@@ -183,7 +203,7 @@ const TeamCarousel: React.FC = () => {
                     >
                       <FaLinkedin
                         className="text-[#0A66C2] hover:scale-110 transition"
-                        size={24}
+                        size={32}
                       />
                     </a>
                     <a
@@ -193,7 +213,7 @@ const TeamCarousel: React.FC = () => {
                     >
                       <FaInstagram
                         className="text-[#E1306C] hover:scale-110 transition"
-                        size={24}
+                        size={32}
                       />
                     </a>
                   </div>
