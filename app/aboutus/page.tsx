@@ -581,22 +581,7 @@ export default function AboutUsPage() {
             position: static !important;
             visibility: visible !important;
           }
-      }
-          @media (max-width: 600px) {
-            .team-carousel .slick-slide > div {
-              display: flex;
-              justify-content: center;
-            }
-
-            .team-carousel .bg-white {
-              width: 85% !important; /* ✅ narrower card for mobile */
-              min-width: 220px !important;
-            }
-
-            .team-carousel img {
-              max-height: 240px !important; /* ✅ better fit on small screens */
-            }
-          }
+      }   
       `}</style>
     </div>
   );
