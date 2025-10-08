@@ -49,7 +49,8 @@ const teamMembers = [
     name: "Aman",
     role: "",
     image: "/images/teammembers/Aman.jpg",
-    linkedin: "https://www.linkedin.com/in/aman-96aaa8373?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin:
+      "https://www.linkedin.com/in/aman-96aaa8373?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/amangarg1908?igsh=b29ubjNob3JxcGt6",
   },
   {
@@ -63,15 +64,19 @@ const teamMembers = [
     name: "Anurag Sharma",
     role: "",
     image: "/images/teammembers/Anurag.jpg",
-    linkedin: "https://www.linkedin.com/in/anurag-sharma-9b13702ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    instagram: "https://www.instagram.com/anurag.sharma02?igsh=MXAxeHpzemoydnc3eQ%3D%3D&utm_source=qr",
+    linkedin:
+      "https://www.linkedin.com/in/anurag-sharma-9b13702ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    instagram:
+      "https://www.instagram.com/anurag.sharma02?igsh=MXAxeHpzemoydnc3eQ%3D%3D&utm_source=qr",
   },
   {
     name: "Aryan Sehrawat",
     role: "",
     image: "/images/teammembers/Aryan.jpg",
-    linkedin: "https://www.linkedin.com/in/aryan-sehrawat-b359a3241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "https://www.instagram.com/__aryan.sehrawat__?igsh=MWtmeWU0ZTQ4d3No",
+    linkedin:
+      "https://www.linkedin.com/in/aryan-sehrawat-b359a3241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram:
+      "https://www.instagram.com/__aryan.sehrawat__?igsh=MWtmeWU0ZTQ4d3No",
   },
   {
     name: "Payal Naik",
@@ -84,8 +89,10 @@ const teamMembers = [
     name: "Shubh Gupta",
     role: "",
     image: "/images/teammembers/Shubh.jpg",
-    linkedin: "https://www.linkedin.com/in/shubhgupta410?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "https://www.instagram.com/_shubh.gupta_?igsh=MWc3ejg1N2sza3l4eA%3D%3D&utm_source=qr",
+    linkedin:
+      "https://www.linkedin.com/in/shubhgupta410?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram:
+      "https://www.instagram.com/_shubh.gupta_?igsh=MWc3ejg1N2sza3l4eA%3D%3D&utm_source=qr",
   },
   {
     name: "Surbhi Arora",
@@ -99,8 +106,10 @@ const teamMembers = [
     name: "Tanishk Ghadiya",
     role: "",
     image: "/images/teammembers/Tanishk.jpg",
-    linkedin: "https://www.linkedin.com/in/tanishk-ghadiya-67a746256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ",
-    instagram: "https://www.instagram.com/ghadiyasaheb_in?igsh=bmt1NzF4cWp4MXk0",
+    linkedin:
+      "https://www.linkedin.com/in/tanishk-ghadiya-67a746256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ",
+    instagram:
+      "https://www.instagram.com/ghadiyasaheb_in?igsh=bmt1NzF4cWp4MXk0",
   },
 ];
 
@@ -150,12 +159,12 @@ const TeamCarousel: React.FC = () => {
         },
       },
       {
-        breakpoint: 768, 
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "0px",
+          centerMode: false,
+          arrows: false,
         },
       },
     ],
@@ -169,12 +178,17 @@ const TeamCarousel: React.FC = () => {
           return (
             <div key={idx} className="px-2">
               <div
-                className={`bg-white rounded-xl shadow-lg transition-transform duration-500 ${
+                className={`bg-white rounded-xl shadow-lg transition-transform duration-500 mx-auto ${
                   isCenter
                     ? "scale-98 w-[85%] sm:w-[70%] md:w-[45%]"
                     : "scale-90 w-[90%] sm:w-[65%] md:w-[55%] grayscale"
-                } mt-6 md:mt-0 mx-auto`}
-                style={{ height: "auto", minHeight: "400px", width: "100%" }}
+                } `}
+                style={{
+                  height: "auto",
+                  minHeight: "380px",
+                  maxWidth: "280px",
+                  width: "90%",
+                }}
               >
                 {/* Top image portion */}
                 <div className="flex items-center justify-center overflow-hidden pt-3 md:pt-2 lg:pt-0">
@@ -502,6 +516,20 @@ export default function AboutUsPage() {
 
       <Footer />
       <style jsx global>{`
+        .team-carousel .slick-list {
+          overflow: hidden !important;
+        }
+
+        .team-carousel .slick-track {
+          display: flex !important;
+          align-items: center !important;
+        }
+
+        .slick-slide {
+          display: flex !important;
+          justify-content: center !important;
+        }
+
         @media (max-width: 900px) {
           .team-carousel {
             max-width: 98vw !important;
@@ -531,6 +559,9 @@ export default function AboutUsPage() {
             overflow-x: auto !important;
             padding-bottom: 8px !important;
           }
+            .team-carousel .slick-slide {
+    padding: 0 16px;
+  }
           .about-section,
           .about-form {
             padding: 8px !important;
@@ -581,7 +612,7 @@ export default function AboutUsPage() {
             position: static !important;
             visibility: visible !important;
           }
-      }   
+        }
       `}</style>
     </div>
   );
