@@ -378,7 +378,8 @@ export default function BlogPage() {
   "27tanishk.ghadiya@fostiima.org",
   "27payal.naik@fostiima.org",
   "27rajat.jain@fostiima.org",
-  
+  "27kriti.jain@fostiima.org",
+
 ], []);
   const [canEdit, setCanEdit] = useState(false);
 
@@ -896,9 +897,9 @@ export default function BlogPage() {
                 <div className="text-[#a1a1b5] font-bold text-[22px] mb-3">
                   Committee Contact
                 </div>
-                <div className="text-[#313053] text-[18px] mb-2">Address:</div>
+                <div className="text-[#313053] text-[18px] mb-2">Address: Plot No. HAF-1, Pocket 2, Dwarka Sector 9, Dwarka, New Delhi, Delhi, 110077</div>
                 <div className="text-[#313053] text-[18px] mb-2">Email:</div>
-                <div className="text-[#313053] text-[18px] mb-2">Phone:</div>
+                {/* <div className="text-[#313053] text-[18px] mb-2">Phone:</div> */}
               </div>
             </div>
             <div className="flex-2 min-w-[400px]">

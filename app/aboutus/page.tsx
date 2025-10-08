@@ -5,16 +5,17 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import toast from "react-hot-toast";
 import Slider, { CustomArrowProps } from "react-slick";
-import { FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaEnvelope } from "react-icons/fa";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const teamMembers = [
   {
     name: "Kriti Jain",
     role: "",
-    image: "/images/teammembers/Ashish.jpg",
-    linkedin: "#",
-    instagram: "#",
+    image: "/images/teammembers/Kriti.jpg",
+    linkedin: "https://www.linkedin.com/in/kriti-jain-2b99ba2b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/kritijain1710?igsh=azgwMnV6cmw3MmEx",
+    email: "27kriti.jain@fostiima.org",
   },
   {
     name: "Rajat Jain",
@@ -22,6 +23,7 @@ const teamMembers = [
     image: "/images/teammembers/Rajat.jpg",
     linkedin: "https://www.linkedin.com/in/rajat-jain-027978204/",
     instagram: "https://www.instagram.com/rajat_jain_____ ",
+    email: "27rajat.jain@fostiima.org",
   },
   {
     name: "Ashish Mishra",
@@ -30,6 +32,7 @@ const teamMembers = [
     linkedin:
       "https://www.linkedin.com/in/ashish-kumar-mishra-616321206?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/ash.ish__19?igsh=bGFlOTJueW4yY25m",
+    email: "27ashish.mishra@fostiima.org",
   },
   {
     name: "Diksha Sharma",
@@ -37,6 +40,7 @@ const teamMembers = [
     image: "/images/teammembers/Ashish.jpg",
     linkedin: "",
     instagram: "#",
+    email: "",
   },
   {
     name: "Sparsh Jain",
@@ -44,6 +48,7 @@ const teamMembers = [
     image: "/images/teammembers/Ashish.jpg",
     linkedin: "#",
     instagram: "#",
+    email: "",
   },
   {
     name: "Aman",
@@ -52,6 +57,7 @@ const teamMembers = [
     linkedin:
       "https://www.linkedin.com/in/aman-96aaa8373?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/amangarg1908?igsh=b29ubjNob3JxcGt6",
+    email: "27aman1@fostiima.org",
   },
   {
     name: "Prateek",
@@ -59,6 +65,7 @@ const teamMembers = [
     image: "/images/teammembers/Ashish.jpg",
     linkedin: "#",
     instagram: "#",
+    email: "",
   },
   {
     name: "Anurag Sharma",
@@ -68,6 +75,7 @@ const teamMembers = [
       "https://www.linkedin.com/in/anurag-sharma-9b13702ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     instagram:
       "https://www.instagram.com/anurag.sharma02?igsh=MXAxeHpzemoydnc3eQ%3D%3D&utm_source=qr",
+    email: "27anurag.sharma@fostiima.org",
   },
   {
     name: "Aryan Sehrawat",
@@ -77,6 +85,7 @@ const teamMembers = [
       "https://www.linkedin.com/in/aryan-sehrawat-b359a3241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram:
       "https://www.instagram.com/__aryan.sehrawat__?igsh=MWtmeWU0ZTQ4d3No",
+    email: "27aryan.sehrawat@fostiima.org",
   },
   {
     name: "Payal Naik",
@@ -84,6 +93,7 @@ const teamMembers = [
     image: "/images/teammembers/Payal.jpg",
     linkedin: "https://www.linkedin.com/in/payal-naik-ba59b9363",
     instagram: "https://www.instagram.com/impayalnaik?igsh=N2RsZXYzeGx4YjBj",
+    email: "27payal.naik@fostiima.org",
   },
   {
     name: "Shubh Gupta",
@@ -93,6 +103,7 @@ const teamMembers = [
       "https://www.linkedin.com/in/shubhgupta410?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram:
       "https://www.instagram.com/_shubh.gupta_?igsh=MWc3ejg1N2sza3l4eA%3D%3D&utm_source=qr",
+    email: "27shubh.gupta@fostiima.org",
   },
   {
     name: "Surbhi Arora",
@@ -101,6 +112,7 @@ const teamMembers = [
     linkedin:
       "https://www.linkedin.com/in/surbhi-arora-69612520b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/surbhiiaroraa?igsh=cGlvaDJ5ZGRqejhz",
+    email: "27surbhi.arora@fostiima.org",
   },
   {
     name: "Tanishk Ghadiya",
@@ -110,6 +122,7 @@ const teamMembers = [
       "https://www.linkedin.com/in/tanishk-ghadiya-67a746256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ",
     instagram:
       "https://www.instagram.com/ghadiyasaheb_in?igsh=bmt1NzF4cWp4MXk0",
+    email: "27tanishk.ghadiya@fostiima.org",
   },
 ];
 
@@ -180,9 +193,7 @@ const TeamCarousel: React.FC = () => {
             <div key={idx} className="px-2">
               <div
                 className={`bg-white rounded-xl shadow-lg transition-transform duration-500 mx-auto ${
-                  isCenter
-                    ? "scale-99"
-                    : "scale-90 grayscale"
+                  isCenter ? "scale-99" : "scale-90 grayscale"
                 } `}
                 style={{
                   // height: "auto",
@@ -236,6 +247,16 @@ const TeamCarousel: React.FC = () => {
                     >
                       <FaInstagram
                         className="text-[#E1306C] hover:scale-110 transition"
+                        size={28}
+                      />
+                    </a>
+                    <a
+                      href={`mailto:${member.email}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaEnvelope
+                        className="text-[#EA4335] hover:scale-110 transition"
                         size={28}
                       />
                     </a>
