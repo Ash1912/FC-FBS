@@ -27,7 +27,8 @@ const teamMembers = [
     name: "Ashish Mishra",
     role: "",
     image: "/images/teammembers/Ashish.jpg",
-    linkedin: "https://www.linkedin.com/in/ashish-kumar-mishra-616321206?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin:
+      "https://www.linkedin.com/in/ashish-kumar-mishra-616321206?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/ash.ish__19?igsh=bGFlOTJueW4yY25m",
   },
   {
@@ -90,7 +91,8 @@ const teamMembers = [
     name: "Surbhi Arora",
     role: "",
     image: "/images/teammembers/Surbhi.jpg",
-    linkedin: "https://www.linkedin.com/in/surbhi-arora-69612520b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    linkedin:
+      "https://www.linkedin.com/in/surbhi-arora-69612520b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     instagram: "https://www.instagram.com/surbhiiaroraa?igsh=cGlvaDJ5ZGRqejhz",
   },
   {
@@ -144,6 +146,7 @@ const TeamCarousel: React.FC = () => {
           slidesToShow: 3,
           slidesToScroll: 1,
           centerMode: true,
+          centerPadding: "0px",
         },
       },
       {
@@ -151,14 +154,15 @@ const TeamCarousel: React.FC = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          centerMode: false,
+          centerMode: true,
+          centerPadding: "0px",
         },
       },
     ],
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-1 py-14">
+    <div className="max-w-6xl mx-auto px-1 py-14 team-carousel">
       <Slider {...settings}>
         {teamMembers.map((member, idx) => {
           const isCenter = idx === currentSlide % teamMembers.length;
@@ -167,25 +171,29 @@ const TeamCarousel: React.FC = () => {
               <div
                 className={`bg-white rounded-xl shadow-lg transition-transform duration-500 ${
                   isCenter
-                    ? "scale-110 w-[90%] sm:w-[80%] md:w-[45%]"
-                    : "scale-90 w-[95%] sm:w-[85%] md:w-[60%] grayscale"
-                } mt-6.5 md:mt-0 mx-auto`}
-                style={{ height: "500px", width: "100%" }}
+                    ? "scale-98 w-[85%] sm:w-[70%] md:w-[45%]"
+                    : "scale-90 w-[90%] sm:w-[65%] md:w-[55%] grayscale"
+                } mt-6 md:mt-0 mx-auto`}
+                style={{ height: "auto", minHeight: "400px", width: "100%" }}
               >
                 {/* Top image portion */}
-                <div className="h-2/3 w-full flex items-center justify-center md:pt-2 lg:pt-0 overflow-hidden">
+                <div className="flex items-center justify-center overflow-hidden pt-3 md:pt-2 lg:pt-0">
                   <Image
                     src={member.image}
                     alt={member.name}
-                    width={300}
-                    height={300}
-                    className={`object-contain max-h-full transition-transform duration-500
+                    width={250}
+                    height={250}
+                    className={`object-contain transition-transform duration-500
       ${
         isCenter
-          ? "scale-95 sm:scale-100 md:scale-105 lg:scale-110"
-          : "scale-80 sm:scale-90 md:scale-95"
+          ? "scale-100 sm:scale-105 md:scale-110"
+          : "scale-90 sm:scale-95 md:scale-100"
       }
     `}
+                    style={{
+                      maxHeight: "300px", // ✅ Keeps image inside card
+                      marginTop: isCenter ? "8px" : "0",
+                    }}
                   />
                 </div>
 

@@ -372,6 +372,7 @@ export default function BlogPage() {
   "ashishmishra19122000@gmail.com",
   "19122000ashishmishra@gmail.com",
   "27ashish.mishra@fostiima.org",
+  "27surbhi.arora@fostiima.org",
 ], []);
   const [canEdit, setCanEdit] = useState(false);
 
