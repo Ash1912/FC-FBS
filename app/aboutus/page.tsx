@@ -48,9 +48,9 @@ const teamMembers = [
   {
     name: "Aman",
     role: "",
-    image: "/images/teammembers/Ashish.jpg",
-    linkedin: "#",
-    instagram: "#",
+    image: "/images/teammembers/Aman.jpg",
+    linkedin: "https://www.linkedin.com/in/aman-96aaa8373?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/amangarg1908?igsh=b29ubjNob3JxcGt6",
   },
   {
     name: "Prateek",
@@ -62,9 +62,9 @@ const teamMembers = [
   {
     name: "Anurag Sharma",
     role: "",
-    image: "/images/teammembers/Ashish.jpg",
-    linkedin: "#",
-    instagram: "#",
+    image: "/images/teammembers/Anurag.jpg",
+    linkedin: "https://www.linkedin.com/in/anurag-sharma-9b13702ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    instagram: "https://www.instagram.com/anurag.sharma02?igsh=MXAxeHpzemoydnc3eQ%3D%3D&utm_source=qr",
   },
   {
     name: "Aryan Sehrawat",
@@ -83,9 +83,9 @@ const teamMembers = [
   {
     name: "Shubh Gupta",
     role: "",
-    image: "/images/teammembers/Ashish.jpg",
-    linkedin: "#",
-    instagram: "#",
+    image: "/images/teammembers/Shubh.jpg",
+    linkedin: "https://www.linkedin.com/in/shubhgupta410?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/_shubh.gupta_?igsh=MWc3ejg1N2sza3l4eA%3D%3D&utm_source=qr",
   },
   {
     name: "Surbhi Arora",
@@ -98,9 +98,9 @@ const teamMembers = [
   {
     name: "Tanishk Ghadiya",
     role: "",
-    image: "/images/teammembers/Ashish.jpg",
-    linkedin: "#",
-    instagram: "#",
+    image: "/images/teammembers/Tanishk.jpg",
+    linkedin: "https://www.linkedin.com/in/tanishk-ghadiya-67a746256?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ",
+    instagram: "https://www.instagram.com/ghadiyasaheb_in?igsh=bmt1NzF4cWp4MXk0",
   },
 ];
 
@@ -211,7 +211,7 @@ const TeamCarousel: React.FC = () => {
                     >
                       <FaLinkedin
                         className="text-[#0A66C2] hover:scale-110 transition"
-                        size={32}
+                        size={28}
                       />
                     </a>
                     <a
@@ -221,7 +221,7 @@ const TeamCarousel: React.FC = () => {
                     >
                       <FaInstagram
                         className="text-[#E1306C] hover:scale-110 transition"
-                        size={32}
+                        size={28}
                       />
                     </a>
                   </div>
@@ -581,7 +581,22 @@ export default function AboutUsPage() {
             position: static !important;
             visibility: visible !important;
           }
-        }
+      }
+          @media (max-width: 600px) {
+            .team-carousel .slick-slide > div {
+              display: flex;
+              justify-content: center;
+            }
+
+            .team-carousel .bg-white {
+              width: 85% !important; /* ✅ narrower card for mobile */
+              min-width: 220px !important;
+            }
+
+            .team-carousel img {
+              max-height: 240px !important; /* ✅ better fit on small screens */
+            }
+          }
       `}</style>
     </div>
   );
