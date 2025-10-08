@@ -19,9 +19,9 @@ const teamMembers = [
   {
     name: "Rajat Jain",
     role: "",
-    image: "/images/teammembers/Ashish.jpg",
-    linkedin: "#",
-    instagram: "#",
+    image: "/images/teammembers/Rajat.jpg",
+    linkedin: "https://www.linkedin.com/in/rajat-jain-027978204/",
+    instagram: "https://www.instagram.com/rajat_jain_____ ",
   },
   {
     name: "Ashish Mishra",
@@ -81,9 +81,9 @@ const teamMembers = [
   {
     name: "Payal Naik",
     role: "",
-    image: "/images/teammembers/Ashish.jpg",
-    linkedin: "#",
-    instagram: "#",
+    image: "/images/teammembers/Payal.jpg",
+    linkedin: "https://www.linkedin.com/in/payal-naik-ba59b9363",
+    instagram: "https://www.instagram.com/impayalnaik?igsh=N2RsZXYzeGx4YjBj",
   },
   {
     name: "Shubh Gupta",
@@ -138,7 +138,7 @@ const TeamCarousel: React.FC = () => {
     dots: false,
     infinite: true,
     speed: 800,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1500,
@@ -162,9 +162,10 @@ const TeamCarousel: React.FC = () => {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
+          // slidesToScroll: 1,
           centerMode: false,
           arrows: false,
+          dots: true,
         },
       },
     ],
@@ -180,13 +181,13 @@ const TeamCarousel: React.FC = () => {
               <div
                 className={`bg-white rounded-xl shadow-lg transition-transform duration-500 mx-auto ${
                   isCenter
-                    ? "scale-98 w-[85%] sm:w-[70%] md:w-[45%]"
-                    : "scale-90 w-[90%] sm:w-[65%] md:w-[55%] grayscale"
+                    ? "scale-99"
+                    : "scale-90 grayscale"
                 } `}
                 style={{
-                  height: "auto",
+                  // height: "auto",
                   minHeight: "380px",
-                  maxWidth: "280px",
+                  maxWidth: "300px",
                   width: "90%",
                 }}
               >
@@ -525,9 +526,10 @@ export default function AboutUsPage() {
           align-items: center !important;
         }
 
-        .slick-slide {
+        .team-carousel .slick-slide {
           display: flex !important;
           justify-content: center !important;
+          float: none !important;
         }
 
         @media (max-width: 900px) {
@@ -559,9 +561,9 @@ export default function AboutUsPage() {
             overflow-x: auto !important;
             padding-bottom: 8px !important;
           }
-            .team-carousel .slick-slide {
-    padding: 0 16px;
-  }
+          .team-carousel .slick-slide {
+            padding: 0 12px;
+          }
           .about-section,
           .about-form {
             padding: 8px !important;

@@ -376,6 +376,9 @@ export default function BlogPage() {
   "27shubh.gupta@fostiima.org",
   "27anurag.sharma@fostiima.org",
   "27tanishk.ghadiya@fostiima.org",
+  "27payal.naik@fostiima.org",
+  "27rajat.jain@fostiima.org",
+  
 ], []);
   const [canEdit, setCanEdit] = useState(false);
 
