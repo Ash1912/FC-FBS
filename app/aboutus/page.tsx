@@ -69,9 +69,9 @@ const teamMembers = [
   {
     name: "Aryan Sehrawat",
     role: "",
-    image: "/images/teammembers/Ashish.jpg",
-    linkedin: "#",
-    instagram: "#",
+    image: "/images/teammembers/Aryan.jpg",
+    linkedin: "https://www.linkedin.com/in/aryan-sehrawat-b359a3241?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/__aryan.sehrawat__?igsh=MWtmeWU0ZTQ4d3No",
   },
   {
     name: "Payal Naik",
@@ -150,7 +150,7 @@ const TeamCarousel: React.FC = () => {
         },
       },
       {
-        breakpoint: 768, // Mobile
+        breakpoint: 768, 
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
