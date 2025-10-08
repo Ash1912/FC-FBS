@@ -379,6 +379,7 @@ export default function BlogPage() {
   "27payal.naik@fostiima.org",
   "27rajat.jain@fostiima.org",
   "27kriti.jain@fostiima.org",
+  "27diksha.sharma@fostiima.org",
 
 ], []);
   const [canEdit, setCanEdit] = useState(false);
