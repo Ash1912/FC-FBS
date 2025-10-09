@@ -140,44 +140,44 @@ const Hero1: React.FC = () => {
 
   const cards = [
     {
-      title: "Budget Planning",
+      title: "Finance Workshops",
       description:
-        "We carefully plan and allocate funds to ensure fair distribution across college events and activities.",
+        "We organize interactive finance workshops to help students understand budgeting, investing, and financial planning.",
       icon: "📊",
       image: "/icons/budget.png",
     },
     {
-      title: "Transparent Records",
+      title: "Seminars & Talks",
       description:
-        "Every transaction is documented clearly, ensuring students and faculty can trust our financial process.",
+        "Expert-led seminars and guest lectures provide insights into financial markets, personal finance, and career opportunities.",
       icon: "📜",
       image: "/icons/record.png",
     },
     {
-      title: "Event Support",
+      title: "Campus Events",
       description:
-        "From cultural fests to academic seminars, we provide financial backing to bring student ideas to life.",
+        "We plan and fund student-led events focused on finance, competitions, and experiential learning activities.",
       icon: "🎉",
       image: "/icons/event.png",
     },
     {
-      title: "Resource Management",
+      title: "Finance Challenges",
       description:
-        "We make the most of college resources, ensuring funds are used responsibly and efficiently.",
+        "Interactive competitions and quizzes on finance concepts to encourage student participation and learning.",
       icon: "⚖️",
       image: "/icons/resources.png",
     },
     {
-      title: "Student Welfare",
+      title: "Networking Sessions",
       description:
-        "Funds are allocated to initiatives that directly support and benefit the student community.",
+        "Events that connect students with finance professionals, alumni, and mentors for guidance and growth.",
       icon: "🤝",
       image: "/icons/welfare.png",
     },
     {
-      title: "Growth & Development",
+      title: "Skill Development Workshops",
       description:
-        "We invest in projects that enhance the college environment and encourage student progress.",
+        "Hands-on workshops designed to enhance financial literacy and practical skills for career and personal growth.",
       icon: "🚀",
       image: "/icons/growth.png",
     },
@@ -214,8 +214,10 @@ const Hero1: React.FC = () => {
           }}
           style={{ y }}
         >
-          Financial Management{" "}
-          <span className="text-[#6B46C1]">Supporting Students</span>
+          Finance Committee – FOSTIIMA Chapter{" "}
+          <span className="text-[#6B46C1]">
+            Organizing Student Finance Events
+          </span>
         </motion.h1>
         <motion.p
           className="mt-4 max-sm:mt-8 text-gray-600 text-lg max-w-2xl mx-auto text-center translate-x-2 sm:translate-x-4 md:translate-x-6"
@@ -230,9 +232,8 @@ const Hero1: React.FC = () => {
             delay: 0.2,
           }}
         >
-          Our committee carefully manages college funds, ensures transparent
-          allocations, and supports student activities to make every rupee
-          count.
+          From workshops to seminars, we organize events that enhance financial
+          knowledge, practical skills, and student engagement across FOSTIIMA.
         </motion.p>
 
         <motion.div
@@ -287,25 +288,21 @@ const Hero1: React.FC = () => {
         >
           <div className="max-w-md">
             <h2 className="text-3xl md:text-4xl font-semibold text-black leading-tight">
-              See It In Action
+              Discover Our Events
             </h2>
             <p className="mt-4 text-gray-600 text-lg">
-              Discover how our Finance Committee manages college funds
-              efficiently, supports student activities, and ensures every
-              allocation is transparent and accountable.
+              Explore how the Finance Committee brings finance-focused events,
+              workshops, and competitions to life for FOSTIIMA students.
             </p>
             <ul className="mt-6 space-y-2 text-gray-600">
               <li className="flex items-center">
-                <span className="mr-2 text-green-600">✔</span> Transparent
-                budget planning and tracking
+                <span className="mr-2 text-green-600">✔</span> Interactive finance workshops
               </li>
               <li className="flex items-center">
-                <span className="mr-2 text-green-600">✔</span> Support for
-                campus events and student initiatives
+                <span className="mr-2 text-green-600">✔</span> Seminars and guest lectures
               </li>
               <li className="flex items-center">
-                <span className="mr-2 text-green-600">✔</span> Responsible
-                allocation of funds to benefit all students
+                <span className="mr-2 text-green-600">✔</span> Competitions, quizzes, and networking sessions
               </li>
             </ul>
             <button className="mt-6 cursor-pointer bg-[#8a6ec5] text-white px-6 py-3 rounded-lg hover:bg-[#6B46C1] transition">

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import React, { useState, useRef, useEffect, useMemo  } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { toast } from "react-hot-toast";
 
 function BlogCard({
@@ -72,15 +72,15 @@ function BlogCard({
         <p className="text-[#6d6a7c] text-[17px] mb-4">{summary}</p>
       </div>
       <div className="flex gap-2 flex-wrap mb-4">
-          {category.map((cat, i) => (
-            <span
-              key={i}
-              className="bg-[#e6e0fa] text-[#9066F9] rounded-[12px] px-4 py-1 font-semibold text-[15px] w-fit shadow-sm"
-            >
-              {cat}
-            </span>
-          ))}
-        </div>
+        {category.map((cat, i) => (
+          <span
+            key={i}
+            className="bg-[#e6e0fa] text-[#9066F9] rounded-[12px] px-4 py-1 font-semibold text-[15px] w-fit shadow-sm"
+          >
+            {cat}
+          </span>
+        ))}
+      </div>
       <div
         style={{
           display: "flex",
@@ -368,26 +368,33 @@ export default function BlogPage() {
     "Other",
   ];
 
-  const allowedEmails = useMemo(() => [
-  "ashishmishra19122000@gmail.com",
-  "19122000ashishmishra@gmail.com",
-  "27ashish.mishra@fostiima.org",
-  "27surbhi.arora@fostiima.org",
-  "27shubh.gupta@fostiima.org",
-  "27anurag.sharma@fostiima.org",
-  "27tanishk.ghadiya@fostiima.org",
-  "27payal.naik@fostiima.org",
-  "27rajat.jain@fostiima.org",
-  "27kriti.jain@fostiima.org",
-  "27diksha.sharma@fostiima.org",
-
-], []);
+  const allowedEmails = useMemo(
+    () => [
+      "ashishmishra19122000@gmail.com",
+      "19122000ashishmishra@gmail.com",
+      "27ashish.mishra@fostiima.org",
+      "27surbhi.arora@fostiima.org",
+      "27shubh.gupta@fostiima.org",
+      "27anurag.sharma@fostiima.org",
+      "27tanishk.ghadiya@fostiima.org",
+      "27payal.naik@fostiima.org",
+      "27rajat.jain@fostiima.org",
+      "27kriti.jain@fostiima.org",
+      "27diksha.sharma@fostiima.org",
+      "27aryan.sehrawat@fostiima.org",
+      "27aman1@fostiima.org",
+      "27sparsh.jain@fostiima.org",
+      "27prateek@fostiima.org",
+      "fincomm@fostiima.org"
+    ],
+    []
+  );
   const [canEdit, setCanEdit] = useState(false);
 
   useEffect(() => {
-  const email = localStorage.getItem("fcUserEmail");
-  setCanEdit(allowedEmails.includes(email || ""));
-}, [allowedEmails]);
+    const email = localStorage.getItem("fcUserEmail");
+    setCanEdit(allowedEmails.includes(email || ""));
+  }, [allowedEmails]);
 
   const handleEditBlog = (blog: (typeof blogs)[0]) => {
     setIsEditing(true);
@@ -423,10 +430,10 @@ export default function BlogPage() {
         <section className="w-full min-h-[70vh] bg-[#FAFEF6] flex flex-col items-center py-12 px-4 mt-12">
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#313053] mb-4">
-              Discover our <span className="text-[#8C5BFF]">Insights</span>
+              Explore our <span className="text-[#8C5BFF]">Finance Insights</span>
             </h1>
             <p className="text-[#6d6a7c] text-lg md:text-xl lg:text-[22px] font-normal mt-2">
-              Stay updated with our latest uploaded blogs
+              Stay updated with the latest news, workshops, and events organized by the Finance Committee.
             </p>
           </div>
 
@@ -443,15 +450,15 @@ export default function BlogPage() {
 
             <div className="w-full lg:w-1/2 flex flex-col justify-center">
               <span className="bg-[#e6e0fa] text-[#8C5BFF] rounded-[8px] px-[16px] py-1 font-semibold text-[16px] sm:text-[18px] w-fit mb-4">
-                All
+                Finance Committee
               </span>
 
               <h2 className="text-[24px] sm:text-[28px] lg:text-[36px] font-bold text-[#4c3c4c] mb-0">
-                10 Tips for Successful Blogging
+                How to Make the Most of Finance Workshops
               </h2>
 
               <p className="text-[#6d6a7c] text-[16px] sm:text-[18px] lg:text-[20px] mt-4 mb-8">
-                Learn how to create engaging blog content that drives traffic
+                Tips and insights from our Finance Committee events to help students understand budgeting, investing, and personal finance effectively.
               </p>
 
               <div className="flex justify-center sm:justify-start w-full mb-10">
@@ -477,7 +484,7 @@ export default function BlogPage() {
                       Joya Mathur
                     </div>
                     <div className="text-[#a1a1b5] text-xs sm:text-sm">
-                      23 July 2025
+                      23 September 2025
                     </div>
                   </div>
                 </div>
@@ -891,27 +898,31 @@ export default function BlogPage() {
                 <span className="text-[#8C5BFF]">Questions</span>
               </h2>
               <p className="text-[#6d6a7c] text-[24px] font-normal mt-8 max-w-[400px]">
-                Find answers to common questions about our no code/ low code
-                development service
+                Find answers to common questions about the Finance Committee’s
+                events, workshops, and student initiatives.
               </p>
               <div className="mt-16">
                 <div className="text-[#a1a1b5] font-bold text-[22px] mb-3">
                   Committee Contact
                 </div>
-                <div className="text-[#313053] text-[18px] mb-2">Address: Plot No. HAF-1, Pocket 2, Dwarka Sector 9, Dwarka, New Delhi, Delhi, 110077</div>
-                <div className="text-[#313053] text-[18px] mb-2">Email:</div>
+                <div className="text-[#313053] text-[18px] mb-2">
+                  Address: Plot No. HAF-1, Pocket 2, Dwarka Sector 9, Dwarka,
+                  New Delhi, Delhi, 110077
+                </div>
+                <div className="text-[#313053] text-[18px] mb-2">Email: fincomm@fostiima.org</div>
                 {/* <div className="text-[#313053] text-[18px] mb-2">Phone:</div> */}
               </div>
             </div>
             <div className="flex-2 min-w-[400px]">
               <div className="bg-[#f6f3ff] rounded-[32px] shadow-[0_4px_32px_#e6e0fa33] p-12">
                 <div className="font-bold text-[26px] mb-8">
-                  What is no-code?
+                  What does the Finance Committee do?
                 </div>
                 <div className="text-[#6d6a7c] font-normal text-[22px]">
-                  No-code is a development method that allows people to build
-                  apps or websites without coding, using visual tools and
-                  drag-and-drop interfaces.
+                  The Finance Committee organizes finance-focused workshops,
+                  seminars, interactive events, and competitions. We plan
+                  budgets responsibly and help students gain practical
+                  experience in financial management.
                 </div>
                 <span
                   className="absolute top-6 right-12 text-[36px] text-[#c2b6e6] cursor-pointer user-select-none"
@@ -922,10 +933,10 @@ export default function BlogPage() {
               </div>
               <div className="mt-10">
                 {[
-                  "What are the benefits?",
-                  "Can I integrate with existing systems?",
-                  "What services do you offer?",
-                  "How can I get started?",
+                  "How can I participate in finance workshops?",
+                  "What types of events does the committee organize?",
+                  "Do I need prior finance knowledge to join?",
+                  "How do I propose a new student event?",
                 ].map((q) => (
                   <div
                     key={q}

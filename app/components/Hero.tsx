@@ -16,8 +16,8 @@ const Hero: React.FC = () => {
   const textSegments = [
     { text: "Empowering", color: "text-gray-700" },
     { text: "Financial", color: "text-[#7C55D7]" },
-    { text: "Decisions", color: "text-[#7C55D7]" },
-    { text: "with Oversight", color: "text-gray-700" },
+    { text: "Literacy", color: "text-[#7C55D7]" },
+    { text: "at FOSTIIMA", color: "text-gray-700" },
   ];
 
   const controls = useAnimationControls();
@@ -133,10 +133,10 @@ const Hero: React.FC = () => {
               animate={isInView ? "visible" : "hidden"}
               transition={{ duration: 0.8, ease: easeOut, delay: 0.2 }}
             >
-              From budgets to events — we make every rupee count for our campus community.
+              From budgets to workshops — we ensure every rupee empowers our
+              FOSTIIMA Finance community.
             </motion.p>
           </motion.div>
-
           <motion.div
             variants={fadeInUp}
             initial="hidden"

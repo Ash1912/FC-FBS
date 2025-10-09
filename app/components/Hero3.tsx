@@ -67,13 +67,15 @@ const Hero3: React.FC = () => {
           <h2 className="text-[2.75rem] leading-tight md:text-[3rem] font-extrabold text-gray-900 mb-5">
             Join Our{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-700">
-              Events
+              Finance Events
             </span>
           </h2>
 
           <p className="text-gray-700 text-base md:text-lg mb-10">
-            Join us to plan and support exciting campus events while ensuring
-            clear and responsible budgeting.
+            Be part of the FOSTIIMA Finance Committee’s workshops, seminars, and
+            interactive events. Collaborate with peers, gain hands-on
+            experience, and help organize impactful finance-focused activities
+            on campus.
           </p>
 
           <form className="space-y-5" onSubmit={handleSubmit}>
@@ -109,11 +111,11 @@ const Hero3: React.FC = () => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              {loading ? "Sending..." : "Join the waitlist"}
+              {loading ? "Sending..." : "Join the Finance Committee waitlist"}
             </motion.button>
             {success && (
               <p className="text-green-600 font-medium">
-                Message sent successfully!
+                Thank you! Your interest has been recorded.
               </p>
             )}
           </form>
