@@ -26,6 +26,7 @@
     "react-slick": "^0.31.0",
     "react-toastify": "^11.0.5",
     "slick-carousel": "^1.8.1",
+    "ws": "^8.18.3",
     "zod": "^4.0.5"
   },
   "devDependencies": {
@@ -37,6 +38,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-slick": "^0.23.13",
+    "@types/ws": "^8.18.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "prisma": "^6.16.2",

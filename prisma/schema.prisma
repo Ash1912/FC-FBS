@@ -11,6 +11,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  connection_limit = 1
 }
 
 model User {
@@ -41,6 +42,7 @@ model Account {
   id_token          String?
   session_state     String?
   user              User    @relation(fields: [userId], references: [id])
+
   @@unique([provider, providerAccountId])
 }
 
@@ -77,4 +79,23 @@ model Blog {
   img       String
   category  String[] // Requires PostgreSQL or MongoDB
   createdAt DateTime @default(now())
+}
+
+model BuzzerSession {
+  id        String           @id @default(cuid())
+  name      String
+  createdAt DateTime         @default(now())
+  isActive  Boolean          @default(true)
+  responses BuzzerResponse[] @relation("SessionResponses")
+}
+
+model BuzzerResponse {
+  id        String        @id @default(cuid())
+  teamName  String
+  buzzTime  DateTime      @default(now())
+  timeTaken Float?
+  sessionId String
+  session   BuzzerSession @relation("SessionResponses", fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, teamName])
 }

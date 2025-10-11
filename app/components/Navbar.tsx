@@ -63,6 +63,7 @@ const Navbar: React.FC = () => {
 
   const isLoggedIn = !!userName;
   const userInitials = getInitials(userName);
+
   return (
     <>
       <nav
@@ -89,9 +90,15 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
+          {/* ✅ Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8 text-[#313053] font-medium">
             <NavButton href="/aboutus">About Us</NavButton>
             <NavButton href="/blog">Blog</NavButton>
+            {/* ✅ New Buzzer Link */}
+            <NavButton href="/buzzer" className="text-[#8C5BFF]">
+              Buzzer
+            </NavButton>
+
             <div className="ml-6 flex items-center">
               {isLoggedIn ? (
                 <div className="relative" ref={dropdownRef}>
@@ -142,17 +149,11 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
+          {/* ✅ Mobile Menu Button */}
           <button
             className="md:hidden flex items-center justify-center w-10 h-10 bg-transparent transition relative z-[1003]"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Open menu"
-            style={{
-              border: "none",
-              boxShadow: "none",
-              background: "none",
-              padding: 0,
-              margin: 0,
-            }}
           >
             <svg
               width="28"
@@ -167,45 +168,30 @@ const Navbar: React.FC = () => {
             </svg>
           </button>
         </div>
+
+        {/* ✅ Mobile Menu */}
         {menuOpen && (
           <div
             className="md:hidden absolute top-[60px] left-0 right-0 w-[100vw] bg-white rounded-b-lg shadow-lg py-4 px-0 flex flex-col items-center gap-4 text-[#313053] font-medium z-[1004] border-b border-x border-[#ede7ff]"
             style={{ marginTop: "2px" }}
           >
-            <Link
-              href="/aboutus"
-              className="text-lg w-full"
-              onClick={() => setMenuOpen(false)}
-            >
-              <button
-                className="w-full text-center py-3 hover:bg-[#f6f3ff] transition"
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  margin: 0,
-                }}
-              >
+            <Link href="/aboutus" onClick={() => setMenuOpen(false)}>
+              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
                 About Us
               </button>
             </Link>
-            <Link
-              href="/blog"
-              className="text-lg w-full"
-              onClick={() => setMenuOpen(false)}
-            >
-              <button
-                className="w-full text-center py-3 hover:bg-[#f6f3ff] transition"
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  margin: 0,
-                }}
-              >
+            <Link href="/blog" onClick={() => setMenuOpen(false)}>
+              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
                 Blog
               </button>
             </Link>
+            {/* ✅ Mobile Buzzer link */}
+            <Link href="/buzzer" onClick={() => setMenuOpen(false)}>
+              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition text-[#8C5BFF] font-semibold">
+                Buzzer
+              </button>
+            </Link>
+
             <div className="w-full flex justify-center mt-2">
               {isLoggedIn ? (
                 <div className="w-10 h-10 rounded-full bg-[#6356D7] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all">
