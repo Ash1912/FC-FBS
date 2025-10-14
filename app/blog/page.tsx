@@ -1,16 +1,33 @@
 "use client";
-import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import { toast } from "react-hot-toast";
 
+function getFilePreviewUrl(fileUrl?: string) {
+  if (!fileUrl) return "#";
+
+  // ✅ If full Cloudinary or external URL, return as is
+  if (fileUrl.startsWith("http") || fileUrl.includes("cloudinary.com")) {
+    return fileUrl;
+  }
+
+  // ✅ Normalize local uploads (in /public/uploads)
+  if (fileUrl.startsWith("/uploads")) {
+    return fileUrl; // already public path
+  }
+
+  // ✅ Fallback for older stored paths (just filenames)
+  return `/uploads/${fileUrl}`;
+}
+
 function BlogCard({
   img,
   title,
   summary,
   category,
+  fileUrl,
   onEdit,
   onDelete,
   canEdit,
@@ -19,6 +36,7 @@ function BlogCard({
   title: string;
   summary: string;
   category: string[];
+  fileUrl?: string;
   onEdit?: () => void;
   onDelete?: () => void;
   canEdit?: boolean;
@@ -69,7 +87,15 @@ function BlogCard({
         <h3 className="text-[24px] font-bold text-[#3d2966] leading-tight mb-1">
           {title}
         </h3>
-        <p className="text-[#6d6a7c] text-[17px] mb-4">{summary}</p>
+        <p
+          className="text-[#6d6a7c] text-[17px] mb-4"
+          dangerouslySetInnerHTML={{
+            __html: summary.replace(
+              /<a /g,
+              '<a target="_blank" rel="noopener noreferrer" '
+            ),
+          }}
+        ></p>
       </div>
       <div className="flex gap-2 flex-wrap mb-4">
         {category.map((cat, i) => (
@@ -89,20 +115,40 @@ function BlogCard({
           marginTop: "auto",
         }}
       >
-        <Link
-          href="#"
-          style={{
-            color: "#8C5BFF",
-            fontWeight: 600,
-            fontSize: 18,
-            textDecoration: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-          }}
-        >
-          Learn more <span style={{ fontSize: 20 }}>→</span>
-        </Link>
+        {fileUrl ? (
+          <a
+            href={getFilePreviewUrl(fileUrl)}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#8C5BFF",
+              fontWeight: 600,
+              fontSize: 18,
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+              cursor: "pointer",
+            }}
+          >
+            Learn more <span style={{ fontSize: 20 }}>→</span>
+          </a>
+        ) : (
+          <span
+            style={{
+              color: "#8C5BFF",
+              fontWeight: 600,
+              fontSize: 18,
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+              cursor: "default",
+              opacity: 0.6,
+            }}
+          >
+            Learn more <span style={{ fontSize: 20 }}>→</span>
+          </span>
+        )}
 
         {canEdit && (
           <div style={{ display: "flex", gap: 8 }}>
@@ -150,6 +196,7 @@ export default function BlogPage() {
     img: "",
     summary: "",
     category: ["Finance"],
+    fileUrl: "",
   });
   const [selectedCategories, setSelectedCategories] = useState<string[]>([
     "All",
@@ -162,6 +209,7 @@ export default function BlogPage() {
       img: string;
       summary: string;
       category: string[];
+      fileUrl?: string;
     }[]
   >([]);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
@@ -171,6 +219,7 @@ export default function BlogPage() {
   const [multiDropdownOpen, setMultiDropdownOpen] = useState(false);
   const multiDropdownRef = useRef<HTMLDivElement>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [fileFile, setFileFile] = useState<File | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editingBlogId, setEditingBlogId] = useState<string | null>(null);
 
@@ -232,6 +281,11 @@ export default function BlogPage() {
         } else {
           formData.append("image", newBlog.img);
         }
+        if (fileFile) {
+          formData.append("file", fileFile);
+        } else {
+          formData.append("fileUrl", newBlog.fileUrl || "");
+        }
 
         const res = await fetch(`/api/blog/${editingBlogId}`, {
           method: "PUT",
@@ -257,6 +311,9 @@ export default function BlogPage() {
         if (imageFile) {
           formData.append("image", imageFile);
         }
+        if (fileFile) {
+          formData.append("file", fileFile);
+        }
 
         const res = await fetch("/api/create-blog", {
           method: "POST",
@@ -273,9 +330,16 @@ export default function BlogPage() {
         }
       }
 
-      setNewBlog({ title: "", summary: "", category: ["Finance"], img: "" });
+      setNewBlog({
+        title: "",
+        summary: "",
+        category: ["Finance"],
+        img: "",
+        fileUrl: "",
+      });
       setImagePreview("");
       setImageFile(null);
+      setFileFile(null);
       setIsEditing(false);
       setEditingBlogId(null);
       setShowCreate(false);
@@ -385,7 +449,7 @@ export default function BlogPage() {
       "27aman1@fostiima.org",
       "27sparsh.jain@fostiima.org",
       "27prateek@fostiima.org",
-      "fincomm@fostiima.org"
+      "fincomm@fostiima.org",
     ],
     []
   );
@@ -405,6 +469,7 @@ export default function BlogPage() {
       img: blog.img,
       summary: blog.summary,
       category: blog.category,
+      fileUrl: blog.fileUrl || "",
     });
   };
 
@@ -430,10 +495,12 @@ export default function BlogPage() {
         <section className="w-full min-h-[70vh] bg-[#FAFEF6] flex flex-col items-center py-12 px-4 mt-12">
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#313053] mb-4">
-              Explore our <span className="text-[#8C5BFF]">Finance Insights</span>
+              Explore our{" "}
+              <span className="text-[#8C5BFF]">Finance Insights</span>
             </h1>
             <p className="text-[#6d6a7c] text-lg md:text-xl lg:text-[22px] font-normal mt-2">
-              Stay updated with the latest news, workshops, and events organized by the Finance Committee.
+              Stay updated with the latest news, workshops, and events organized
+              by the Finance Committee.
             </p>
           </div>
 
@@ -458,7 +525,9 @@ export default function BlogPage() {
               </h2>
 
               <p className="text-[#6d6a7c] text-[16px] sm:text-[18px] lg:text-[20px] mt-4 mb-8">
-                Tips and insights from our Finance Committee events to help students understand budgeting, investing, and personal finance effectively.
+                Tips and insights from our Finance Committee events to help
+                students understand budgeting, investing, and personal finance
+                effectively.
               </p>
 
               <div className="flex justify-center sm:justify-start w-full mb-10">
@@ -622,6 +691,7 @@ export default function BlogPage() {
                 required
                 className="w-full px-6 py-3 text-[18px] rounded-[8px] border border-[#b9aaff] bg-[#f6f3ff]"
               />
+
               <input
                 id="blog-image-upload"
                 type="file"
@@ -708,11 +778,62 @@ export default function BlogPage() {
                   </div>
                 )}
               </div>
+
+              <input
+                id="blog-file-upload"
+                type="file"
+                accept=".pdf,.doc,.docx,.ppt,.pptx"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const fileUrl = URL.createObjectURL(file);
+                    setNewBlog({ ...newBlog, fileUrl });
+                    setFileFile(file);
+                  }
+                }}
+                className="hidden"
+              />
+              <label
+                htmlFor="blog-file-upload"
+                className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-[#f6f3ff] text-[#8C5BFF] border border-[#b9aaff] rounded-[8px] font-semibold text-[18px] cursor-pointer hover:bg-[#ede7ff] transition mb-2 shadow-sm"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="#8C5BFF"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                {newBlog.fileUrl ? "Change File" : "Upload File (PDF/DOC)"}
+              </label>
+
+              {newBlog.fileUrl && (
+                <div className="w-full bg-white rounded-[12px] border border-[#b9aaff] px-4 py-3 mt-2 text-[#6d6a7c] text-[16px] flex justify-between items-center">
+                  <span className="truncate">
+                    {newBlog.fileUrl.split("/").pop()}
+                  </span>
+                  <a
+                    href={newBlog.fileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#8C5BFF] font-semibold underline"
+                  >
+                    View
+                  </a>
+                </div>
+              )}
+
               <textarea
                 name="summary"
                 value={newBlog.summary}
                 onChange={handleInput}
-                placeholder="Short Summary"
+                placeholder="Short Summary — You can include links like <a href='https://fc-fbs.vercel.app/'>Finance Committee, FOSTIIMA Chapter</a>"
                 required
                 rows={3}
                 className="w-full px-6 py-3 text-[18px] rounded-[8px] border border-[#b9aaff] bg-[#f6f3ff]"
@@ -738,6 +859,7 @@ export default function BlogPage() {
                 title={blog.title}
                 summary={blog.summary}
                 category={blog.category}
+                fileUrl={blog.fileUrl}
                 onEdit={blog.id ? () => handleEditBlog(blog) : undefined}
                 onDelete={blog.id ? () => handleDeleteBlog(blog.id) : undefined}
                 canEdit={canEdit}
@@ -909,7 +1031,9 @@ export default function BlogPage() {
                   Address: Plot No. HAF-1, Pocket 2, Dwarka Sector 9, Dwarka,
                   New Delhi, Delhi, 110077
                 </div>
-                <div className="text-[#313053] text-[18px] mb-2">Email: fincomm@fostiima.org</div>
+                <div className="text-[#313053] text-[18px] mb-2">
+                  Email: fincomm@fostiima.org
+                </div>
                 {/* <div className="text-[#313053] text-[18px] mb-2">Phone:</div> */}
               </div>
             </div>

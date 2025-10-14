@@ -13,13 +13,13 @@ export async function GET() {
         summary: true,
         img: true,
         category: true,
+        fileUrl: true, // ✅ include content URL
       },
     });
+
     return NextResponse.json(blogs);
-  } catch {
-    return NextResponse.json(
-      { error: "Failed to fetch blogs" },
-      { status: 500 }
-    );
+  } catch (error: unknown) {
+    console.error("Failed to fetch blogs:", (error as Error).message || error);
+    return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
   }
 }
