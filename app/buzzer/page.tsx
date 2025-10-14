@@ -26,7 +26,7 @@ export default function BuzzerPage() {
             <span className="font-semibold text-indigo-700">200 people</span> to join the fun!
           </p>
         </div>
-        <div className="flex-1 w-full max-w-sm bg-white/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-xl border border-white/50">
+        <div className="flex-1 w-full max-w-sm bg-white/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-xl border border-white/50 mt-20">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 text-center">
             Join a Game
           </h2>

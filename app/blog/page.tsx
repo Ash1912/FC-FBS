@@ -932,9 +932,8 @@ export default function BlogPage() {
                 maxWidth: 800,
               }}
             >
-              Subscribe to our newsletter for the latest updates and insights
+              Subscribe to our newsletter for the latest updates and insights.
               <br />
-              on no-code / low code development.
             </p>
             <form
               className="newsletter-form"
