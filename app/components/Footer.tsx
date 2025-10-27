@@ -169,6 +169,7 @@ const Footer: React.FC = () => {
               links={[
                 { label: "About Us", href: "/aboutus" },
                 { label: "Blog", href: "/blog" },
+                {label: "FinQuest Registration", href: "/finquest/register"},
               ]}
             />
 

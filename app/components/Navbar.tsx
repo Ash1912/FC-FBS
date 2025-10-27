@@ -98,6 +98,13 @@ const Navbar: React.FC = () => {
             <NavButton href="/buzzer" className="text-[#8C5BFF]">
               Buzzer
             </NavButton>
+            {/* ✅ FinQuest Registration link */}
+            <NavButton
+              href="/finquest/register"
+              className="text-[#8C5BFF] font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[#8C5BFF] after:rounded-full hover:text-[#6356D7] hover:after:bg-[#6356D7] transition-all"
+            >
+              FinQuest Registration
+            </NavButton>
 
             <div className="ml-6 flex items-center">
               {isLoggedIn ? (

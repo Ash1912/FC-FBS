@@ -93,3 +93,52 @@ model BuzzerResponse {
 
   @@unique([sessionId, teamName])
 }
+
+model FinQuestEvent {
+  id               Int       @id @default(autoincrement())
+  title            String    @unique
+  description      String
+  semiFinalDate    DateTime
+  finalDate        DateTime
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  registrations    FinQuestRegistration[]
+}
+
+model FinQuestRegistration {
+  id          Int       @id @default(autoincrement())
+  teamName    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Member 1
+  member1Name     String
+  member1Email    String
+  member1Section  String
+  member1Phone    String
+  member1Year     String
+  member1PGP      String
+
+  // Member 2
+  member2Name     String
+  member2Email    String
+  member2Section  String
+  member2Phone    String
+  member2Year     String
+  member2PGP      String
+
+  // Member 3
+  member3Name     String
+  member3Email    String
+  member3Section  String
+  member3Phone    String
+  member3Year     String
+  member3PGP      String
+
+  // Relation to event
+  eventId     Int
+  event       FinQuestEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([teamName, eventId])
+}
