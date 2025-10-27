@@ -164,7 +164,7 @@ export default function FinQuestRegisterPage() {
                     name={`member${num}Name`}
                     value={form[`member${num}Name` as keyof typeof form] as string}
                     onChange={handleChange}
-                    required={num <= 2}
+                    required
                     className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
                     placeholder="Enter full name"
                   />
@@ -178,7 +178,7 @@ export default function FinQuestRegisterPage() {
                     name={`member${num}Email`}
                     value={form[`member${num}Email` as keyof typeof form] as string}
                     onChange={handleChange}
-                    required={num <= 2}
+                    required
                     className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
                     placeholder="Enter FOSTIIMA email"
                   />

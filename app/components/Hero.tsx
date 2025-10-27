@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   motion,
   useAnimationControls,
@@ -137,7 +138,7 @@ const Hero: React.FC = () => {
               FOSTIIMA Finance community.
             </motion.p>
           </motion.div>
-          <motion.div
+          {/* <motion.div
             variants={fadeInUp}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
@@ -153,6 +154,102 @@ const Hero: React.FC = () => {
               className="object-cover w-full h-auto"
               priority
             />
+          </motion.div> */}
+          {/* FinQuest 2025 Event Card Section - Animated Creative Version */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative flex flex-col md:flex-row items-center justify-between gap-6 
+             rounded-3xl shadow-2xl p-8 md:p-10 w-full max-w-6xl mx-auto 
+             border border-purple-200/50 overflow-hidden -mt-14
+             hover:-translate-y-2 transition-transform duration-500"
+          >
+            {/* 🔮 Animated Gradient Background */}
+            <div
+              className="absolute inset-0 bg-[linear-gradient(135deg,#f8f5ff,#e9d5ff,#d8b4fe,#c084fc,#a855f7)] 
+                animate-gradient-x bg-[length:400%_400%] opacity-70"
+            />
+
+            {/* Soft glow overlay */}
+            <div className="absolute inset-0 bg-white/60 backdrop-blur-xl rounded-3xl" />
+
+            {/* Left Content */}
+            <div className="flex-1 text-center md:text-left space-y-4 z-10">
+              <motion.h2
+                initial={{ x: -40, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#7C55D7] to-[#A06AF9] text-transparent bg-clip-text"
+              >
+                FinQuest <span className="text-gray-800">2025</span>
+              </motion.h2>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                className="text-gray-700 text-[17px] md:text-[18px] leading-relaxed md:max-w-lg font-medium space-y-1"
+              >
+                ⚡{" "}
+                <b className="text-[#7C55D7]">
+                  Get ready for the ultimate finance showdown!
+                </b>
+                <br />
+                📅{" "}
+                <span className="text-gray-800">
+                  Semi-Final: <b>4th Nov 🏁</b> | Grand Finale:{" "}
+                  <b>5th Nov 🏆</b>
+                </span>
+                <br />
+                💰{" "}
+                <b className="text-[#7C55D7]">
+                  Compete, learn, and showcase your financial brilliance!
+                </b>
+                <br />
+                🔥{" "}
+                <b className="text-gray-800">
+                  Mark your calendars — your financial IQ is about to shine!
+                </b>
+              </motion.p>
+
+              <motion.div
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                className="mt-3"
+              >
+                <Link
+                  href="/finquest/register"
+                  className="px-7 py-2.5 bg-gradient-to-r from-[#7C55D7] to-[#A06AF9] 
+               text-white font-semibold rounded-full shadow-md hover:shadow-purple-300/50 
+               transition-all duration-300 inline-block"
+                >
+                  🚀 Register Now
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Right Side: QR Code */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col items-center gap-2 z-10"
+            >
+              <div className="relative p-2 bg-white rounded-2xl shadow-lg hover:shadow-purple-300/40 transition-all duration-300">
+                <div className="absolute -inset-1 bg-gradient-to-tr from-[#A06AF9] to-[#7C55D7] rounded-2xl blur opacity-30" />
+                <Image
+                  src="/images/finquest-qr.png"
+                  alt="FinQuest 2025 QR"
+                  width={140}
+                  height={140}
+                  className="rounded-xl relative z-10"
+                />
+              </div>
+              <p className="text-xs font-semibold text-gray-800 tracking-wide uppercase">
+                📱 Scan to Register
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>

@@ -194,8 +194,13 @@ const Navbar: React.FC = () => {
             </Link>
             {/* ✅ Mobile Buzzer link */}
             <Link href="/buzzer" onClick={() => setMenuOpen(false)}>
-              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition text-[#8C5BFF] font-semibold">
+              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
                 Buzzer
+              </button>
+            </Link>
+            <Link href="/finquest/register" onClick={() => setMenuOpen(false)}>
+              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition text-[#8C5BFF] font-semibold">
+                FinQuest Registration
               </button>
             </Link>
 
