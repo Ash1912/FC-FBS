@@ -199,7 +199,7 @@ const Hero: React.FC = () => {
                 📅{" "}
                 <span className="text-gray-800">
                   Semi-Final: <b>4th Nov 🏁</b> | Grand Finale:{" "}
-                  <b>5th Nov 🏆</b>
+                  <b>6th Nov 🏆</b>
                 </span>
                 <br />
                 💰{" "}

@@ -136,7 +136,7 @@ export default function HostBuzzer() {
 
               <p className="mt-4 text-sm text-purple-500">
                 Teams can join via:{" "}
-                <span className="underline cursor-pointer hover:text-purple-700">/buzzer/team?room={roomCode}</span>
+                <span className="underline cursor-pointer hover:text-purple-700">https://fc-fbs.vercel.app/buzzer/team?room={roomCode}</span>
               </p>
 
               <button

@@ -21,13 +21,13 @@ export async function POST(req: Request) {
       where: { title: "FinQuest 2025" },
       update: {
         semiFinalDate: new Date("2025-11-04T09:00:00.000Z"),
-        finalDate: new Date("2025-11-05T09:00:00.000Z"),
+        finalDate: new Date("2025-11-06T09:00:00.000Z"),
       },
       create: {
         title: "FinQuest 2025",
-        description: "FinQuest 2025: Semi-Final on 4th Nov, Final on 5th Nov.",
+        description: "FinQuest 2025: Semi-Final on 4th Nov, Final on 6th Nov.",
         semiFinalDate: new Date("2025-11-04T09:00:00.000Z"),
-        finalDate: new Date("2025-11-05T09:00:00.000Z"),
+        finalDate: new Date("2025-11-06T09:00:00.000Z"),
       },
     });
 
