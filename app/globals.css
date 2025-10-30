@@ -193,3 +193,19 @@ h5 {
   background-size: 300% 300%;
   animation: gradient-rotate 10s ease-in-out infinite;
 }
+
+@keyframes pulse-soft {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(140, 91, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.07);
+    box-shadow: 0 0 18px rgba(140, 91, 255, 0.4);
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
