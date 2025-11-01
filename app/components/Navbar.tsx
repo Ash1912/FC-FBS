@@ -67,19 +67,21 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 w-full z-[1002] bg-gradient-to-tr from-[#faf5ff] via-[#f3e8ff] via-[#e9d5ff] to-[#c4b5fd]
- min-h-[60px] flex items-center"
+        className="fixed top-0 left-0 w-full z-[1002] 
+  backdrop-blur-xl bg-gradient-to-r from-[#ede9fe]/90 via-[#e9d5ff]/90 to-[#ddd6fe]/90
+  shadow-md border-b border-white/20 flex items-center transition-all duration-300"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center w-full">
           <div className="flex items-center space-x-3">
             <Image
               src="/images/Transparent logo.png"
               alt="Finance Committee logo"
-              width={80}
-              height={80}
-              className="w-12 h-12 md:w-16 md:h-16 object-contain"
+              width={100}
+              height={100}
+              className="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-[0_2px_6px_rgba(140,91,255,0.4)] transition-transform hover:scale-105"
               priority
             />
+
             <Link href="/">
               <span className="block text-[#8C5BFF] text-xl md:text-2xl font-semibold cursor-pointer hover:text-[#615fa1] transition">
                 Finance Committee
@@ -92,10 +94,23 @@ const Navbar: React.FC = () => {
 
           {/* ✅ Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8 text-[#313053] font-medium">
-            <NavButton href="/aboutus">About Us</NavButton>
-            <NavButton href="/blog">Blog</NavButton>
+            <NavButton
+              href="/aboutus"
+              className="text-[#2f2d52] hover:text-[#8C5BFF] transition-colors"
+            >
+              About Us
+            </NavButton>
+            <NavButton
+              href="/blog"
+              className="text-[#2f2d52] hover:text-[#8C5BFF] transition-colors"
+            >
+              Blog
+            </NavButton>
             {/* ✅ New Buzzer Link */}
-            <NavButton href="/buzzer" className="text-[#8C5BFF]">
+            <NavButton
+              href="/buzzer"
+              className="text-[#8C5BFF] transition-colors"
+            >
               Buzzer
             </NavButton>
             {/* ✅ FinQuest Registration link */}
