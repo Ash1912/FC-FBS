@@ -28,7 +28,9 @@ export default function FinQuestRegisterPage() {
     member3PGP: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -69,6 +71,10 @@ export default function FinQuestRegisterPage() {
         member3Year: "",
         member3PGP: "",
       });
+    } else if (res.status === 409) {
+      alert(
+        "⚠️ A team with this name already exists. Please choose another name."
+      );
     } else {
       alert("❌ Error: " + data.error);
     }
@@ -94,12 +100,19 @@ export default function FinQuestRegisterPage() {
             </span>
           </h1>
           <p className="text-lg md:text-xl opacity-90 mb-8">
-            <span className="font-semibold text-[#FFF1FF]">Join the ultimate finance challenge</span> and prove your financial mastery!
+            <span className="font-semibold text-[#FFF1FF]">
+              Join the ultimate finance challenge
+            </span>{" "}
+            and prove your financial mastery!
           </p>
           <div className="mx-auto w-24 h-1.5 bg-white/90 rounded-full animate-pulse"></div>
         </div>
 
-        <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="absolute bottom-0 left-0 w-full"
+          viewBox="0 0 1440 320"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             fill="#ffffff"
             fillOpacity="1"
@@ -110,14 +123,32 @@ export default function FinQuestRegisterPage() {
 
       {/* Rules & Regulations Section */}
       <section className="max-w-5xl mx-auto px-6 py-10 mt-8 bg-gradient-to-br from-white to-[#F9F6FF] border border-[#E9E0FF] rounded-3xl shadow-lg">
-        <h2 className="text-3xl font-bold text-[#6A4EFF] mb-6 text-center">📜 Rules and Regulations</h2>
+        <h2 className="text-3xl font-bold text-[#6A4EFF] mb-6 text-center">
+          📜 Rules and Regulations
+        </h2>
         <ul className="list-decimal list-inside space-y-3 text-gray-700 leading-relaxed">
-          <li>Participants are required to form a team of 3 members from their respective batch i.e., 1st and 2nd year students cannot be in the same team.</li>
-          <li>All 3 members must be present for each round, otherwise the team will be disqualified.</li>
+          <li>
+            Participants are required to form a team of 3 members from their
+            respective batch i.e., 1st and 2nd year students cannot be in the
+            same team.
+          </li>
+          <li>
+            All 3 members must be present for each round, otherwise the team
+            will be disqualified.
+          </li>
           <li>No team can change their team members after registration.</li>
-          <li>If a single participant has registered from 2 or more teams, then every team he/she is part of will get disqualified.</li>
-          <li>Participants will be assessed based on their finance, accounting, business world, and current affairs knowledge.</li>
-          <li>The decisions made by the Finance Committee will be final and binding.</li>
+          <li>
+            If a single participant has registered from 2 or more teams, then
+            every team he/she is part of will get disqualified.
+          </li>
+          <li>
+            Participants will be assessed based on their finance, accounting,
+            business world, and current affairs knowledge.
+          </li>
+          <li>
+            The decisions made by the Finance Committee will be final and
+            binding.
+          </li>
         </ul>
       </section>
 
@@ -129,7 +160,9 @@ export default function FinQuestRegisterPage() {
         >
           {/* Team Name */}
           <div className="mb-8">
-            <label className="block mb-2 font-semibold text-gray-700 text-lg">🏆 Team Name</label>
+            <label className="block mb-2 font-semibold text-gray-700 text-lg">
+              🏆 Team Name
+            </label>
             <input
               type="text"
               name="teamName"
@@ -154,15 +187,21 @@ export default function FinQuestRegisterPage() {
                     : "border-[#B79CFF]"
                 } hover:shadow-xl hover:scale-[1.02] transition-all`}
               >
-                <h2 className="font-semibold text-[#8C5BFF] mb-4 text-lg">👤 Member {num}</h2>
+                <h2 className="font-semibold text-[#8C5BFF] mb-4 text-lg">
+                  👤 Member {num}
+                </h2>
 
                 {/* Full Name */}
                 <div className="mb-3">
-                  <label className="block text-sm text-gray-600">Full Name</label>
+                  <label className="block text-sm text-gray-600">
+                    Full Name
+                  </label>
                   <input
                     type="text"
                     name={`member${num}Name`}
-                    value={form[`member${num}Name` as keyof typeof form] as string}
+                    value={
+                      form[`member${num}Name` as keyof typeof form] as string
+                    }
                     onChange={handleChange}
                     required
                     className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
@@ -172,11 +211,15 @@ export default function FinQuestRegisterPage() {
 
                 {/* FOSTIIMA Email */}
                 <div className="mb-3">
-                  <label className="block text-sm text-gray-600">FOSTIIMA Email</label>
+                  <label className="block text-sm text-gray-600">
+                    FOSTIIMA Email
+                  </label>
                   <input
                     type="email"
                     name={`member${num}Email`}
-                    value={form[`member${num}Email` as keyof typeof form] as string}
+                    value={
+                      form[`member${num}Email` as keyof typeof form] as string
+                    }
                     onChange={handleChange}
                     required
                     className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
@@ -190,7 +233,9 @@ export default function FinQuestRegisterPage() {
                   <input
                     type="text"
                     name={`member${num}Section`}
-                    value={form[`member${num}Section` as keyof typeof form] as string}
+                    value={
+                      form[`member${num}Section` as keyof typeof form] as string
+                    }
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
                     placeholder="Enter section"
@@ -203,7 +248,9 @@ export default function FinQuestRegisterPage() {
                   <input
                     type="text"
                     name={`member${num}Phone`}
-                    value={form[`member${num}Phone` as keyof typeof form] as string}
+                    value={
+                      form[`member${num}Phone` as keyof typeof form] as string
+                    }
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
                     placeholder="Enter phone number"
@@ -215,7 +262,9 @@ export default function FinQuestRegisterPage() {
                   <label className="block text-sm text-gray-600">Year</label>
                   <select
                     name={`member${num}Year`}
-                    value={form[`member${num}Year` as keyof typeof form] as string}
+                    value={
+                      form[`member${num}Year` as keyof typeof form] as string
+                    }
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
                   >
@@ -231,7 +280,9 @@ export default function FinQuestRegisterPage() {
                   <input
                     type="text"
                     name={`member${num}PGP`}
-                    value={form[`member${num}PGP` as keyof typeof form] as string}
+                    value={
+                      form[`member${num}PGP` as keyof typeof form] as string
+                    }
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
                     placeholder="Enter PGP (e.g., PGP 27)"

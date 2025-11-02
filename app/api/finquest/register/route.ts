@@ -31,6 +31,24 @@ export async function POST(req: Request) {
       },
     });
 
+    // 🔍 Check if team name already exists for this event
+    const existingTeam = await prisma.finQuestRegistration.findFirst({
+      where: {
+        teamName: {
+          equals: teamName,
+          mode: "insensitive", // case-insensitive check (optional)
+        },
+        eventId: event.id,
+      },
+    });
+
+    if (existingTeam) {
+      return NextResponse.json(
+        { error: "A team with this name has already registered. Please choose another name." },
+        { status: 409 } // Conflict
+      );
+    }
+
     // 🔹 Create registration
     const registration = await prisma.finQuestRegistration.create({
       data: {
