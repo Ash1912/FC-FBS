@@ -80,6 +80,12 @@ export default function FinQuestRegisterPage() {
     }
   };
 
+  // 🕒 STEP 1: Add deadline logic here
+  const registrationDeadline = new Date("2025-11-03T20:10:00+05:30");; // 2 minutes from now
+ // 8:00 PM IST
+  const now = new Date();
+  const registrationClosed = now > registrationDeadline;
+
   return (
     <>
       <Navbar />
@@ -154,6 +160,22 @@ export default function FinQuestRegisterPage() {
 
       {/* Registration Form */}
       <main className="max-w-6xl mx-auto px-6 py-12">
+        {registrationClosed ? (
+          // 🟥 Registration Closed Message
+          <div className="text-center py-20 bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/40">
+            <h2 className="text-4xl font-extrabold text-[#8C5BFF] mb-4">
+              ⏰ Registration Closed
+            </h2>
+            <p className="text-gray-700 text-lg">
+              Thank you for your interest in <b>FinQuest 2025</b>!  
+              Registrations officially closed on{" "}
+              <b>3rd November 2025, 8:00 PM</b>.
+            </p>
+            <p className="text-gray-500 mt-3">
+              Stay tuned for Semi-Final updates on 4th Nov 🏁
+            </p>
+          </div>
+        ) : (
         <form
           onSubmit={handleSubmit}
           className="bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/40 animate-fadeInUp"
@@ -307,8 +329,8 @@ export default function FinQuestRegisterPage() {
             </button>
           </div>
         </form>
+        )}
       </main>
-
       <Footer />
     </>
   );
