@@ -81,8 +81,8 @@ export default function FinQuestRegisterPage() {
   };
 
   // 🕒 STEP 1: Add deadline logic here
-  const registrationDeadline = new Date("2025-11-03T20:10:00+05:30");; // 2 minutes from now
- // 8:00 PM IST
+  const registrationDeadline = new Date("2025-11-03T20:00:00+05:30"); // 2 minutes from now
+  // 8:00 PM IST
   const now = new Date();
   const registrationClosed = now > registrationDeadline;
 
@@ -162,173 +162,202 @@ export default function FinQuestRegisterPage() {
       <main className="max-w-6xl mx-auto px-6 py-12">
         {registrationClosed ? (
           // 🟥 Registration Closed Message
-          <div className="text-center py-20 bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/40">
-            <h2 className="text-4xl font-extrabold text-[#8C5BFF] mb-4">
-              ⏰ Registration Closed
-            </h2>
-            <p className="text-gray-700 text-lg">
-              Thank you for your interest in <b>FinQuest 2025</b>!  
-              Registrations officially closed on{" "}
-              <b>3rd November 2025, 8:00 PM</b>.
-            </p>
-            <p className="text-gray-500 mt-3">
-              Stay tuned for Semi-Final updates on 4th Nov 🏁
-            </p>
+          <div className="relative text-center py-20 px-8 bg-gradient-to-br from-white/80 via-[#F8F5FF]/90 to-[#EFE9FF]/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-[#E0D4FF]/50 animate-fadeIn overflow-hidden">
+            {/* ✨ Background Glow Effects */}
+            <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#8C5BFF]/30 rounded-full blur-3xl opacity-60 animate-pulse-slow"></div>
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#B79CFF]/30 rounded-full blur-3xl opacity-60 animate-pulse-slow delay-2000"></div>
+
+            {/* 🕒 Icon and Heading */}
+            <div className="relative z-10 flex flex-col items-center space-y-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-[#8C5BFF] to-[#B79CFF] rounded-full flex items-center justify-center shadow-lg animate-bounce-slow">
+                <span className="text-white text-3xl">⏰</span>
+              </div>
+
+              <h2 className="text-5xl font-extrabold bg-gradient-to-r from-[#8C5BFF] to-[#B79CFF] bg-clip-text text-transparent drop-shadow-lg">
+                Registration Closed
+              </h2>
+
+              <p className="text-gray-700 text-lg mt-4 leading-relaxed max-w-2xl">
+                Thank you for your enthusiasm and overwhelming response to{" "}
+                <span className="font-bold text-[#8C5BFF]">FinQuest 2025</span>!
+                Registrations officially closed on{" "}
+                <span className="font-semibold text-[#6A4EFF]">
+                  3rd November 2025, 8:00 PM
+                </span>
+                .
+              </p>
+
+              <p className="text-gray-500 mt-3 italic">
+                Stay tuned for the{" "}
+                <span className="text-[#8C5BFF] font-medium">Final Round</span>{" "}
+                updates on{" "}
+                <span className="font-semibold text-[#6A4EFF]">
+                  6th November 🏁
+                </span>
+              </p>
+
+              {/* Decorative Line */}
+              <div className="mt-6 w-32 h-1 bg-gradient-to-r from-[#8C5BFF] to-[#B79CFF] rounded-full animate-pulse"></div>
+            </div>
           </div>
         ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/40 animate-fadeInUp"
-        >
-          {/* Team Name */}
-          <div className="mb-8">
-            <label className="block mb-2 font-semibold text-gray-700 text-lg">
-              🏆 Team Name
-            </label>
-            <input
-              type="text"
-              name="teamName"
-              value={form.teamName}
-              onChange={handleChange}
-              required
-              className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
-              placeholder="Enter your team name"
-            />
-          </div>
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/40 animate-fadeInUp"
+          >
+            {/* Team Name */}
+            <div className="mb-8">
+              <label className="block mb-2 font-semibold text-gray-700 text-lg">
+                🏆 Team Name
+              </label>
+              <input
+                type="text"
+                name="teamName"
+                value={form.teamName}
+                onChange={handleChange}
+                required
+                className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
+                placeholder="Enter your team name"
+              />
+            </div>
 
-          {/* Members */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((num) => (
-              <div
-                key={num}
-                className={`p-6 rounded-2xl bg-white shadow-md border-t-4 ${
-                  num === 1
-                    ? "border-[#8C5BFF]"
-                    : num === 2
-                    ? "border-[#9E77FF]"
-                    : "border-[#B79CFF]"
-                } hover:shadow-xl hover:scale-[1.02] transition-all`}
+            {/* Members */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[1, 2, 3].map((num) => (
+                <div
+                  key={num}
+                  className={`p-6 rounded-2xl bg-white shadow-md border-t-4 ${
+                    num === 1
+                      ? "border-[#8C5BFF]"
+                      : num === 2
+                      ? "border-[#9E77FF]"
+                      : "border-[#B79CFF]"
+                  } hover:shadow-xl hover:scale-[1.02] transition-all`}
+                >
+                  <h2 className="font-semibold text-[#8C5BFF] mb-4 text-lg">
+                    👤 Member {num}
+                  </h2>
+
+                  {/* Full Name */}
+                  <div className="mb-3">
+                    <label className="block text-sm text-gray-600">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name={`member${num}Name`}
+                      value={
+                        form[`member${num}Name` as keyof typeof form] as string
+                      }
+                      onChange={handleChange}
+                      required
+                      className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
+                      placeholder="Enter full name"
+                    />
+                  </div>
+
+                  {/* FOSTIIMA Email */}
+                  <div className="mb-3">
+                    <label className="block text-sm text-gray-600">
+                      FOSTIIMA Email
+                    </label>
+                    <input
+                      type="email"
+                      name={`member${num}Email`}
+                      value={
+                        form[`member${num}Email` as keyof typeof form] as string
+                      }
+                      onChange={handleChange}
+                      required
+                      className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
+                      placeholder="Enter FOSTIIMA email"
+                    />
+                  </div>
+
+                  {/* Section */}
+                  <div className="mb-3">
+                    <label className="block text-sm text-gray-600">
+                      Section
+                    </label>
+                    <input
+                      type="text"
+                      name={`member${num}Section`}
+                      value={
+                        form[
+                          `member${num}Section` as keyof typeof form
+                        ] as string
+                      }
+                      onChange={handleChange}
+                      className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
+                      placeholder="Enter section"
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div className="mb-3">
+                    <label className="block text-sm text-gray-600">Phone</label>
+                    <input
+                      type="text"
+                      name={`member${num}Phone`}
+                      value={
+                        form[`member${num}Phone` as keyof typeof form] as string
+                      }
+                      onChange={handleChange}
+                      className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
+                      placeholder="Enter phone number"
+                    />
+                  </div>
+
+                  {/* Year */}
+                  <div className="mb-3">
+                    <label className="block text-sm text-gray-600">Year</label>
+                    <select
+                      name={`member${num}Year`}
+                      value={
+                        form[`member${num}Year` as keyof typeof form] as string
+                      }
+                      onChange={handleChange}
+                      className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
+                    >
+                      <option value="">Select Year</option>
+                      <option value="1st Year">1st Year</option>
+                      <option value="2nd Year">2nd Year</option>
+                    </select>
+                  </div>
+
+                  {/* PGP */}
+                  <div className="mb-3">
+                    <label className="block text-sm text-gray-600">PGP</label>
+                    <input
+                      type="text"
+                      name={`member${num}PGP`}
+                      value={
+                        form[`member${num}PGP` as keyof typeof form] as string
+                      }
+                      onChange={handleChange}
+                      className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
+                      placeholder="Enter PGP (e.g., PGP 27)"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Submit Button */}
+            <div className="flex justify-center mt-10">
+              <button
+                type="submit"
+                disabled={loading}
+                className="bg-gradient-to-r from-[#8C5BFF] to-[#6A4EFF] text-white px-10 py-3.5 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2"
               >
-                <h2 className="font-semibold text-[#8C5BFF] mb-4 text-lg">
-                  👤 Member {num}
-                </h2>
-
-                {/* Full Name */}
-                <div className="mb-3">
-                  <label className="block text-sm text-gray-600">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name={`member${num}Name`}
-                    value={
-                      form[`member${num}Name` as keyof typeof form] as string
-                    }
-                    onChange={handleChange}
-                    required
-                    className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
-                    placeholder="Enter full name"
-                  />
-                </div>
-
-                {/* FOSTIIMA Email */}
-                <div className="mb-3">
-                  <label className="block text-sm text-gray-600">
-                    FOSTIIMA Email
-                  </label>
-                  <input
-                    type="email"
-                    name={`member${num}Email`}
-                    value={
-                      form[`member${num}Email` as keyof typeof form] as string
-                    }
-                    onChange={handleChange}
-                    required
-                    className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
-                    placeholder="Enter FOSTIIMA email"
-                  />
-                </div>
-
-                {/* Section */}
-                <div className="mb-3">
-                  <label className="block text-sm text-gray-600">Section</label>
-                  <input
-                    type="text"
-                    name={`member${num}Section`}
-                    value={
-                      form[`member${num}Section` as keyof typeof form] as string
-                    }
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
-                    placeholder="Enter section"
-                  />
-                </div>
-
-                {/* Phone */}
-                <div className="mb-3">
-                  <label className="block text-sm text-gray-600">Phone</label>
-                  <input
-                    type="text"
-                    name={`member${num}Phone`}
-                    value={
-                      form[`member${num}Phone` as keyof typeof form] as string
-                    }
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
-                    placeholder="Enter phone number"
-                  />
-                </div>
-
-                {/* Year */}
-                <div className="mb-3">
-                  <label className="block text-sm text-gray-600">Year</label>
-                  <select
-                    name={`member${num}Year`}
-                    value={
-                      form[`member${num}Year` as keyof typeof form] as string
-                    }
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
-                  >
-                    <option value="">Select Year</option>
-                    <option value="1st Year">1st Year</option>
-                    <option value="2nd Year">2nd Year</option>
-                  </select>
-                </div>
-
-                {/* PGP */}
-                <div className="mb-3">
-                  <label className="block text-sm text-gray-600">PGP</label>
-                  <input
-                    type="text"
-                    name={`member${num}PGP`}
-                    value={
-                      form[`member${num}PGP` as keyof typeof form] as string
-                    }
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-[#8C5BFF] transition-all"
-                    placeholder="Enter PGP (e.g., PGP 27)"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Submit Button */}
-          <div className="flex justify-center mt-10">
-            <button
-              type="submit"
-              disabled={loading}
-              className="bg-gradient-to-r from-[#8C5BFF] to-[#6A4EFF] text-white px-10 py-3.5 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2"
-            >
-              {loading ? (
-                <span className="animate-spin border-2 border-white border-t-transparent rounded-full w-5 h-5"></span>
-              ) : (
-                "Register Team 🚀"
-              )}
-            </button>
-          </div>
-        </form>
+                {loading ? (
+                  <span className="animate-spin border-2 border-white border-t-transparent rounded-full w-5 h-5"></span>
+                ) : (
+                  "Register Team 🚀"
+                )}
+              </button>
+            </div>
+          </form>
         )}
       </main>
       <Footer />
