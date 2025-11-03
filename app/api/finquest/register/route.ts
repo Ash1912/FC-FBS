@@ -1,15 +1,24 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-const REGISTRATION_DEADLINE = new Date("2025-11-03T20:00:00+05:30");// 8:00 PM IST
+// 🗓 Registration Window
+const REGISTRATION_START = new Date("2025-10-30T06:00:00+05:30"); // 6:00 AM IST
+const REGISTRATION_END = new Date("2025-11-03T20:00:00+05:30");   // 8:00 PM IST
 
 // 🟩 POST → Register a FinQuest team
 export async function POST(req: Request) {
   try {
     const now = new Date();
 
-    // 🕒 Check if registration is closed
-    if (now > REGISTRATION_DEADLINE) {
+    // 🕒 Check if registration is outside allowed window
+    if (now < REGISTRATION_START) {
+      return NextResponse.json(
+        { error: "🕓 Registration hasn't opened yet. It starts on 30th October 2025 at 12:00 AM." },
+        { status: 403 }
+      );
+    }
+
+    if (now > REGISTRATION_END) {
       return NextResponse.json(
         { error: "⏰ Registration is closed. The deadline was 3rd November 2025, 8:00 PM." },
         { status: 403 }

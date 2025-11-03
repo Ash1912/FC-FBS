@@ -80,11 +80,13 @@ export default function FinQuestRegisterPage() {
     }
   };
 
-  // 🕒 STEP 1: Add deadline logic here
-  const registrationDeadline = new Date("2025-11-03T20:00:00+05:30"); // 2 minutes from now
-  // 8:00 PM IST
+  // 🕒 STEP 1: Define registration window
+  const registrationStart = new Date("2025-10-30T06:00:00+05:30");
+  const registrationEnd = new Date("2025-11-03T20:00:00+05:30");
   const now = new Date();
-  const registrationClosed = now > registrationDeadline;
+
+  const registrationNotStarted = now < registrationStart;
+  const registrationClosed = now > registrationEnd;
 
   return (
     <>
@@ -160,44 +162,83 @@ export default function FinQuestRegisterPage() {
 
       {/* Registration Form */}
       <main className="max-w-6xl mx-auto px-6 py-12">
-        {registrationClosed ? (
+        {registrationNotStarted ? (
+          // 🟨 Registration Not Yet Started
+          <div className="text-center py-20 px-8 bg-gradient-to-br from-[#F9F6FF] via-[#EFE9FF] to-white rounded-3xl shadow-xl border border-[#E0D4FF]/50 backdrop-blur-xl">
+            <div className="w-16 h-16 bg-gradient-to-r from-[#B79CFF] to-[#8C5BFF] rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animate-bounce-slow">
+              <span className="text-white text-3xl">🕓</span>
+            </div>
+            <h2 className="text-4xl font-extrabold text-[#8C5BFF] mb-3">
+              Registration Opens Soon
+            </h2>
+            <p className="text-gray-700 text-lg">
+              FinQuest 2025 registration opens on{" "}
+              <b>1st November 2025, 9:00 AM</b>.
+            </p>
+            <p className="text-gray-500 mt-3 italic">Mark your calendars ⏳</p>
+          </div>
+        ) : registrationClosed ? (
           // 🟥 Registration Closed Message
           <div className="relative text-center py-20 px-8 bg-gradient-to-br from-white/80 via-[#F8F5FF]/90 to-[#EFE9FF]/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-[#E0D4FF]/50 animate-fadeIn overflow-hidden">
-            {/* ✨ Background Glow Effects */}
             <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#8C5BFF]/30 rounded-full blur-3xl opacity-60 animate-pulse-slow"></div>
             <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#B79CFF]/30 rounded-full blur-3xl opacity-60 animate-pulse-slow delay-2000"></div>
 
-            {/* 🕒 Icon and Heading */}
             <div className="relative z-10 flex flex-col items-center space-y-4">
               <div className="w-16 h-16 bg-gradient-to-r from-[#8C5BFF] to-[#B79CFF] rounded-full flex items-center justify-center shadow-lg animate-bounce-slow">
                 <span className="text-white text-3xl">⏰</span>
               </div>
-
-              <h2 className="text-5xl font-extrabold bg-gradient-to-r from-[#8C5BFF] to-[#B79CFF] bg-clip-text text-transparent drop-shadow-lg">
+              <h2 className="text-5xl font-extrabold bg-gradient-to-r from-[#8C5BFF] to-[#B79CFF] bg-clip-text text-transparent drop-shadow-lg leading-[1.15] pb-[0.15em]">
                 Registration Closed
               </h2>
 
-              <p className="text-gray-700 text-lg mt-4 leading-relaxed max-w-2xl">
+              <p className="text-gray-700 text-lg leading-relaxed mb-2">
                 Thank you for your enthusiasm and overwhelming response to{" "}
-                <span className="font-bold text-[#8C5BFF]">FinQuest 2025</span>!
+                <a
+                  href="https://fc-fbs.vercel.app/finquest/register"
+                  target="_blank"
+                  className="text-[#8C5BFF] font-semibold hover:underline hover:text-[#6B33FF]"
+                >
+                  FinQuest 2025
+                </a>
+                !
+              </p>
+
+              <p className="text-gray-700 text-lg mb-6">
                 Registrations officially closed on{" "}
-                <span className="font-semibold text-[#6A4EFF]">
+                <span className="font-semibold text-[#6B33FF]">
                   3rd November 2025, 8:00 PM
                 </span>
                 .
               </p>
-
               <p className="text-gray-500 mt-3 italic">
                 Stay tuned for the{" "}
+                <span className="text-[#8C5BFF] font-medium">
+                  Semi-Final Round
+                </span>{" "}
+                updates on{" "}
+                <span className="font-semibold text-[#6A4EFF]">
+                  4th November 🏁
+                </span>{" "}
+                and the{" "}
                 <span className="text-[#8C5BFF] font-medium">Final Round</span>{" "}
                 updates on{" "}
                 <span className="font-semibold text-[#6A4EFF]">
-                  6th November 🏁
+                  6th November 🎯
                 </span>
+                .
               </p>
-
-              {/* Decorative Line */}
               <div className="mt-6 w-32 h-1 bg-gradient-to-r from-[#8C5BFF] to-[#B79CFF] rounded-full animate-pulse"></div>
+              <p className="mt-5 text-sm text-gray-500">
+                Follow us on{" "}
+                <a
+                  href="https://www.instagram.com/fostiima.finance_committe?utm_source=qr&igsh=N2w5bGtkYXJmZDBr"
+                  target="_blank"
+                  className="text-[#8C5BFF] hover:underline"
+                >
+                  Instagram
+                </a>{" "}
+                for live event updates 📢
+              </p>
             </div>
           </div>
         ) : (
