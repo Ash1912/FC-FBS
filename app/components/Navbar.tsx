@@ -107,19 +107,25 @@ const Navbar: React.FC = () => {
               Blog
             </NavButton>
             {/* ✅ New Buzzer Link */}
-            <NavButton
+            {/* <NavButton
               href="/buzzer"
               className="text-[#8C5BFF] transition-colors"
             >
               Buzzer
+            </NavButton> */}
+            <NavButton
+              href="/event"
+              className="text-[#8C5BFF] transition-colors"
+            >
+              Event
             </NavButton>
             {/* ✅ FinQuest Registration link */}
-            <NavButton
+            {/* <NavButton
               href="/finquest/register"
               className="text-[#8C5BFF] font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[#8C5BFF] after:rounded-full hover:text-[#6356D7] hover:after:bg-[#6356D7] transition-all"
             >
               FinQuest Registration
-            </NavButton>
+            </NavButton> */}
 
             <div className="ml-6 flex items-center">
               {isLoggedIn ? (
@@ -207,17 +213,22 @@ const Navbar: React.FC = () => {
                 Blog
               </button>
             </Link>
+            <Link href="/event" onClick={() => setMenuOpen(false)}>
+              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
+                Event
+              </button>
+            </Link>
             {/* ✅ Mobile Buzzer link */}
-            <Link href="/buzzer" onClick={() => setMenuOpen(false)}>
+            {/* <Link href="/buzzer" onClick={() => setMenuOpen(false)}>
               <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
                 Buzzer
               </button>
-            </Link>
-            <Link href="/finquest/register" onClick={() => setMenuOpen(false)}>
+            </Link> */}
+            {/* <Link href="/finquest/register" onClick={() => setMenuOpen(false)}>
               <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition text-[#8C5BFF] font-semibold">
                 FinQuest Registration
               </button>
-            </Link>
+            </Link> */}
 
             <div className="w-full flex justify-center mt-2">
               {isLoggedIn ? (
