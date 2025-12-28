@@ -17,7 +17,7 @@ const socialIcons = [
   {
     icon: Instagram,
     label: "Instagram",
-    href: "https://www.instagram.com/fostiima.finance_committe?utm_source=qr&igsh=N2w5bGtkYXJmZDBr",
+    href: "https://www.instagram.com/finance_with_fbs?igsh=N2w5bGtkYXJmZDBr",
   },
   {
     icon: Linkedin,
