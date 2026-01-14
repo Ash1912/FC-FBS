@@ -155,7 +155,7 @@ const Hero: React.FC = () => {
               priority
             />
           </motion.div> */}
-          {/* FinQuest 2025 Event Card Section - Animated Creative Version */}
+          {/* StockiFy 2026 Event Card Section - Animated Creative Version */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -182,7 +182,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#7C55D7] to-[#A06AF9] text-transparent bg-clip-text"
               >
-                FinQuest <span className="text-gray-800">2025</span>
+                StockiFy <span className="text-gray-800">2026</span>
               </motion.h2>
 
               <motion.p
@@ -198,8 +198,8 @@ const Hero: React.FC = () => {
                 <br />
                 📅{" "}
                 <span className="text-gray-800">
-                  Semi-Final: <b>4th Nov 🏁</b> | Grand Finale:{" "}
-                  <b>6th Nov 🏆</b>
+                  Prelims: <b>19th Jan 🏁</b> | Grand Finale:{" "}
+                  <b>21st Jan 🏆</b>
                 </span>
                 <br />
                 💰{" "}
@@ -219,7 +219,7 @@ const Hero: React.FC = () => {
                 className="mt-3"
               >
                 <Link
-                  href="/finquest/register"
+                  href="/stockify/register"
                   className="px-7 py-2.5 bg-gradient-to-r from-[#7C55D7] to-[#A06AF9] 
                text-white font-semibold rounded-full shadow-md hover:shadow-purple-300/50 
                transition-all duration-300 inline-block"
@@ -239,8 +239,8 @@ const Hero: React.FC = () => {
               <div className="relative p-2 bg-white rounded-2xl shadow-lg hover:shadow-purple-300/40 transition-all duration-300">
                 <div className="absolute -inset-1 bg-gradient-to-tr from-[#A06AF9] to-[#7C55D7] rounded-2xl blur opacity-30" />
                 <Image
-                  src="/images/finquest-qr.png"
-                  alt="FinQuest 2025 QR"
+                  src="/images/stockify-qr.png"
+                  alt="StockiFy 2026 QR"
                   width={140}
                   height={140}
                   className="rounded-xl relative z-10"

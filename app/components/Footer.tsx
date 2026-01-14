@@ -164,11 +164,12 @@ const Footer: React.FC = () => {
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <LinkSection
-              title="Company"
+              title=""
               index={0}
               links={[
                 { label: "About Us", href: "/aboutus" },
                 { label: "Blog", href: "/blog" },
+                { label: "Event", href: "/event" },
                 // {label: "FinQuest Registration", href: "/finquest/register"},
               ]}
             />
