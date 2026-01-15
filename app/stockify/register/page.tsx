@@ -81,7 +81,7 @@ export default function StockiFyRegisterPage() {
   };
 
   // 🕒 STEP 1: Define registration window
-  const registrationStart = new Date("2026-01-15T19:30:00+05:30");
+  const registrationStart = new Date("2026-01-16T19:30:00+05:30");
   const registrationEnd = new Date("2026-01-18T11:00:00+05:30");
   const now = new Date();
 
@@ -169,7 +169,7 @@ export default function StockiFyRegisterPage() {
             </h2>
             <p className="text-gray-700 text-lg">
               StockiFy 2026 registration opens on{" "}
-              <b>15 January 2026, 07:30 PM</b>.
+              <b>16 January 2026, 07:30 PM</b>.
             </p>
             <p className="text-gray-500 mt-3 italic">Mark your calendars ⏳</p>
           </div>

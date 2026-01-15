@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 // 🗓 Registration Window
-const REGISTRATION_START = new Date("2026-01-15T19:30:00+05:30"); 
+const REGISTRATION_START = new Date("2026-01-16T19:30:00+05:30"); 
 const REGISTRATION_END = new Date("2026-01-18T11:00:00+05:30");   
 
 // 🟩 POST → Register a StockiFy team
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     // 🕒 Check if registration is outside allowed window
     if (now < REGISTRATION_START) {
       return NextResponse.json(
-        { error: "🕓 Registration hasn't opened yet. It starts on 15th January 2026 at 07:30 PM." },
+        { error: "🕓 Registration hasn't opened yet. It starts on 16th January 2026 at 07:30 PM." },
         { status: 403 }
       );
     }
