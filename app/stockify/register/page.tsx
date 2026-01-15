@@ -169,7 +169,7 @@ export default function StockiFyRegisterPage() {
             </h2>
             <p className="text-gray-700 text-lg">
               StockiFy 2026 registration opens on{" "}
-              <b>16 January 2026, 07:30 PM</b>.
+              <b>16 January 2026, 12:00 NOON</b>.
             </p>
             <p className="text-gray-500 mt-3 italic">Mark your calendars ⏳</p>
           </div>
