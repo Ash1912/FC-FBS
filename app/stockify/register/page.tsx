@@ -81,7 +81,7 @@ export default function StockiFyRegisterPage() {
   };
 
   // 🕒 STEP 1: Define registration window
-  const registrationStart = new Date("2026-01-16T19:30:00+05:30");
+  const registrationStart = new Date("2026-01-16T12:00:00+05:30");
   const registrationEnd = new Date("2026-01-18T11:00:00+05:30");
   const now = new Date();
 
