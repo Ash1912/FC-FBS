@@ -82,7 +82,7 @@ export default function StockiFyRegisterPage() {
 
   // 🕒 STEP 1: Define registration window
   const registrationStart = new Date("2026-01-16T12:00:00+05:30");
-  const registrationEnd = new Date("2026-01-18T11:00:00+05:30");
+  const registrationEnd = new Date("2026-01-18T19:30:00+05:30");
   const now = new Date();
 
   const registrationNotStarted = now < registrationStart;
@@ -202,7 +202,7 @@ export default function StockiFyRegisterPage() {
               <p className="text-gray-700 text-lg mb-6">
                 Registrations officially closed on{" "}
                 <span className="font-semibold text-[#6B33FF]">
-                  18th January 2026, 11:00 AM
+                  18th January 2026, 07:30 PM
                 </span>
                 .
               </p>

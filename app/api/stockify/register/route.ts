@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 // 🗓 Registration Window
 const REGISTRATION_START = new Date("2026-01-16T12:00:00+05:30"); 
-const REGISTRATION_END = new Date("2026-01-18T11:00:00+05:30");   
+const REGISTRATION_END = new Date("2026-01-18T19:30:00+05:30");   
 
 // 🟩 POST → Register a StockiFy team
 export async function POST(req: Request) {
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
     if (now > REGISTRATION_END) {
       return NextResponse.json(
-        { error: "⏰ Registration is closed. The deadline was 18th January 2026, 11:00 AM." },
+        { error: "⏰ Registration is closed. The deadline was 18th January 2026, 07:30 PM." },
         { status: 403 }
       );
     }
