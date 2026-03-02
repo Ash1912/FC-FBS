@@ -1,0 +1,6 @@
+-- CreateEnum
+CREATE TYPE "VoteType" AS ENUM ('PANELIST', 'AUDIENCE');
+
+-- AlterTable
+ALTER TABLE "Vote" ADD COLUMN     "type" "VoteType" NOT NULL DEFAULT 'AUDIENCE',
+ALTER COLUMN "email" DROP NOT NULL;
