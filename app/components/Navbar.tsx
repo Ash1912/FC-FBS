@@ -119,6 +119,14 @@ const Navbar: React.FC = () => {
             >
               Event
             </NavButton>
+            <a
+              href="https://fc-fbs-voting-system.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#8C5BFF] font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[#8C5BFF] after:rounded-full hover:text-[#6356D7] hover:after:bg-[#6356D7] transition-all"
+            >
+              VITT-MANTHAN
+            </a>
             {/* ✅ FinQuest Registration link */}
             {/* <NavButton
               href="/finquest/register"
@@ -127,12 +135,12 @@ const Navbar: React.FC = () => {
               FinQuest Registration
             </NavButton> */}
 
-            <NavButton
+            {/* <NavButton
               href="/stockify/register"
               className="text-[#8C5BFF] font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[#8C5BFF] after:rounded-full hover:text-[#6356D7] hover:after:bg-[#6356D7] transition-all"
             >
               StockiFy Registration
-            </NavButton>
+            </NavButton> */}
 
             <div className="ml-6 flex items-center">
               {isLoggedIn ? (
@@ -225,6 +233,15 @@ const Navbar: React.FC = () => {
                 Event
               </button>
             </Link>
+            <a
+              href="https://fc-fbs-voting-system.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="w-full text-center py-3 hover:bg-[#f6f3ff] transition text-[#8C5BFF] font-semibold"
+            >
+              VITT-MANTHAN
+            </a>
             {/* ✅ Mobile Buzzer link */}
             {/* <Link href="/buzzer" onClick={() => setMenuOpen(false)}>
               <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
@@ -236,11 +253,11 @@ const Navbar: React.FC = () => {
                 FinQuest Registration
               </button>
             </Link> */}
-            <Link href="/stockify/register" onClick={() => setMenuOpen(false)}>
+            {/* <Link href="/stockify/register" onClick={() => setMenuOpen(false)}>
               <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition text-[#8C5BFF] font-semibold">
                 StockiFy Registration
               </button>
-            </Link>
+            </Link> */}
 
             <div className="w-full flex justify-center mt-2">
               {isLoggedIn ? (

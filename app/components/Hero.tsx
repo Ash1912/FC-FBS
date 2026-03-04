@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   motion,
   useAnimationControls,
@@ -155,7 +154,7 @@ const Hero: React.FC = () => {
               priority
             />
           </motion.div> */}
-          {/* StockiFy 2026 Event Card Section - Animated Creative Version */}
+          {/* Vitt-Manthan 2026 Event Card Section - Animated Creative Version */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -182,7 +181,7 @@ const Hero: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#7C55D7] to-[#A06AF9] text-transparent bg-clip-text"
               >
-                StockiFy <span className="text-gray-800">2026</span>
+                VITT-MANTHAN <span className="text-gray-800">2026</span>
               </motion.h2>
 
               <motion.p
@@ -193,23 +192,22 @@ const Hero: React.FC = () => {
               >
                 ⚡{" "}
                 <b className="text-[#7C55D7]">
-                  Get ready for the ultimate finance showdown!
+                  The Ultimate Budget Debate Showdown!
                 </b>
                 <br />
                 📅{" "}
                 <span className="text-gray-800">
-                  Prelims: <b>19th Jan 🏁</b> | Grand Finale:{" "}
-                  <b>21st Jan 🏆</b>
+                  09th March 2026 🏛️ | <b>2:00 PM</b> | Seminar Hall
                 </span>
                 <br />
-                💰{" "}
+                🎤{" "}
                 <b className="text-[#7C55D7]">
-                  Compete, learn, and showcase your financial brilliance!
+                  12 Teams. Intense Arguments. Strategic Cross-Questioning.
                 </b>
                 <br />
-                🔥{" "}
+                🏆{" "}
                 <b className="text-gray-800">
-                  Mark your calendars — your financial IQ is about to shine!
+                  Witness ideas clash, perspectives evolve, and champions rise!
                 </b>
               </motion.p>
 
@@ -218,14 +216,16 @@ const Hero: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 className="mt-3"
               >
-                <Link
-                  href="/stockify/register"
+                <a
+                  href="https://fc-fbs-voting-system.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-7 py-2.5 bg-gradient-to-r from-[#7C55D7] to-[#A06AF9] 
-               text-white font-semibold rounded-full shadow-md hover:shadow-purple-300/50 
-               transition-all duration-300 inline-block"
+  text-white font-semibold rounded-full shadow-md hover:shadow-purple-300/50 
+  transition-all duration-300 inline-block"
                 >
-                  🚀 Register Now
-                </Link>
+                  🗳️ VITT-MANTHAN 26 Voting
+                </a>
               </motion.div>
             </div>
 
@@ -236,18 +236,17 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="flex flex-col items-center gap-2 z-10"
             >
-              <div className="relative p-2 bg-white rounded-2xl shadow-lg hover:shadow-purple-300/40 transition-all duration-300">
-                <div className="absolute -inset-1 bg-gradient-to-tr from-[#A06AF9] to-[#7C55D7] rounded-2xl blur opacity-30" />
+              <div className="relative p-4 bg-white rounded-2xl shadow-lg hover:shadow-purple-300/40 transition-all duration-300">
                 <Image
-                  src="/images/stockify-qr.png"
-                  alt="StockiFy 2026 QR"
-                  width={140}
-                  height={140}
-                  className="rounded-xl relative z-10"
+                  src="/images/FC-FBS Voting System.png"
+                  alt="VITT-MANTHAN 2026 QR"
+                  width={200}
+                  height={200}
+                  className="rounded-xl relative z-10 w-[180px] md:w-[220px] h-auto"
                 />
               </div>
               <p className="text-xs font-semibold text-gray-800 tracking-wide uppercase">
-                📱 Scan to Register
+                📱 Scan to Vote
               </p>
             </motion.div>
           </motion.div>
