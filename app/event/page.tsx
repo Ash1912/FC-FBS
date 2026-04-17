@@ -225,6 +225,42 @@ export default function EventPage() {
         date: "21 Jan 2026",
         participants: "45 participants",
       },
+      {
+        id: 3,
+        title: "VITT-MANTHAN 2026",
+        cardGifs: ["/images/event_VITTManthan26/VM1.gif"],
+        images: [
+          "/images/event_VITTManthan26/VM1.gif",
+          "/images/event_VITTManthan26/01.jpeg",
+          "/images/event_VITTManthan26/02.jpeg",
+          "/images/event_VITTManthan26/03.jpeg",
+          "/images/event_VITTManthan26/04.jpeg",
+          "/images/event_VITTManthan26/05.jpeg",
+          "/images/event_VITTManthan26/06.jpeg",
+          "/images/event_VITTManthan26/VM3.gif",
+          "/images/event_VITTManthan26/07.JPG",
+          "/images/event_VITTManthan26/08.JPG",
+          "/images/event_VITTManthan26/09.JPG",
+          "/images/event_VITTManthan26/10.JPG",
+          "/images/event_VITTManthan26/11.JPG",
+          "/images/event_VITTManthan26/12.JPG",
+          "/images/event_VITTManthan26/13.JPG",
+          "/images/event_VITTManthan26/14.JPG",
+          "/images/event_VITTManthan26/15.JPG",
+          "/images/event_VITTManthan26/16.JPG",
+          "/images/event_VITTManthan26/17.JPG",
+          "/images/event_VITTManthan26/18.JPG",
+          "/images/event_VITTManthan26/19.JPG",
+          "/images/event_VITTManthan26/20.JPG",
+          "/images/event_VITTManthan26/21.JPG",
+          "/images/event_VITTManthan26/22.JPG",
+          "/images/event_VITTManthan26/23.JPG",
+          "/images/event_VITTManthan26/24.JPG",
+        ],
+        description: "Manthan of minds, Mastery of money.",
+        date: "09 March 2026",
+        participants: "36 participants",
+      },
     ],
     [],
   );
@@ -317,7 +353,7 @@ export default function EventPage() {
   return (
     <div className="relative min-h-screen bg-[var(--bg-primary)]">
       <Navbar />
-      
+
       {/* ------------ HERO SECTION ------------ */}
       <section className="relative w-full py-20 min-h-[620px] md:min-h-[720px] lg:min-h-[780px] overflow-hidden mt-16">
         {/* BACKGROUND IMAGE */}
@@ -374,9 +410,11 @@ export default function EventPage() {
               <div className="flex gap-16 mt-14">
                 <div>
                   <p className="text-4xl font-bold text-[var(--primary-light)] drop-shadow-[0_4px_14px_rgba(0,0,0,0.9)]">
-                    2+
+                    3+
                   </p>
-                  <p className="text-xl text-[var(--text-secondary)]/85">Events</p>
+                  <p className="text-xl text-[var(--text-secondary)]/85">
+                    Events
+                  </p>
                 </div>
               </div>
             </div>
@@ -543,7 +581,7 @@ export default function EventPage() {
                     p-5 w-[95%] md:w-[70%] lg:w-[55%] shadow-2xl 
                     animate-[fadeScale_0.35s_ease] min-h-[150px]"
             style={{
-              background: 'var(--card-bg)',
+              background: "var(--card-bg)",
               border: `1px solid var(--border-color)`,
             }}
           >
@@ -562,7 +600,7 @@ export default function EventPage() {
             <div
               className="relative w-full h-[350px] md:h-[420px] rounded-xl overflow-hidden mb-4 
                    cursor-grab active:cursor-grabbing"
-              style={{ background: 'var(--bg-secondary)' }}
+              style={{ background: "var(--bg-secondary)" }}
               onWheel={handleWheel}
               onMouseDown={startDrag}
               onMouseUp={endDrag}
@@ -589,7 +627,7 @@ export default function EventPage() {
                      text-gray-700 hover:text-black shadow-md rounded-full p-3 backdrop-blur-md
                      transition"
                 style={{
-                  background: 'var(--card-bg)/70',
+                  background: "var(--card-bg)/70",
                   border: `1px solid var(--border-color)`,
                 }}
               >
@@ -603,7 +641,7 @@ export default function EventPage() {
                      text-gray-700 hover:text-black shadow-md rounded-full p-3 backdrop-blur-md
                      transition"
                 style={{
-                  background: 'var(--card-bg)/70',
+                  background: "var(--card-bg)/70",
                   border: `1px solid var(--border-color)`,
                 }}
               >
