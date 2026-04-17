@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -34,11 +35,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <SessionProvider>
-          {showNavbar && <Navbar />}
-          <Toaster position="top-right" />
-          {children}
-        </SessionProvider>
+        <ThemeProvider>
+          <SessionProvider>
+            {showNavbar && <Navbar />}
+            <Toaster position="top-right" />
+            {children}
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

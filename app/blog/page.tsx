@@ -8,17 +8,14 @@ import { toast } from "react-hot-toast";
 function getFilePreviewUrl(fileUrl?: string) {
   if (!fileUrl) return "#";
 
-  // ✅ If full Cloudinary or external URL, return as is
   if (fileUrl.startsWith("http") || fileUrl.includes("cloudinary.com")) {
     return fileUrl;
   }
 
-  // ✅ Normalize local uploads (in /public/uploads)
   if (fileUrl.startsWith("/uploads")) {
-    return fileUrl; // already public path
+    return fileUrl;
   }
 
-  // ✅ Fallback for older stored paths (just filenames)
   return `/uploads/${fileUrl}`;
 }
 
@@ -43,8 +40,13 @@ function BlogCard({
 }) {
   return (
     <div
-      className="bg-gradient-to-br from-white via-[#f6f3ff] to-[#ede7ff] border border-[#e6e0fa] rounded-[32px] shadow-2xl w-[360px] sm:w-[380px] md:w-[400px] min-h-[480px] max-h-[480px] p-7 flex flex-col mb-8 mx-4 transition-all duration-300 hover:shadow-[0_16px_48px_#b9aaff55] hover:border-[#b9aaff] hover:-translate-y-2 hover:scale-[1.035]"
-      style={{ height: "480px" }}
+      className="rounded-[32px] shadow-2xl w-[360px] sm:w-[380px] md:w-[400px] min-h-[480px] max-h-[480px] p-7 flex flex-col mb-8 mx-4 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.035]"
+      style={{
+        background: 'var(--card-bg)',
+        border: `1px solid var(--border-color)`,
+        boxShadow: 'var(--card-shadow)',
+        height: "480px",
+      }}
     >
       <Image
         src={img}
@@ -54,20 +56,20 @@ function BlogCard({
         className="rounded-[22px] object-cover w-full h-[180px] mb-5"
         style={{ aspectRatio: "16/9" }}
       />
-      <div className="flex items-center gap-2 text-[#9066F9] text-[16px] font-medium mb-2">
+      <div className="flex items-center gap-2 text-[var(--primary)] text-[16px] font-medium mb-2">
         <svg
           className="w-5 h-5"
           fill="none"
-          stroke="#9066F9"
+          stroke="var(--primary)"
           strokeWidth="2"
           viewBox="0 0 24 24"
         >
-          <circle cx="12" cy="12" r="10" stroke="#9066F9" strokeWidth="2" />
+          <circle cx="12" cy="12" r="10" stroke="var(--primary)" strokeWidth="2" />
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             d="M12 6v6l4 2"
-            stroke="#9066F9"
+            stroke="var(--primary)"
             strokeWidth="2"
           />
         </svg>
@@ -80,15 +82,15 @@ function BlogCard({
           minHeight: 0,
           marginBottom: "1rem",
           scrollbarWidth: "thin",
-          scrollbarColor: "#8C5BFF #f6f3ff",
+          scrollbarColor: "var(--primary) var(--bg-secondary)",
         }}
         className="blogcard-scrollbar"
       >
-        <h3 className="text-[24px] font-bold text-[#3d2966] leading-tight mb-1">
+        <h3 className="text-[24px] font-bold text-[var(--text-primary)] leading-tight mb-1">
           {title}
         </h3>
         <p
-          className="text-[#6d6a7c] text-[17px] mb-4"
+          className="text-[var(--text-muted)] text-[17px] mb-4"
           dangerouslySetInnerHTML={{
             __html: summary.replace(
               /<a /g,
@@ -101,7 +103,11 @@ function BlogCard({
         {category.map((cat, i) => (
           <span
             key={i}
-            className="bg-[#e6e0fa] text-[#9066F9] rounded-[12px] px-4 py-1 font-semibold text-[15px] w-fit shadow-sm"
+            className="rounded-[12px] px-4 py-1 font-semibold text-[15px] w-fit shadow-sm"
+            style={{
+              background: 'var(--bg-secondary)',
+              color: 'var(--primary)',
+            }}
           >
             {cat}
           </span>
@@ -121,7 +127,7 @@ function BlogCard({
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              color: "#8C5BFF",
+              color: "var(--primary)",
               fontWeight: 600,
               fontSize: 18,
               textDecoration: "none",
@@ -136,7 +142,7 @@ function BlogCard({
         ) : (
           <span
             style={{
-              color: "#8C5BFF",
+              color: "var(--primary)",
               fontWeight: 600,
               fontSize: 18,
               display: "flex",
@@ -154,9 +160,9 @@ function BlogCard({
           <div style={{ display: "flex", gap: 8 }}>
             <button
               style={{
-                background: "#e6e0fa",
-                color: "#8C5BFF",
-                border: "none",
+                background: 'var(--bg-secondary)',
+                color: 'var(--primary)',
+                border: `1px solid var(--border-color)`,
                 padding: "6px 12px",
                 borderRadius: 6,
                 cursor: "pointer",
@@ -169,9 +175,9 @@ function BlogCard({
             </button>
             <button
               style={{
-                background: "#fdecea",
-                color: "#ff4d4f",
-                border: "none",
+                background: 'rgba(255, 77, 79, 0.1)',
+                color: '#ff4d4f',
+                border: `1px solid rgba(255, 77, 79, 0.3)`,
                 padding: "6px 12px",
                 borderRadius: 6,
                 cursor: "pointer",
@@ -438,18 +444,6 @@ export default function BlogPage() {
       "19122000ashishmishra@gmail.com",
       "27ashish.mishra@fostiima.org",
       "27shagun.malhotra@fostiima.org",
-      // "27surbhi.arora@fostiima.org",
-      // "27shubh.gupta@fostiima.org",
-      // "27anurag.sharma@fostiima.org",
-      // "27tanishk.ghadiya@fostiima.org",
-      // "27payal.naik@fostiima.org",
-      // "27rajat.jain@fostiima.org",
-      // "27kriti.jain@fostiima.org",
-      // "27diksha.sharma@fostiima.org",
-      // "27aryan.sehrawat@fostiima.org",
-      // "27aman1@fostiima.org",
-      // "27sparsh.jain@fostiima.org",
-      // "27prateek@fostiima.org",
       "fincomm@fostiima.org",
     ],
     []
@@ -490,22 +484,29 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-f6f3ff flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[var(--bg-primary)] to-[var(--bg-secondary)] flex flex-col">
       <Navbar />
       <div className="flex-grow flex flex-col">
-        <section className="w-full min-h-[70vh] bg-[#FAFEF6] flex flex-col items-center py-12 px-4 mt-12">
+        <section className="w-full min-h-[70vh] bg-[var(--bg-secondary)] flex flex-col items-center py-12 px-4 mt-12">
           <div className="text-center mb-10">
-            <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#313053] mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-[48px] font-bold text-[var(--text-primary)] mb-4">
               Explore our{" "}
-              <span className="text-[#8C5BFF]">Finance Insights</span>
+              <span className="text-[var(--primary)]">Finance Insights</span>
             </h1>
-            <p className="text-[#6d6a7c] text-lg md:text-xl lg:text-[22px] font-normal mt-2">
+            <p className="text-[var(--text-muted)] text-lg md:text-xl lg:text-[22px] font-normal mt-2">
               Stay updated with the latest news, workshops, and events organized
               by the Finance Committee.
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-stretch bg-[#f6f3ff] rounded-[24px] lg:rounded-[32px] shadow-[0_4px_32px_#e6e0fa55] w-full max-w-[1100px] min-h-[400px] mx-auto p-6 sm:p-10 lg:p-12 gap-8 lg:gap-16">
+          <div
+            className="flex flex-col lg:flex-row items-stretch rounded-[24px] lg:rounded-[32px] w-full max-w-[1100px] min-h-[400px] mx-auto p-6 sm:p-10 lg:p-12 gap-8 lg:gap-16"
+            style={{
+              background: 'var(--card-bg)',
+              boxShadow: 'var(--card-shadow)',
+              border: `1px solid var(--border-color)`,
+            }}
+          >
             <div className="w-full lg:w-1/2 flex items-center justify-center">
               <Image
                 src="/images/blog.jpg"
@@ -517,15 +518,21 @@ export default function BlogPage() {
             </div>
 
             <div className="w-full lg:w-1/2 flex flex-col justify-center">
-              <span className="bg-[#e6e0fa] text-[#8C5BFF] rounded-[8px] px-[16px] py-1 font-semibold text-[16px] sm:text-[18px] w-fit mb-4">
+              <span
+                className="rounded-[8px] px-[16px] py-1 font-semibold text-[16px] sm:text-[18px] w-fit mb-4"
+                style={{
+                  background: 'var(--bg-secondary)',
+                  color: 'var(--primary)',
+                }}
+              >
                 Finance Committee
               </span>
 
-              <h2 className="text-[24px] sm:text-[28px] lg:text-[36px] font-bold text-[#4c3c4c] mb-0">
+              <h2 className="text-[24px] sm:text-[28px] lg:text-[36px] font-bold text-[var(--text-primary)] mb-0">
                 How to Make the Most of Finance Workshops
               </h2>
 
-              <p className="text-[#6d6a7c] text-[16px] sm:text-[18px] lg:text-[20px] mt-4 mb-8">
+              <p className="text-[var(--text-muted)] text-[16px] sm:text-[18px] lg:text-[20px] mt-4 mb-8">
                 Tips and insights from our Finance Committee events to help
                 students understand budgeting, investing, and personal finance
                 effectively.
@@ -533,7 +540,11 @@ export default function BlogPage() {
 
               <div className="flex justify-center sm:justify-start w-full mb-10">
                 <button
-                  className="bg-[#8C5BFF] text-white border-none rounded-[10px] px-8 sm:px-10 lg:px-12 py-3 sm:py-4 text-base sm:text-lg lg:text-[20px] font-semibold cursor-pointer shadow-[0_2px_8px_#8C5BFF22] transition hover:bg-[#7a4eea]"
+                  className="text-white border-none rounded-[10px] px-8 sm:px-10 lg:px-12 py-3 sm:py-4 text-base sm:text-lg lg:text-[20px] font-semibold cursor-pointer transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: 'var(--button-primary)',
+                    boxShadow: 'var(--neon-glow)',
+                  }}
                   onClick={handleDiscoverNow}
                 >
                   Discover Now
@@ -549,11 +560,11 @@ export default function BlogPage() {
                     height={40}
                     className="rounded-full object-cover"
                   />
-                  <div className="text-[#4c3c4c]">
+                  <div className="text-[var(--text-primary)]">
                     <div className="font-semibold text-sm sm:text-base">
                       Joya Mathur
                     </div>
-                    <div className="text-[#a1a1b5] text-xs sm:text-sm">
+                    <div className="text-[var(--text-dim)] text-xs sm:text-sm">
                       23 September 2025
                     </div>
                   </div>
@@ -561,7 +572,7 @@ export default function BlogPage() {
 
                 <div className="flex-1" />
 
-                <span className="text-[#a1a1b5] flex items-center gap-1.5 text-sm sm:text-base">
+                <span className="text-[var(--text-dim)] flex items-center gap-1.5 text-sm sm:text-base">
                   <svg
                     width="20"
                     height="20"
@@ -570,7 +581,7 @@ export default function BlogPage() {
                   >
                     <path
                       d="M10 18.333A8.333 8.333 0 1 1 10 1.667a8.333 8.333 0 0 1 0 16.666Zm0-7.5a1.667 1.667 0 1 0 0-3.333 1.667 1.667 0 0 0 0 3.333Zm0 0V10"
-                      stroke="#a1a1b5"
+                      stroke="var(--text-dim)"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -582,16 +593,17 @@ export default function BlogPage() {
             </div>
           </div>
         </section>
+        
         <section
           ref={blogListRef}
-          className="w-full bg-gradient-to-b from-white to-f6f3ff flex flex-col items-center py-24"
+          className="w-full bg-gradient-to-b from-[var(--bg-primary)] to-[var(--bg-secondary)] flex flex-col items-center py-24"
         >
           <div className="blog-header-row flex flex-row justify-between items-center mb-12 w-full max-w-[1400px] mx-auto px-4">
-            <h2 className="text-[48px] font-bold text-[#313053] mb-0 text-left">
-              All <span className="text-[#8C5BFF]">Blog Posts</span>
+            <h2 className="text-[48px] font-bold text-[var(--text-primary)] mb-0 text-left">
+              All <span className="text-[var(--primary)]">Blog Posts</span>
             </h2>
             <div className="blog-header-controls flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 ml-0 sm:ml-auto w-full sm:w-auto">
-              <span className="text-[#4c3c4c] text-[18px] sm:text-[22px]">
+              <span className="text-[var(--text-primary)] text-[18px] sm:text-[22px]">
                 Sort By :
               </span>
               <div
@@ -600,7 +612,11 @@ export default function BlogPage() {
               >
                 <button
                   type="button"
-                  className="bg-[#9066F9] text-white border-none rounded-[14px] font-semibold text-[18px] sm:text-[20px] px-6 sm:px-8 py-3 shadow-[0_2px_8px_#9066F955] outline-none cursor-pointer flex justify-between items-center w-full transition hover:bg-[#7a4eea] focus:ring-2 focus:ring-[#b9aaff]"
+                  className="text-white border-none rounded-[14px] font-semibold text-[18px] sm:text-[20px] px-6 sm:px-8 py-3 outline-none cursor-pointer flex justify-between items-center w-full transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: 'var(--button-primary)',
+                    boxShadow: 'var(--neon-glow)',
+                  }}
                   onClick={() => setMultiDropdownOpen((v) => !v)}
                 >
                   <span className="truncate text-white text-[16px] sm:text-[18px] font-semibold text-left">
@@ -625,32 +641,39 @@ export default function BlogPage() {
                   </svg>
                 </button>
                 {multiDropdownOpen && (
-                  <div className="absolute left-0 top-14 w-full bg-white border border-[#b9aaff] rounded-[12px] shadow-[0_4px_24px_#e6e0fa33] z-20 p-2 flex flex-col gap-1 animate-fade-in">
+                  <div
+                    className="absolute left-0 top-14 w-full rounded-[12px] z-20 p-2 flex flex-col gap-1 animate-fade-in"
+                    style={{
+                      background: 'var(--card-bg)',
+                      border: `1px solid var(--border-color)`,
+                      boxShadow: 'var(--card-shadow)',
+                    }}
+                  >
                     <div
-                      className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer hover:bg-[#f6f3ff]"
+                      className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer hover:bg-[var(--bg-secondary)]"
                       onClick={() => handleMultiSelect("All")}
                     >
                       <input
                         type="checkbox"
                         checked={selectedCategories[0] === "All"}
                         readOnly
-                        className="accent-[#8C5BFF] w-4 h-4"
+                        className="accent-[var(--primary)] w-4 h-4"
                       />
-                      <span className="text-[#8C5BFF] font-semibold">All</span>
+                      <span className="text-[var(--primary)] font-semibold">All</span>
                     </div>
                     {categories.map((cat) => (
                       <div
                         key={cat}
-                        className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer hover:bg-[#f6f3ff]"
+                        className="flex items-center gap-2 px-3 py-2 rounded cursor-pointer hover:bg-[var(--bg-secondary)]"
                         onClick={() => handleMultiSelect(cat)}
                       >
                         <input
                           type="checkbox"
                           checked={selectedCategories.includes(cat)}
                           readOnly
-                          className="accent-[#8C5BFF] w-4 h-4"
+                          className="accent-[var(--primary)] w-4 h-4"
                         />
-                        <span className="text-[#4c3c4c] font-medium">
+                        <span className="text-[var(--text-primary)] font-medium">
                           {cat}
                         </span>
                       </div>
@@ -660,7 +683,11 @@ export default function BlogPage() {
               </div>
               {canEdit && (
                 <button
-                  className="bg-[#8C5BFF] text-white border-none rounded-[12px] font-semibold text-[18px] sm:text-[20px] px-[24px] sm:px-[32px] py-3 shadow-[0_2px_8px_#8C5BFF22] cursor-pointer flex items-center gap-1.5 w-full sm:w-auto justify-center"
+                  className="text-white border-none rounded-[12px] font-semibold text-[18px] sm:text-[20px] px-[24px] sm:px-[32px] py-3 cursor-pointer flex items-center gap-1.5 w-full sm:w-auto justify-center transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: 'var(--button-primary)',
+                    boxShadow: 'var(--neon-glow)',
+                  }}
                   onClick={() => setShowCreate((v) => !v)}
                 >
                   Create New Blog
@@ -668,20 +695,31 @@ export default function BlogPage() {
               )}
             </div>
           </div>
+          
           {canEdit && showCreate && (
             <form
               onSubmit={handleSubmit}
-              className="w-full max-w-md mx-auto mb-12 bg-[#f6f3ff] rounded-[24px] shadow-[0_4px_24px_#e6e0fa33] p-12 flex flex-col gap-6 items-center relative"
+              className="w-full max-w-md mx-auto mb-12 rounded-[24px] p-12 flex flex-col gap-6 items-center relative"
+              style={{
+                background: 'var(--card-bg)',
+                boxShadow: 'var(--card-shadow)',
+                border: `1px solid var(--border-color)`,
+              }}
             >
               <button
                 type="button"
                 onClick={() => setShowCreate(false)}
-                className="absolute top-4 right-4 bg-[#ede7ff] border border-[#b9aaff] rounded-full w-10 h-10 flex items-center justify-center font-semibold text-[22px] text-[#8C5BFF] cursor-pointer shadow-[0_2px_8px_#e6e0fa22] z-10"
+                className="absolute top-4 right-4 rounded-full w-10 h-10 flex items-center justify-center font-semibold text-[22px] cursor-pointer z-10 transition-all duration-300 hover:scale-110"
+                style={{
+                  background: 'var(--bg-secondary)',
+                  border: `1px solid var(--border-color)`,
+                  color: 'var(--primary)',
+                }}
                 aria-label="Close"
               >
                 ×
               </button>
-              <h3 className="text-[28px] font-bold text-[#8C5BFF] mb-0">
+              <h3 className="text-[28px] font-bold text-[var(--primary)] mb-0">
                 Create New Blog
               </h3>
               <input
@@ -690,7 +728,12 @@ export default function BlogPage() {
                 onChange={handleInput}
                 placeholder="Blog Title"
                 required
-                className="w-full px-6 py-3 text-[18px] rounded-[8px] border border-[#b9aaff] bg-[#f6f3ff]"
+                className="w-full px-6 py-3 text-[18px] rounded-[8px] transition-all duration-300 focus:scale-[1.02]"
+                style={{
+                  border: `1px solid var(--border-color)`,
+                  background: 'var(--input-bg)',
+                  color: 'var(--text-primary)',
+                }}
               />
 
               <input
@@ -702,12 +745,17 @@ export default function BlogPage() {
               />
               <label
                 htmlFor="blog-image-upload"
-                className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-[#f6f3ff] text-[#8C5BFF] border border-[#b9aaff] rounded-[8px] font-semibold text-[18px] cursor-pointer hover:bg-[#ede7ff] transition mb-2 shadow-sm"
+                className="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-[8px] font-semibold text-[18px] cursor-pointer transition-all duration-300 hover:scale-[1.02] mb-2 shadow-sm"
+                style={{
+                  background: 'var(--input-bg)',
+                  color: 'var(--primary)',
+                  border: `1px solid var(--border-color)`,
+                }}
               >
                 <svg
                   className="w-6 h-6"
                   fill="none"
-                  stroke="#8C5BFF"
+                  stroke="var(--primary)"
                   strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
@@ -720,30 +768,45 @@ export default function BlogPage() {
                 {imagePreview ? "Change Image" : "Upload Image"}
               </label>
               {imagePreview && (
-                <div className="w-full h-48 bg-white rounded-[12px] flex items-center justify-center border border-[#b9aaff] mt-2">
+                <div
+                  className="w-full h-48 rounded-[12px] flex items-center justify-center mt-2"
+                  style={{
+                    background: 'var(--bg-secondary)',
+                    border: `1px solid var(--border-color)`,
+                  }}
+                >
                   <Image
                     src={imagePreview}
                     alt="Preview"
                     width={240}
                     height={240}
-                    className="w-full h-full object-contain rounded-[10px] bg-transparent"
+                    className="w-full h-full object-contain rounded-[10px]"
                   />
                 </div>
               )}
               <div
                 ref={categoryRef}
-                className="w-full relative bg-[#f6f3ff] border border-[#b9aaff] rounded-[8px] min-h-[48px] px-6 py-3 cursor-pointer flex flex-wrap items-center gap-1.5"
+                className="w-full rounded-[8px] min-h-[48px] px-6 py-3 cursor-pointer flex flex-wrap items-center gap-1.5 transition-all duration-300"
+                style={{
+                  background: 'var(--input-bg)',
+                  border: `1px solid var(--border-color)`,
+                  color: 'var(--text-primary)',
+                }}
                 onClick={() => setShowCategoryDropdown((v) => !v)}
               >
                 {newBlog.category.length === 0 && (
-                  <span className="text-[#b9aaff] text-[18px]">
+                  <span className="text-[var(--text-dim)] text-[18px]">
                     Select categories...
                   </span>
                 )}
                 {newBlog.category.map((cat) => (
                   <span
                     key={cat}
-                    className="bg-[#e6e0fa] text-[#8C5BFF] rounded-[8px] px-[10px] py-1 font-semibold text-[15px] flex items-center gap-1"
+                    className="rounded-[8px] px-[10px] py-1 font-semibold text-[15px] flex items-center gap-1"
+                    style={{
+                      background: 'var(--bg-secondary)',
+                      color: 'var(--primary)',
+                    }}
                   >
                     {cat}
                     <span
@@ -751,16 +814,24 @@ export default function BlogPage() {
                         e.stopPropagation();
                         handleRemoveCategory(cat);
                       }}
-                      className="ml-1 text-[#8C5BFF] font-bold cursor-pointer text-[16px] px-1"
+                      className="ml-1 font-bold cursor-pointer text-[16px] px-1"
+                      style={{ color: 'var(--primary)' }}
                     >
                       ×
                     </span>
                   </span>
                 ))}
                 <span className="flex-1" />
-                <span className="text-[#b9aaff] text-[18px] mr-1">▼</span>
+                <span className="text-[var(--text-dim)] text-[18px] mr-1">▼</span>
                 {showCategoryDropdown && (
-                  <div className="absolute left-0 top-12 w-full bg-[#f6f3ff] border border-[#b9aaff] rounded-[8px] shadow-[0_4px_24px_#e6e0fa33] z-10 p-3 flex flex-col gap-1">
+                  <div
+                    className="absolute left-0 top-12 w-full rounded-[8px] z-10 p-3 flex flex-col gap-1"
+                    style={{
+                      background: 'var(--card-bg)',
+                      border: `1px solid var(--border-color)`,
+                      boxShadow: 'var(--card-shadow)',
+                    }}
+                  >
                     {categories.map((cat) => (
                       <div
                         key={cat}
@@ -768,11 +839,11 @@ export default function BlogPage() {
                           e.stopPropagation();
                           handleCategorySelect(cat);
                         }}
-                        className="px-4 py-2 rounded-3 text-[#313053] font-semibold text-[17px] cursor-pointer transition-background"
+                        className="px-4 py-2 rounded-3 text-[var(--text-primary)] font-semibold text-[17px] cursor-pointer hover:bg-[var(--bg-secondary)] transition-all"
                       >
                         {cat}
                         {newBlog.category.includes(cat) && (
-                          <span className="ml-2 font-bold">✓</span>
+                          <span className="ml-2 font-bold text-[var(--primary)]">✓</span>
                         )}
                       </div>
                     ))}
@@ -796,12 +867,17 @@ export default function BlogPage() {
               />
               <label
                 htmlFor="blog-file-upload"
-                className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-[#f6f3ff] text-[#8C5BFF] border border-[#b9aaff] rounded-[8px] font-semibold text-[18px] cursor-pointer hover:bg-[#ede7ff] transition mb-2 shadow-sm"
+                className="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-[8px] font-semibold text-[18px] cursor-pointer transition-all duration-300 hover:scale-[1.02] mb-2 shadow-sm"
+                style={{
+                  background: 'var(--input-bg)',
+                  color: 'var(--primary)',
+                  border: `1px solid var(--border-color)`,
+                }}
               >
                 <svg
                   className="w-6 h-6"
                   fill="none"
-                  stroke="#8C5BFF"
+                  stroke="var(--primary)"
                   strokeWidth="2"
                   viewBox="0 0 24 24"
                 >
@@ -815,7 +891,14 @@ export default function BlogPage() {
               </label>
 
               {newBlog.fileUrl && (
-                <div className="w-full bg-white rounded-[12px] border border-[#b9aaff] px-4 py-3 mt-2 text-[#6d6a7c] text-[16px] flex justify-between items-center">
+                <div
+                  className="w-full rounded-[12px] px-4 py-3 mt-2 text-[16px] flex justify-between items-center"
+                  style={{
+                    background: 'var(--bg-secondary)',
+                    border: `1px solid var(--border-color)`,
+                    color: 'var(--text-muted)',
+                  }}
+                >
                   <span className="truncate">
                     {newBlog.fileUrl.split("/").pop()}
                   </span>
@@ -823,7 +906,8 @@ export default function BlogPage() {
                     href={newBlog.fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#8C5BFF] font-semibold underline"
+                    className="font-semibold underline"
+                    style={{ color: 'var(--primary)' }}
                   >
                     View
                   </a>
@@ -837,16 +921,26 @@ export default function BlogPage() {
                 placeholder="Short Summary — You can include links like <a href='https://fc-fbs.vercel.app/'>Finance Committee, FOSTIIMA Chapter</a>"
                 required
                 rows={3}
-                className="w-full px-6 py-3 text-[18px] rounded-[8px] border border-[#b9aaff] bg-[#f6f3ff]"
+                className="w-full px-6 py-3 text-[18px] rounded-[8px] transition-all duration-300 focus:scale-[1.02]"
+                style={{
+                  border: `1px solid var(--border-color)`,
+                  background: 'var(--input-bg)',
+                  color: 'var(--text-primary)',
+                }}
               />
               <button
                 type="submit"
-                className="bg-[#8C5BFF] text-white border-none rounded-[10px] font-semibold text-[20px] px-[40px] py-3 cursor-pointer shadow-[0_2px_8px_#8C5BFF22] mt-2"
+                className="text-white border-none rounded-[10px] font-semibold text-[20px] px-[40px] py-3 cursor-pointer mt-2 transition-all duration-300 hover:scale-105"
+                style={{
+                  background: 'var(--button-primary)',
+                  boxShadow: 'var(--neon-glow)',
+                }}
               >
                 Publish Blog
               </button>
             </form>
           )}
+          
           <div
             className="w-full max-w-[1400px] grid gap-12 justify-items-center items-stretch"
             style={{
@@ -869,7 +963,11 @@ export default function BlogPage() {
           </div>
           <div className="w-full flex justify-center mt-6">
             <button
-              className="bg-[#8C5BFF] text-white border-none rounded-[16px] font-semibold text-[24px] px-[80px] py-[18px] shadow-[0_2px_8px_#8C5BFF22] cursor-pointer flex items-center gap-3 transition-background"
+              className="text-white border-none rounded-[16px] font-semibold text-[24px] px-[80px] py-[18px] cursor-pointer flex items-center gap-3 transition-all duration-300 hover:scale-105"
+              style={{
+                background: 'var(--button-primary)',
+                boxShadow: 'var(--neon-glow)',
+              }}
               onClick={handleLoadMore}
             >
               Load More
@@ -889,6 +987,7 @@ export default function BlogPage() {
             </button>
           </div>
         </section>
+        
         <section
           style={{
             width: "100%",
@@ -902,35 +1001,36 @@ export default function BlogPage() {
             style={{
               width: "90%",
               maxWidth: 1400,
-              background: "linear-gradient(135deg, #fff 60%, #f6f3ff 100%)",
               borderRadius: 48,
-              boxShadow: "0 4px 32px #e6e0fa33",
               padding: "64px 32px 48px 32px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              background: 'var(--card-bg)',
+              boxShadow: 'var(--card-shadow)',
+              border: `1px solid var(--border-color)`,
             }}
           >
             <h2
               style={{
                 fontSize: 56,
                 fontWeight: 800,
-                color: "#313053",
                 margin: 0,
                 textAlign: "center",
+                color: 'var(--text-primary)',
               }}
             >
               Stay Updated{" "}
-              <span style={{ color: "#8C5BFF" }}>With Our Newsletter</span>
+              <span style={{ color: "var(--primary)" }}>With Our Newsletter</span>
             </h2>
             <p
               style={{
-                color: "#6d6a7c",
                 fontSize: 28,
                 fontWeight: 400,
                 margin: "32px 0 40px 0",
                 textAlign: "center",
                 maxWidth: 800,
+                color: 'var(--text-muted)',
               }}
             >
               Subscribe to our newsletter for the latest updates and insights.
@@ -970,18 +1070,17 @@ export default function BlogPage() {
                   padding: "18px 24px",
                   fontSize: 22,
                   borderRadius: 12,
-                  border: "2px solid #e6e0fa",
                   outline: "none",
-                  background: "#fff",
-                  color: "#313053",
                   fontWeight: 500,
-                  transition: "border 0.2s",
+                  transition: "all 0.3s ease",
+                  border: `2px solid var(--border-color)`,
+                  background: 'var(--input-bg)',
+                  color: 'var(--text-primary)',
                 }}
               />
               <button
                 type="submit"
                 style={{
-                  background: "#8C5BFF",
                   color: "#fff",
                   border: "none",
                   borderRadius: 12,
@@ -989,8 +1088,15 @@ export default function BlogPage() {
                   fontWeight: 600,
                   padding: "0 48px",
                   cursor: "pointer",
-                  boxShadow: "0 2px 8px #8C5BFF22",
-                  transition: "background 0.2s",
+                  transition: "all 0.3s ease",
+                  background: 'var(--button-primary)',
+                  boxShadow: 'var(--neon-glow)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
                 }}
               >
                 Join Now
@@ -998,10 +1104,10 @@ export default function BlogPage() {
             </form>
             <div
               style={{
-                color: "#8C5BFF",
                 fontSize: 18,
                 marginTop: 8,
                 textAlign: "center",
+                color: 'var(--primary)',
               }}
             >
               By joining you Agree to our{" "}
@@ -1012,48 +1118,49 @@ export default function BlogPage() {
             </div>
           </div>
         </section>
+        
         <section className="faq-section-container flex justify-center items-start mt-24">
           <div className="w-full max-w-[1400px] flex flex-row gap-24 items-start justify-center">
             <div className="flex-1 min-w-[340px]">
-              <h2 className="text-[48px] font-bold text-[#313053] mb-0">
+              <h2 className="text-[48px] font-bold text-[var(--text-primary)] mb-0">
                 Frequently Asked{" "}
-                <span className="text-[#8C5BFF]">Questions</span>
+                <span className="text-[var(--primary)]">Questions</span>
               </h2>
-              <p className="text-[#6d6a7c] text-[24px] font-normal mt-8 max-w-[400px]">
+              <p className="text-[var(--text-muted)] text-[24px] font-normal mt-8 max-w-[400px]">
                 Find answers to common questions about the Finance Committee’s
                 events, workshops, and student initiatives.
               </p>
               <div className="mt-16">
-                <div className="text-[#a1a1b5] font-bold text-[22px] mb-3">
+                <div className="font-bold text-[22px] mb-3" style={{ color: 'var(--text-dim)' }}>
                   Committee Contact
                 </div>
-                <div className="text-[#313053] text-[18px] mb-2">
+                <div className="text-[var(--text-primary)] text-[18px] mb-2">
                   Address: Plot No. HAF-1, Pocket 2, Dwarka Sector 9, Dwarka,
                   New Delhi, Delhi, 110077
                 </div>
-                <div className="text-[#313053] text-[18px] mb-2">
+                <div className="text-[var(--text-primary)] text-[18px] mb-2">
                   Email: fincomm@fostiima.org
                 </div>
-                {/* <div className="text-[#313053] text-[18px] mb-2">Phone:</div> */}
               </div>
             </div>
             <div className="flex-2 min-w-[400px]">
-              <div className="bg-[#f6f3ff] rounded-[32px] shadow-[0_4px_32px_#e6e0fa33] p-12">
-                <div className="font-bold text-[26px] mb-8">
+              <div
+                className="rounded-[32px] p-12 relative"
+                style={{
+                  background: 'var(--card-bg)',
+                  boxShadow: 'var(--card-shadow)',
+                  border: `1px solid var(--border-color)`,
+                }}
+              >
+                <div className="font-bold text-[26px] mb-8 text-[var(--text-primary)]">
                   What does the Finance Committee do?
                 </div>
-                <div className="text-[#6d6a7c] font-normal text-[22px]">
+                <div className="text-[var(--text-muted)] font-normal text-[22px]">
                   The Finance Committee organizes finance-focused workshops,
                   seminars, interactive events, and competitions. We plan
                   budgets responsibly and help students gain practical
                   experience in financial management.
                 </div>
-                <span
-                  className="absolute top-6 right-12 text-[36px] text-[#c2b6e6] cursor-pointer user-select-none"
-                  aria-label="Close"
-                >
-                  ×
-                </span>
               </div>
               <div className="mt-10">
                 {[
@@ -1064,13 +1171,17 @@ export default function BlogPage() {
                 ].map((q) => (
                   <div
                     key={q}
-                    className="bg-white border border-[#e6e0fa] rounded-[18px] py-5 px-6 mb-4 transition-colors duration-200 hover:border-[#a689ff]"
+                    className="rounded-[18px] py-5 px-6 mb-4 transition-all duration-300 cursor-pointer hover:border-[var(--primary)]"
+                    style={{
+                      background: 'var(--card-bg)',
+                      border: `1px solid var(--border-color)`,
+                    }}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[#6d6a7c] font-medium text-[18px]">
+                      <span className="font-medium text-[18px] text-[var(--text-primary)]">
                         {q}
                       </span>
-                      <span className="text-[#b4afd0] text-[22px] font-light">
+                      <span className="text-[22px] font-light text-[var(--text-dim)]">
                         +
                       </span>
                     </div>
@@ -1082,7 +1193,21 @@ export default function BlogPage() {
         </section>
       </div>
       <Footer />
+      
       <style jsx global>{`
+        .blogcard-scrollbar::-webkit-scrollbar {
+          width: 8px;
+          background: var(--bg-secondary);
+          border-radius: 8px;
+        }
+        .blogcard-scrollbar::-webkit-scrollbar-thumb {
+          background: var(--primary);
+          border-radius: 8px;
+        }
+        .blogcard-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: var(--primary-light);
+        }
+        
         @media (max-width: 900px) {
           .blog-card-grid {
             grid-template-columns: repeat(
@@ -1178,7 +1303,6 @@ export default function BlogPage() {
             max-width: 98vw !important;
             width: 98vw !important;
             border-radius: 18px !important;
-            box-shadow: 0 2px 12px #e6e0fa33 !important;
             margin: 0 auto 18px auto !important;
           }
           .blog-feature-section > div:first-child img {
@@ -1237,27 +1361,23 @@ export default function BlogPage() {
             width: 98vw !important;
             max-width: 98vw !important;
             margin-bottom: 18px !important;
-            border-bottom: 1.5px solid #ece6ff;
             padding-bottom: 10px;
           }
           .blog-header-row h2 {
             font-size: 2rem !important;
             margin-bottom: 6px !important;
-            color: #7c55d7 !important;
             letter-spacing: 0.5px;
-            text-shadow: 0 2px 8px #e6e0fa33;
           }
           .blog-header-controls {
             width: 100% !important;
-            background: #f6f3ff !important;
             border-radius: 16px !important;
-            box-shadow: 0 2px 8px #e6e0fa22 !important;
             padding: 12px 10px !important;
             display: flex !important;
             flex-direction: column !important;
             align-items: stretch !important;
             gap: 10px !important;
             margin-top: 4px !important;
+            background: var(--card-bg) !important;
           }
           .blog-header-controls > * {
             width: 100% !important;
@@ -1328,17 +1448,6 @@ export default function BlogPage() {
             font-size: 1rem !important;
             padding: 16px 10px !important;
           }
-        .blogcard-scrollbar::-webkit-scrollbar {
-          width: 8px;
-          background: #f6f3ff;
-          border-radius: 8px;
-        }
-        .blogcard-scrollbar::-webkit-scrollbar-thumb {
-          background: #8C5BFF;
-          border-radius: 8px;
-        }
-        .blogcard-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #6A4EFF;
         }
       `}</style>
     </div>

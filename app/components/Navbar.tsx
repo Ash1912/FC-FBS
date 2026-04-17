@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 const NavButton: React.FC<{
   children: React.ReactNode;
@@ -11,7 +12,7 @@ const NavButton: React.FC<{
 }> = ({ children, href, className = "" }) => (
   <Link
     href={href}
-    className={`text-[#313053] hover:text-[#615fa1] cursor-pointer text-lg font-semibold transition ${className}`}
+    className={`text-[var(--text-secondary)] hover:text-[var(--primary)] cursor-pointer text-lg font-semibold transition ${className}`}
   >
     {children}
   </Link>
@@ -68,8 +69,8 @@ const Navbar: React.FC = () => {
     <>
       <nav
         className="fixed top-0 left-0 w-full z-[1002] 
-  backdrop-blur-xl bg-gradient-to-r from-[#ede9fe]/90 via-[#e9d5ff]/90 to-[#ddd6fe]/90
-  shadow-md border-b border-white/20 flex items-center transition-all duration-300"
+  backdrop-blur-xl bg-[var(--navbar-bg)]
+  shadow-md border-b border-[var(--navbar-border)] flex items-center transition-all duration-300"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center w-full">
           <div className="flex items-center space-x-3">
@@ -83,39 +84,41 @@ const Navbar: React.FC = () => {
             />
 
             <Link href="/">
-              <span className="block text-[#8C5BFF] text-xl md:text-2xl font-semibold cursor-pointer hover:text-[#615fa1] transition">
+              <span className="block text-[var(--primary)] text-xl md:text-2xl font-semibold cursor-pointer hover:text-[var(--primary-light)] transition">
                 Finance Committee
               </span>
-              <span className="block text-[#6d6a7c] text-sm md:text-base font-medium">
+              <span className="block text-[var(--text-muted)] text-sm md:text-base font-medium">
                 FOSTIIMA Chapter
               </span>
             </Link>
           </div>
 
           {/* ✅ Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8 text-[#313053] font-medium">
+          <div className="hidden md:flex items-center space-x-8 text-[var(--text-secondary)] font-medium">
             <NavButton
               href="/aboutus"
-              className="text-[#2f2d52] hover:text-[#8C5BFF] transition-colors"
+              className="text-[var(--text-secondary)] hover:text-[var(--primary)] transition-colors"
             >
               About Us
             </NavButton>
             <NavButton
               href="/blog"
-              className="text-[#2f2d52] hover:text-[#8C5BFF] transition-colors"
+              className="text-[var(--text-secondary)] hover:text-[var(--primary)] transition-colors"
             >
               Blog
             </NavButton>
-            {/* ✅ New Buzzer Link */}
+
+             {/* ✅ New Buzzer Link */}
             {/* <NavButton
               href="/buzzer"
               className="text-[#8C5BFF] transition-colors"
             >
               Buzzer
             </NavButton> */}
+
             <NavButton
               href="/event"
-              className="text-[#8C5BFF] transition-colors"
+              className="text-[var(--primary)] transition-colors"
             >
               Event
             </NavButton>
@@ -123,10 +126,11 @@ const Navbar: React.FC = () => {
               href="https://fc-fbs-voting-system.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#8C5BFF] font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[#8C5BFF] after:rounded-full hover:text-[#6356D7] hover:after:bg-[#6356D7] transition-all"
+              className="text-[var(--primary)] font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary)] after:rounded-full hover:text-[var(--primary-light)] hover:after:bg-[var(--primary-light)] transition-all"
             >
               VITT-MANTHAN
             </a>
+
             {/* ✅ FinQuest Registration link */}
             {/* <NavButton
               href="/finquest/register"
@@ -142,27 +146,42 @@ const Navbar: React.FC = () => {
               StockiFy Registration
             </NavButton> */}
 
-            <div className="ml-6 flex items-center">
+
+            {/* Theme Toggle Button */}
+            <div className="ml-2">
+              <ThemeToggle />
+            </div>
+
+            <div className="ml-2 flex items-center">
               {isLoggedIn ? (
                 <div className="relative" ref={dropdownRef}>
                   <button
-                    className="w-10 h-10 rounded-full bg-[#6356D7] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all"
+                    className="w-10 h-10 rounded-full bg-[var(--primary)] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all"
                     onClick={() => setShowDropdown((v) => !v)}
                     title={userName || undefined}
                   >
                     {userInitials}
                   </button>
                   {showDropdown && (
-                    <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg p-4 z-50 border border-gray-200 animate-fade-in">
-                      <div className="mb-2 text-base font-bold text-[#6356D7]">
+                    <div className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg p-4 z-50 border animate-fade-in"
+                      style={{
+                        background: 'var(--card-bg)',
+                        borderColor: 'var(--border-color)',
+                        boxShadow: 'var(--card-shadow)',
+                      }}
+                    >
+                      <div className="mb-2 text-base font-bold text-[var(--primary)]">
                         {userName}
                       </div>
-                      <div className="mb-1 text-gray-700 text-xs font-semibold">
+                      <div className="mb-1 text-[var(--text-muted)] text-xs font-semibold">
                         {userEmail}
                       </div>
                       <button
                         onClick={handleLogout}
-                        className="mt-3 w-full px-3 py-2 bg-[#6356D7] text-white rounded hover:bg-[#7E5FFF] font-semibold transition-all text-sm"
+                        className="mt-3 w-full px-3 py-2 text-white rounded font-semibold transition-all text-sm hover:opacity-90"
+                        style={{
+                          background: 'var(--button-primary)',
+                        }}
                       >
                         Log out
                       </button>
@@ -171,7 +190,7 @@ const Navbar: React.FC = () => {
                 </div>
               ) : (
                 <Link href="/auth/signin">
-                  <div className="w-10 h-10 rounded-full bg-[#6356D7] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all">
+                  <div className="w-10 h-10 rounded-full bg-[var(--primary)] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -205,9 +224,9 @@ const Navbar: React.FC = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect y="5" width="24" height="2.5" rx="1.25" fill="#313053" />
-              <rect y="11" width="24" height="2.5" rx="1.25" fill="#313053" />
-              <rect y="17" width="24" height="2.5" rx="1.25" fill="#313053" />
+              <rect y="5" width="24" height="2.5" rx="1.25" fill="var(--text-secondary)" />
+              <rect y="11" width="24" height="2.5" rx="1.25" fill="var(--text-secondary)" />
+              <rect y="17" width="24" height="2.5" rx="1.25" fill="var(--text-secondary)" />
             </svg>
           </button>
         </div>
@@ -215,21 +234,27 @@ const Navbar: React.FC = () => {
         {/* ✅ Mobile Menu */}
         {menuOpen && (
           <div
-            className="md:hidden absolute top-[60px] left-0 right-0 w-[100vw] bg-white rounded-b-lg shadow-lg py-4 px-0 flex flex-col items-center gap-4 text-[#313053] font-medium z-[1004] border-b border-x border-[#ede7ff]"
-            style={{ marginTop: "2px" }}
+            className="md:hidden absolute top-[60px] left-0 right-0 w-[100vw] rounded-b-lg shadow-lg py-4 px-0 flex flex-col items-center gap-4 font-medium z-[1004] border-b border-x"
+            style={{
+              marginTop: "2px",
+              background: 'var(--card-bg)',
+              borderColor: 'var(--border-color)',
+              color: 'var(--text-secondary)',
+              boxShadow: 'var(--card-shadow)',
+            }}
           >
             <Link href="/aboutus" onClick={() => setMenuOpen(false)}>
-              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
+              <button className="w-full text-center py-3 transition-colors hover:text-[var(--primary)]">
                 About Us
               </button>
             </Link>
             <Link href="/blog" onClick={() => setMenuOpen(false)}>
-              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
+              <button className="w-full text-center py-3 transition-colors hover:text-[var(--primary)]">
                 Blog
               </button>
             </Link>
             <Link href="/event" onClick={() => setMenuOpen(false)}>
-              <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
+              <button className="w-full text-center py-3 transition-colors hover:text-[var(--primary)]">
                 Event
               </button>
             </Link>
@@ -238,10 +263,11 @@ const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="w-full text-center py-3 hover:bg-[#f6f3ff] transition text-[#8C5BFF] font-semibold"
+              className="w-full text-center py-3 transition-colors text-[var(--primary)] font-semibold hover:text-[var(--primary-light)]"
             >
               VITT-MANTHAN
             </a>
+
             {/* ✅ Mobile Buzzer link */}
             {/* <Link href="/buzzer" onClick={() => setMenuOpen(false)}>
               <button className="w-full text-center py-3 hover:bg-[#f6f3ff] transition">
@@ -259,14 +285,20 @@ const Navbar: React.FC = () => {
               </button>
             </Link> */}
 
+
+            {/* Mobile Theme Toggle */}
+            <div className="w-full flex justify-center py-2">
+              <ThemeToggle />
+            </div>
+
             <div className="w-full flex justify-center mt-2">
               {isLoggedIn ? (
-                <div className="w-10 h-10 rounded-full bg-[#6356D7] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all">
+                <div className="w-10 h-10 rounded-full bg-[var(--primary)] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all">
                   {userInitials}
                 </div>
               ) : (
                 <Link href="/auth/signin" className="w-10 h-10">
-                  <div className="w-10 h-10 rounded-full bg-[#6356D7] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all">
+                  <div className="w-10 h-10 rounded-full bg-[var(--primary)] text-white flex items-center justify-center text-lg font-bold shadow cursor-pointer border-4 border-white hover:scale-105 transition-all">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"

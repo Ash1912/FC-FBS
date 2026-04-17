@@ -10,7 +10,7 @@ import ContactForm from "../components/about/ContactForm";
 
 export default function AboutUsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-white to-[#f6f3ff]">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[var(--bg-primary)] to-[var(--bg-secondary)]">
       <Navbar />
       <AboutHero />
       <AboutImage />

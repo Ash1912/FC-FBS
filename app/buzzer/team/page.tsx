@@ -106,26 +106,49 @@ export default function TeamBuzzer() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-tr from-indigo-100 via-purple-100 to-pink-100 text-gray-900">
+    <div className="flex flex-col min-h-screen bg-gradient-to-tr from-[var(--bg-gradient-from)] via-[var(--bg-gradient-via)] to-[var(--bg-gradient-to)] text-[var(--text-primary)]">
       <Navbar />
       <main className="flex flex-col items-center justify-center flex-1 p-8 pt-20">
-        <div className="bg-white/70 backdrop-blur-lg border border-purple-200 shadow-2xl rounded-3xl p-10 w-full max-w-md text-center transition-transform hover:scale-[1.02] hover:shadow-purple-300/50">
-          <h1 className="text-4xl font-extrabold mb-6 text-indigo-700 animate-pulse">
+        <div className="rounded-3xl p-10 w-full max-w-md text-center transition-transform hover:scale-[1.02]"
+          style={{
+            background: 'var(--card-bg)',
+            border: `1px solid var(--border-color)`,
+            boxShadow: 'var(--card-shadow)',
+            backdropFilter: 'blur(12px)',
+          }}
+        >
+          <h1 className="text-4xl font-extrabold mb-6 animate-pulse"
+            style={{
+              background: 'linear-gradient(135deg, var(--primary), var(--primary-light))',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
             🎯 Team Buzzer
           </h1>
 
           <input
-            className="w-full mb-4 px-5 py-3 rounded-xl border border-purple-300 focus:ring-2 focus:ring-purple-400 focus:outline-none text-gray-800 placeholder-gray-400 shadow-sm transition duration-300 hover:shadow-md"
+            className="w-full mb-4 px-5 py-3 rounded-xl focus:ring-2 focus:ring-[var(--primary)] focus:outline-none shadow-sm transition duration-300 hover:shadow-md"
             placeholder="Enter Team Name"
             value={teamName}
             onChange={(e) => setTeamName(e.target.value)}
+            style={{
+              background: 'var(--input-bg)',
+              border: `1px solid var(--border-color)`,
+              color: 'var(--text-primary)',
+            }}
           />
 
           <input
-            className="w-full mb-6 px-5 py-3 rounded-xl border border-purple-300 focus:ring-2 focus:ring-purple-400 focus:outline-none text-gray-800 placeholder-gray-400 shadow-sm transition duration-300 hover:shadow-md"
+            className="w-full mb-6 px-5 py-3 rounded-xl focus:ring-2 focus:ring-[var(--primary)] focus:outline-none shadow-sm transition duration-300 hover:shadow-md"
             placeholder="Enter Room Code"
             value={sessionId}
             onChange={(e) => setSessionId(e.target.value)}
+            style={{
+              background: 'var(--input-bg)',
+              border: `1px solid var(--border-color)`,
+              color: 'var(--text-primary)',
+            }}
           />
 
           <div className="flex justify-center space-x-4">
@@ -135,8 +158,12 @@ export default function TeamBuzzer() {
               className={`px-10 py-3 rounded-full font-bold text-lg text-white transition-all duration-300 transform ${
                 pressed
                   ? "bg-gray-400 cursor-not-allowed shadow-inner"
-                  : "bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 active:scale-95 shadow-lg hover:shadow-indigo-400/50"
+                  : "hover:scale-105 active:scale-95 shadow-lg"
               }`}
+              style={{
+                background: pressed ? undefined : 'var(--button-primary)',
+                boxShadow: pressed ? undefined : 'var(--neon-glow)',
+              }}
             >
               {pressed ? "Buzzed!" : loading ? "..." : "Press Buzzer"}
             </button>
@@ -147,17 +174,20 @@ export default function TeamBuzzer() {
               className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 transform ${
                 !pressed
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white active:scale-95 shadow-lg hover:shadow-red-400/50"
+                  : "text-white hover:scale-105 active:scale-95 shadow-lg hover:shadow-red-400/50"
               }`}
+              style={{
+                background: !pressed ? undefined : 'linear-gradient(135deg, #ef4444, #e11d48)',
+              }}
             >
               Unbuzz
             </button>
           </div>
 
           {sessionId && (
-            <p className="mt-6 text-sm text-gray-600">
+            <p className="mt-6 text-sm text-[var(--text-muted)]">
               Connected to Room:{" "}
-              <span className="font-semibold text-indigo-600">{sessionId}</span>
+              <span className="font-semibold text-[var(--primary)]">{sessionId}</span>
             </p>
           )}
         </div>

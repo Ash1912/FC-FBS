@@ -62,15 +62,15 @@ const Hero2: React.FC = () => {
   const features = [
     {
       label: "Transparent budget planning and tracking",
-      icon: <CheckCircle size={18} className="text-purple-600" />,
+      icon: <CheckCircle size={18} className="text-[var(--primary)]" />,
     },
     {
       label: "Support for campus events and student initiatives",
-      icon: <Video size={18} className="text-purple-600" />,
+      icon: <Video size={18} className="text-[var(--primary)]" />,
     },
     {
       label: "Responsible allocation of funds for student welfare",
-      icon: <Headphones size={18} className="text-purple-600" />,
+      icon: <Headphones size={18} className="text-[var(--primary)]" />,
     },
   ];
 
@@ -78,10 +78,10 @@ const Hero2: React.FC = () => {
     <>
       <div
         ref={sectionRef}
-        className="flex h-auto flex-col md:flex-row items-center justify-between p-6 md:p-12 bg-gradient-to-tr from-[#faf5ff] via-[#f3e8ff] via-[#e9d5ff] to-[#c4b5fd] min-h-[400px] relative overflow-hidden"
+        className="flex h-auto flex-col md:flex-row items-center justify-between p-6 md:p-12 bg-gradient-to-tr from-[var(--bg-gradient-from)] via-[var(--bg-gradient-via)] via-[var(--bg-gradient-via)] to-[var(--bg-gradient-to)] min-h-[400px] relative overflow-hidden"
       >
         <motion.div
-          className="absolute top-20 left-1/3 w-24 h-24  rounded-full opacity-20"
+          className="absolute top-20 left-1/3 w-24 h-24 rounded-full opacity-20"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
@@ -94,7 +94,7 @@ const Hero2: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-1/4 w-20 h-20  rounded-full opacity-20"
+          className="absolute bottom-20 right-1/4 w-20 h-20 rounded-full opacity-20"
           animate={{
             scale: [1, 1.3, 1],
             y: [0, -30, 0],
@@ -122,7 +122,7 @@ const Hero2: React.FC = () => {
           style={{ y: y1 }}
         >
           <motion.h1
-            className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight"
+            className="text-4xl md:text-5xl font-extrabold text-[var(--text-primary)] mb-6 leading-tight"
             initial={{ opacity: 0, y: 60, rotateX: -15 }}
             animate={{
               opacity: isInView ? 1 : 0,
@@ -135,10 +135,10 @@ const Hero2: React.FC = () => {
             }}
           >
             Ready to Support{" "}
-            <span className="text-purple-600">Student Initiatives?</span>
+            <span className="text-[var(--primary)]">Student Initiatives?</span>
           </motion.h1>
           <motion.p
-            className="text-base md:text-lg text-gray-700 mb-8"
+            className="text-base md:text-lg text-[var(--text-muted)] mb-8"
             initial={{ opacity: 0, y: 60 }}
             animate={{
               opacity: isInView ? 1 : 0,
@@ -154,7 +154,7 @@ const Hero2: React.FC = () => {
             financial planning for every student.
           </motion.p>
           <motion.ul
-            className="text-gray-700 space-y-6 text-base md:text-lg"
+            className="text-[var(--text-secondary)] space-y-6 text-base md:text-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: isInView ? 1 : 0 }}
             transition={{
@@ -179,7 +179,7 @@ const Hero2: React.FC = () => {
                 }}
                 whileHover={{ x: 5, scale: 1.02 }}
               >
-                <div className="w-8 h-8 rounded-md bg-purple-100 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-md bg-[var(--primary)]/20 flex items-center justify-center">
                   {item.icon}
                 </div>
                 <span>{item.label}</span>
@@ -188,7 +188,7 @@ const Hero2: React.FC = () => {
           </motion.ul>
         </motion.div>
         <motion.div
-          className="mt-12 md:mt-0 w-full max-w-md bg-[#C1A0FF] p-8 rounded-2xl shadow-xl relative z-10"
+          className="mt-12 md:mt-0 w-full max-w-md bg-[var(--card-bg-secondary)] p-8 rounded-2xl shadow-xl relative z-10 border border-[var(--border-color)]"
           initial={{ opacity: 0, x: 60, rotateY: 15 }}
           animate={{
             opacity: isInView ? 1 : 0,
@@ -202,7 +202,7 @@ const Hero2: React.FC = () => {
           }}
           style={{ y: y2, scale }}
           whileHover={{
-            boxShadow: "0 25px 50px rgba(193, 160, 255, 0.3)",
+            boxShadow: "var(--neon-glow)",
             y: -5,
           }}
         >
@@ -240,7 +240,7 @@ const Hero2: React.FC = () => {
                 placeholder={input.placeholder}
                 value={formData[input.name as keyof typeof formData]}
                 onChange={handleChange}
-                className="w-full py-4 px-5 rounded-lg bg-purple-100 text-gray-700 text-base focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full py-4 px-5 rounded-lg bg-[var(--input-bg)] text-[var(--text-primary)] text-base focus:outline-none focus:ring-2 focus:ring-[var(--primary)] border border-[var(--border-color)]"
                 whileFocus={{ scale: 1.02 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
@@ -254,7 +254,7 @@ const Hero2: React.FC = () => {
 
             <motion.button
               type="submit"
-              className="w-full py-4 bg-white text-purple-600 font-semibold rounded-lg flex items-center justify-center gap-2 hover:bg-purple-100 transition"
+              className="w-full py-4 bg-[var(--button-primary)] text-white font-semibold rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}

@@ -37,14 +37,14 @@ const LinkSection: React.FC<{
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, ease: easeOut, delay: index * 0.1 }}
   >
-    <h3 className="text-white font-semibold mb-2 text-base sm:text-lg">
+    <h3 className="text-[var(--text-primary)] font-semibold mb-2 text-base sm:text-lg">
       {title}
     </h3>
-    <ul className="text-gray-300 space-y-1.5 text-sm sm:text-base">
+    <ul className="text-[var(--text-muted)] space-y-1.5 text-sm sm:text-base">
       {links.map((link, itemIndex) => (
         <motion.li
           key={itemIndex}
-          className="hover:text-[#a68cff] transition-colors duration-200"
+          className="hover:text-[var(--primary)] transition-colors duration-200"
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
   return (
     <div
       ref={sectionRef}
-      className="w-full bg-[#2d2347] py-3 relative overflow-hidden"
+      className="w-full bg-[var(--footer-bg)] py-3 relative overflow-hidden"
     >
       <motion.div
         className="absolute top-20 left-1/4 w-32 h-32 bg-purple-900 rounded-full opacity-10"
@@ -135,16 +135,16 @@ const Footer: React.FC = () => {
                 priority
               />
               <div className="flex flex-col">
-                <span className="text-[#8C5BFF] text-xl md:text-2xl font-semibold">
+                <span className="text-[var(--primary)] text-xl md:text-2xl font-semibold">
                   Finance Committee
                 </span>
-                <span className="text-[#6d6a7c] text-sm md:text-base font-medium">
+                <span className="text-[var(--text-muted)] text-sm md:text-base font-medium">
                   FOSTIIMA Chapter
                 </span>
               </div>
             </div>
 
-            <p className="text-gray-300 text-sm sm:text-base">
+            <p className="text-[var(--text-muted)] text-sm sm:text-base">
               Organizing campus events, managing budgets responsibly, and
               ensuring every allocation is transparent for the benefit of all
               students.
@@ -170,7 +170,6 @@ const Footer: React.FC = () => {
                 { label: "About Us", href: "/aboutus" },
                 { label: "Blog", href: "/blog" },
                 { label: "Event", href: "/event" },
-                // {label: "FinQuest Registration", href: "/finquest/register"},
               ]}
             />
 
@@ -184,7 +183,7 @@ const Footer: React.FC = () => {
                 delay: 0.2,
               }}
             >
-              <h3 className="text-white font-semibold mb-2 text-base sm:text-lg">
+              <h3 className="text-[var(--text-primary)] font-semibold mb-2 text-base sm:text-lg">
                 Social
               </h3>
               <div className="flex gap-4 items-center">
@@ -195,7 +194,7 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={icon.label}
-                    className="bg-[#3c3160] hover:bg-[#a68cff] transition-colors rounded-[1.5rem] w-14 h-14 flex items-center justify-center shadow-md"
+                    className="bg-[var(--primary)]/20 hover:bg-[var(--primary)] transition-colors rounded-[1.5rem] w-14 h-14 flex items-center justify-center shadow-md"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
@@ -206,7 +205,7 @@ const Footer: React.FC = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <icon.icon className="text-white w-7 h-7 md:w-8 md:h-8" />
+                    <icon.icon className="text-[var(--primary)] hover:text-white w-7 h-7 md:w-8 md:h-8 transition-colors" />
                   </motion.a>
                 ))}
               </div>
@@ -222,7 +221,7 @@ const Footer: React.FC = () => {
         transition={{ duration: 0.8, ease: easeOut, delay: 0.6 }}
       >
         <motion.p
-          className="text-gray-300 text-xs sm:text-sm font-semibold mt-4 text-center"
+          className="text-[var(--text-muted)] text-xs sm:text-sm font-semibold mt-4 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 30 }}
           transition={{ duration: 0.8, ease: easeOut, delay: 1.0 }}

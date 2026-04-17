@@ -14,10 +14,10 @@ import Hero1 from "./Hero1";
 
 const Hero: React.FC = () => {
   const textSegments = [
-    { text: "Empowering", color: "text-gray-700" },
-    { text: "Financial", color: "text-[#7C55D7]" },
-    { text: "Literacy", color: "text-[#7C55D7]" },
-    { text: "at FOSTIIMA", color: "text-gray-700" },
+    { text: "Empowering", color: "text-[var(--text-secondary)]" },
+    { text: "Financial", color: "text-[var(--primary)]" },
+    { text: "Literacy", color: "text-[var(--primary)]" },
+    { text: "at FOSTIIMA", color: "text-[var(--text-secondary)]" },
   ];
 
   const controls = useAnimationControls();
@@ -64,22 +64,34 @@ const Hero: React.FC = () => {
   };
 
   useEffect(() => {
+    // Start the animation only after component is mounted
     const animateLoop = async () => {
-      await controls.start("visible");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      await controls.start("hidden");
-      animateLoop();
+      try {
+        await controls.start("visible");
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await controls.start("hidden");
+        animateLoop();
+      } catch (error) {
+        console.error("Animation error:", error);
+      }
     };
-    animateLoop();
-    return () => controls.stop();
+    
+    // Small delay to ensure component is fully mounted
+    const timer = setTimeout(() => {
+      animateLoop();
+    }, 100);
+    
+    return () => {
+      clearTimeout(timer);
+      controls.stop();
+    };
   }, [controls]);
 
   return (
     <>
       <section
         ref={ref}
-        className="min-h-[100vh] pt-[140px] h-auto pb-20 bg-gradient-to-br from-[#faf5ff] via-[#f3e8ff] via-[#e9d5ff] to-[#c4b5fd]
- relative overflow-hidden z-10"
+        className="min-h-[100vh] pt-[140px] h-auto pb-20 bg-gradient-to-br from-[var(--bg-gradient-from)] via-[var(--bg-gradient-via)] via-[var(--bg-gradient-via)] to-[var(--bg-gradient-to)] relative overflow-hidden z-10"
       >
         <motion.div
           className="absolute bottom-40 left-1/4 w-12 h-12 bg-green-200 rounded-full opacity-20"
@@ -105,7 +117,7 @@ const Hero: React.FC = () => {
             style={{ y: y1 }}
           >
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-gray-700"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-[var(--text-secondary)]"
               variants={containerVariants}
               initial="hidden"
               animate={controls}
@@ -127,7 +139,7 @@ const Hero: React.FC = () => {
               ))}
             </motion.h1>
             <motion.p
-              className="mt-4 sm:mt-6 text-gray-600 text-base sm:text-lg max-w-xl mx-auto"
+              className="mt-4 sm:mt-6 text-[var(--text-muted)] text-base sm:text-lg max-w-xl mx-auto"
               variants={fadeInUp}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
@@ -137,41 +149,25 @@ const Hero: React.FC = () => {
               FOSTIIMA Finance community.
             </motion.p>
           </motion.div>
-          {/* <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            transition={{ duration: 0.8, ease: easeOut }}
-            aria-label="Demo image"
-            className="bg-transparent"
-          >
-            <Image
-              src="/images/landingimg.png"
-              alt="Hero demo visual"
-              width={900}
-              height={700}
-              className="object-cover w-full h-auto"
-              priority
-            />
-          </motion.div> */}
-          {/* Vitt-Manthan 2026 Event Card Section - Animated Creative Version */}
+
+          {/* Vitt-Manthan 2026 Event Card Section */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative flex flex-col md:flex-row items-center justify-between gap-6 
              rounded-3xl shadow-2xl p-8 md:p-10 w-full max-w-6xl mx-auto 
-             border border-purple-200/50 overflow-hidden -mt-14
-             hover:-translate-y-2 transition-transform duration-500"
+             border border-[var(--border-color)] overflow-hidden -mt-14
+             hover:-translate-y-2 transition-transform duration-500 bg-[var(--card-bg)]"
           >
             {/* 🔮 Animated Gradient Background */}
             <div
-              className="absolute inset-0 bg-[linear-gradient(135deg,#f8f5ff,#e9d5ff,#d8b4fe,#c084fc,#a855f7)] 
+              className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/20 via-[var(--primary-light)]/20 to-[var(--primary-dark)]/20 
                 animate-gradient-x bg-[length:400%_400%] opacity-70"
             />
 
             {/* Soft glow overlay */}
-            <div className="absolute inset-0 bg-white/60 backdrop-blur-xl rounded-3xl" />
+            <div className="absolute inset-0 bg-[var(--card-bg)]/60 backdrop-blur-xl rounded-3xl" />
 
             {/* Left Content */}
             <div className="flex-1 text-center md:text-left space-y-4 z-10">
@@ -179,34 +175,34 @@ const Hero: React.FC = () => {
                 initial={{ x: -40, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#7C55D7] to-[#A06AF9] text-transparent bg-clip-text"
+                className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] text-transparent bg-clip-text"
               >
-                VITT-MANTHAN <span className="text-gray-800">2026</span>
+                VITT-MANTHAN <span className="text-[var(--text-primary)]">2026</span>
               </motion.h2>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-                className="text-gray-700 text-[17px] md:text-[18px] leading-relaxed md:max-w-lg font-medium space-y-1"
+                className="text-[var(--text-secondary)] text-[17px] md:text-[18px] leading-relaxed md:max-w-lg font-medium space-y-1"
               >
                 ⚡{" "}
-                <b className="text-[#7C55D7]">
+                <b className="text-[var(--primary)]">
                   The Ultimate Budget Debate Showdown!
                 </b>
                 <br />
                 📅{" "}
-                <span className="text-gray-800">
+                <span className="text-[var(--text-primary)]">
                   09th March 2026 🏛️ | <b>2:00 PM</b> | Seminar Hall
                 </span>
                 <br />
                 🎤{" "}
-                <b className="text-[#7C55D7]">
+                <b className="text-[var(--primary)]">
                   12 Teams. Intense Arguments. Strategic Cross-Questioning.
                 </b>
                 <br />
                 🏆{" "}
-                <b className="text-gray-800">
+                <b className="text-[var(--text-primary)]">
                   Witness ideas clash, perspectives evolve, and champions rise!
                 </b>
               </motion.p>
@@ -220,8 +216,8 @@ const Hero: React.FC = () => {
                   href="https://fc-fbs-voting-system.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-7 py-2.5 bg-gradient-to-r from-[#7C55D7] to-[#A06AF9] 
-  text-white font-semibold rounded-full shadow-md hover:shadow-purple-300/50 
+                  className="px-7 py-2.5 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] 
+  text-white font-semibold rounded-full shadow-md hover:shadow-[var(--neon-glow)] 
   transition-all duration-300 inline-block"
                 >
                   🗳️ VITT-MANTHAN 26 Voting
@@ -236,7 +232,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="flex flex-col items-center gap-2 z-10"
             >
-              <div className="relative p-4 bg-white rounded-2xl shadow-lg hover:shadow-purple-300/40 transition-all duration-300">
+              <div className="relative p-4 bg-[var(--card-bg)] rounded-2xl shadow-lg hover:shadow-[var(--neon-glow)] transition-all duration-300">
                 <Image
                   src="/images/FC-FBS Voting System.png"
                   alt="VITT-MANTHAN 2026 QR"
@@ -245,7 +241,7 @@ const Hero: React.FC = () => {
                   className="rounded-xl relative z-10 w-[180px] md:w-[220px] h-auto"
                 />
               </div>
-              <p className="text-xs font-semibold text-gray-800 tracking-wide uppercase">
+              <p className="text-xs font-semibold text-[var(--text-primary)] tracking-wide uppercase">
                 📱 Scan to Vote
               </p>
             </motion.div>

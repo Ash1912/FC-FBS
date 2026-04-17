@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import Image from "next/image";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 type EventCard = {
   id: number;
@@ -44,9 +45,9 @@ export default function EventPage() {
   );
 
   const textSegments = [
-    { text: "Recently", color: "text-gray-700" },
-    { text: "at", color: "text-gray-700" },
-    { text: "Finance Committee", color: "text-[#7C55D7]" },
+    { text: "Recently", color: "text-[var(--text-secondary)]" },
+    { text: "at", color: "text-[var(--text-secondary)]" },
+    { text: "Finance Committee", color: "text-[var(--primary)]" },
   ];
 
   const sliderImages: string[] = [
@@ -314,9 +315,11 @@ export default function EventPage() {
   const otherEvents = eventCards.slice(0, -1);
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen bg-[var(--bg-primary)]">
+      <Navbar />
+      
       {/* ------------ HERO SECTION ------------ */}
-      <section className="relative w-full py-20 min-h-[620px] md:min-h-[720px] lg:min-h-[780px] overflow-hidden">
+      <section className="relative w-full py-20 min-h-[620px] md:min-h-[720px] lg:min-h-[780px] overflow-hidden mt-16">
         {/* BACKGROUND IMAGE */}
         <Image
           src="/images/event_StockiFy26/event-bg.jpg"
@@ -330,9 +333,9 @@ export default function EventPage() {
         <div
           className="absolute inset-0 
       bg-gradient-to-br 
-      from-[#A78BFF]/35 
-      via-[#5B3FFF]/30 
-      to-[#140822]/85
+      from-[var(--primary)]/35 
+      via-[var(--primary-dark)]/30 
+      to-[var(--footer-bg)]/85
       backdrop-blur-[10px]
       border-b border-white/10"
         />
@@ -356,7 +359,7 @@ export default function EventPage() {
               <h2
                 className="
             text-5xl md:text-6xl font-extrabold
-            bg-gradient-to-r from-[#F5E9FF] via-[#D8CBFF] to-[#BFA8FF]
+            bg-gradient-to-r from-[var(--text-primary)] via-[var(--text-secondary)] to-[var(--primary-light)]
             bg-clip-text text-transparent
             drop-shadow-[0_6px_20px_rgba(0,0,0,0.85)]
           "
@@ -364,16 +367,16 @@ export default function EventPage() {
                 Events
               </h2>
 
-              <p className="mt-4 text-3xl text-[#E9E4FF]/90 drop-shadow-[0_4px_14px_rgba(0,0,0,0.85)]">
+              <p className="mt-4 text-3xl text-[var(--text-secondary)]/90 drop-shadow-[0_4px_14px_rgba(0,0,0,0.85)]">
                 Our beautiful memories
               </p>
 
               <div className="flex gap-16 mt-14">
                 <div>
-                  <p className="text-4xl font-bold text-[#D6CBFF] drop-shadow-[0_4px_14px_rgba(0,0,0,0.9)]">
+                  <p className="text-4xl font-bold text-[var(--primary-light)] drop-shadow-[0_4px_14px_rgba(0,0,0,0.9)]">
                     2+
                   </p>
-                  <p className="text-xl text-[#F1EEFF]/85">Events</p>
+                  <p className="text-xl text-[var(--text-secondary)]/85">Events</p>
                 </div>
               </div>
             </div>
@@ -409,7 +412,7 @@ export default function EventPage() {
             <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 -translate-y-1/2
-        bg-white/90 hover:bg-white p-4 rounded-full shadow-xl transition"
+        bg-white/90 hover:bg-white text-gray-800 p-4 rounded-full shadow-xl transition"
             >
               ‹
             </button>
@@ -417,7 +420,7 @@ export default function EventPage() {
             <button
               onClick={nextSlide}
               className="absolute right-4 top-1/2 -translate-y-1/2
-        bg-white/90 hover:bg-white p-4 rounded-full shadow-xl transition"
+        bg-white/90 hover:bg-white text-gray-800 p-4 rounded-full shadow-xl transition"
             >
               ›
             </button>
@@ -536,13 +539,17 @@ export default function EventPage() {
       {selectedEvent && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-start justify-center z-[999] pt-24">
           <div
-            className="relative bg-white border border-gray-200 rounded-2xl 
+            className="relative rounded-2xl 
                     p-5 w-[95%] md:w-[70%] lg:w-[55%] shadow-2xl 
                     animate-[fadeScale_0.35s_ease] min-h-[150px]"
+            style={{
+              background: 'var(--card-bg)',
+              border: `1px solid var(--border-color)`,
+            }}
           >
             {/* Close Button */}
             <button
-              className="absolute top-3 right-3 text-2xl text-gray-500 hover:text-gray-800"
+              className="absolute top-3 right-3 text-2xl text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
               onClick={() => {
                 setSelectedEvent(null);
                 resetZoom();
@@ -554,7 +561,8 @@ export default function EventPage() {
             {/* Image Wrapper (Reduced Height) */}
             <div
               className="relative w-full h-[350px] md:h-[420px] rounded-xl overflow-hidden mb-4 
-                   cursor-grab active:cursor-grabbing bg-gray-50"
+                   cursor-grab active:cursor-grabbing"
+              style={{ background: 'var(--bg-secondary)' }}
               onWheel={handleWheel}
               onMouseDown={startDrag}
               onMouseUp={endDrag}
@@ -577,9 +585,13 @@ export default function EventPage() {
               {/* LEFT ARROW */}
               <button
                 onClick={modalPrevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white 
+                className="absolute left-4 top-1/2 -translate-y-1/2 
                      text-gray-700 hover:text-black shadow-md rounded-full p-3 backdrop-blur-md
                      transition"
+                style={{
+                  background: 'var(--card-bg)/70',
+                  border: `1px solid var(--border-color)`,
+                }}
               >
                 ‹
               </button>
@@ -587,32 +599,36 @@ export default function EventPage() {
               {/* RIGHT ARROW */}
               <button
                 onClick={modalNextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white 
+                className="absolute right-4 top-1/2 -translate-y-1/2 
                      text-gray-700 hover:text-black shadow-md rounded-full p-3 backdrop-blur-md
                      transition"
+                style={{
+                  background: 'var(--card-bg)/70',
+                  border: `1px solid var(--border-color)`,
+                }}
               >
                 ›
               </button>
             </div>
 
             {/* Title */}
-            <h2 className="text-2xl font-bold text-gray-900 mt-2">
+            <h2 className="text-2xl font-bold text-[var(--text-primary)] mt-2">
               {selectedEvent.title}
             </h2>
 
             {/* Description */}
-            <p className="mt-2 text-gray-700 text-base leading-relaxed">
+            <p className="mt-2 text-[var(--text-muted)] text-base leading-relaxed">
               {selectedEvent.description}
             </p>
           </div>
 
           {/* Animation */}
           <style>{`
-      @keyframes fadeScale {
-        0% { opacity: 0; transform: scale(0.85); }
-        100% { opacity: 1; transform: scale(1); }
-      }
-    `}</style>
+            @keyframes fadeScale {
+              0% { opacity: 0; transform: scale(0.85); }
+              100% { opacity: 1; transform: scale(1); }
+            }
+          `}</style>
         </div>
       )}
       <div className="mt-20">

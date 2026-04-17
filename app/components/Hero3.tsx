@@ -47,11 +47,12 @@ const Hero3: React.FC = () => {
 
     setLoading(false);
   };
+
   return (
     <>
       <div
         id="waitlist-form-section"
-        className="w-full bg-gradient-to-br bg-gradient-to-tr from-[#faf5ff] via-[#f3e8ff] via-[#e9d5ff] to-[#c4b5fd] py-24 px-4 flex justify-center items-center"
+        className="w-full bg-gradient-to-br from-[var(--bg-gradient-from)] via-[var(--bg-gradient-via)] to-[var(--bg-gradient-to)] py-24 px-4 flex justify-center items-center"
       >
         <motion.div
           className="w-full max-w-xl text-center"
@@ -60,19 +61,19 @@ const Hero3: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: easeOut }}
         >
-          <p className="text-sm font-black text-purple-600 uppercase mb-3 tracking-wide">
-            Get <span className="text-purple-400">Involved</span>
+          <p className="text-sm font-black text-[var(--primary)] uppercase mb-3 tracking-wide">
+            Get <span className="text-[var(--primary-light)]">Involved</span>
           </p>
 
-          <h2 className="text-[2.75rem] leading-tight md:text-[3rem] font-extrabold text-gray-900 mb-5">
+          <h2 className="text-[2.75rem] leading-tight md:text-[3rem] font-extrabold text-[var(--text-primary)] mb-5">
             Join Our{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-purple-700">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)]">
               Finance Events
             </span>
           </h2>
 
-          <p className="text-gray-700 text-base md:text-lg mb-10">
-            Be part of the FOSTIIMA Finance Committee’s workshops, seminars, and
+          <p className="text-[var(--text-muted)] text-base md:text-lg mb-10">
+            Be part of the FOSTIIMA Finance Committee workshops, seminars, and
             interactive events. Collaborate with peers, gain hands-on
             experience, and help organize impactful finance-focused activities
             on campus.
@@ -85,7 +86,7 @@ const Hero3: React.FC = () => {
               placeholder="Enter Your Email address"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-6 py-4 rounded-[12px] border border-[#e0d8ff] bg-white placeholder-gray-500 text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-6 py-4 rounded-[12px] border border-[var(--border-color)] bg-[var(--input-bg)] placeholder-[var(--text-dim)] text-[var(--text-primary)] text-base focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
             />
             <motion.input
               name="name"
@@ -93,7 +94,7 @@ const Hero3: React.FC = () => {
               placeholder="Enter Your Full Name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-6 py-4 rounded-[12px] border border-[#e0d8ff] bg-white placeholder-gray-500 text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-6 py-4 rounded-[12px] border border-[var(--border-color)] bg-[var(--input-bg)] placeholder-[var(--text-dim)] text-[var(--text-primary)] text-base focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
             />
             <motion.input
               name="message"
@@ -101,18 +102,71 @@ const Hero3: React.FC = () => {
               placeholder="Enter Your Message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-6 py-4 rounded-[12px] border border-[#e0d8ff] bg-white placeholder-gray-500 text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full px-6 py-4 rounded-[12px] border border-[var(--border-color)] bg-[var(--input-bg)] placeholder-[var(--text-dim)] text-[var(--text-primary)] text-base focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
             />
 
             <motion.button
-              type="submit"
-              disabled={loading}
-              className="w-full py-4 bg-[#9e7dff] hover:bg-[#8d6aff] text-white font-medium rounded-[10px] text-lg transition shadow-md"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              {loading ? "Sending..." : "Join the Finance Committee waitlist"}
-            </motion.button>
+  type="submit"
+  disabled={loading}
+  className="w-full py-5 font-bold rounded-2xl text-lg transition-all duration-300 relative overflow-hidden group border-2"
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.98 }}
+  style={{
+    background: 'var(--button-primary)',
+    borderColor: 'var(--primary-light)',
+    boxShadow: 'var(--neon-glow)',
+  }}
+>
+  {/* Theme-aware overlay for better contrast */}
+  <span 
+    className="absolute inset-0 rounded-2xl transition-opacity duration-300"
+    style={{
+      background: 'var(--accent-glow)',
+      opacity: 0.1,
+    }}
+  />
+  
+  {/* Animated gradient background on hover */}
+  <span 
+    className="absolute inset-0 bg-gradient-to-r from-[#9D4EDD] via-[#C77DFF] to-[#9D4EDD] opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
+    style={{ borderRadius: '1rem' }}
+  />
+  
+  {/* Neon glow effect */}
+  <span 
+    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    style={{
+      boxShadow: '0 0 40px rgba(199, 125, 255, 0.9), 0 0 80px rgba(157, 78, 221, 0.5)',
+    }} 
+  />
+  
+  {/* Pulsing ring animation */}
+  <span 
+    className="absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 animate-ping"
+    style={{ borderColor: 'var(--primary-light)' }}
+  />
+  
+  {/* Button content */}
+  <span className="relative z-10 flex items-center justify-center gap-3">
+    {loading ? (
+      <>
+        <svg className="animate-spin h-6 w-6" style={{ color: 'var(--primary-light)' }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span className="tracking-wider" style={{ color: 'var(--primary-light)' }}>PROCESSING...</span>
+      </>
+    ) : (
+      <>
+        <span className="text-2xl group-hover:scale-110 transition-transform">🚀</span>
+        <span className="tracking-wider font-black bg-gradient-to-r from-white to-[#C77DFF] bg-clip-text text-transparent">
+          JOIN THE WAITLIST
+        </span>
+        <span className="text-2xl group-hover:scale-110 transition-transform">⚡</span>
+      </>
+    )}
+  </span>
+</motion.button>
             {success && (
               <p className="text-green-600 font-medium">
                 Thank you! Your interest has been recorded.

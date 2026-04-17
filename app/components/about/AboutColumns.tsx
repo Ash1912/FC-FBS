@@ -25,21 +25,21 @@ export default function AboutColumns() {
         {columns.map((col, idx) => (
           <React.Fragment key={idx}>
             <div className="flex-1 text-center px-8">
-              <div className="text-[38px] font-bold text-[#3c3450] mb-2">
+              <div className="text-[38px] font-bold text-[var(--text-primary)] mb-2">
                 {col.title.split(" ")[0]}{" "}
-                <span className="text-[#8C5BFF]">
+                <span className="text-[var(--primary)]">
                   {col.title.split(" ")[1]}
                 </span>
               </div>
-              <div className="text-[#b3b3b3] text-[22px] font-medium mb-6">
+              <div className="text-[var(--text-dim)] text-[22px] font-medium mb-6">
                 {col.subtitle}
               </div>
-              <div className="text-[#6d6a7c] text-[20px] font-normal leading-relaxed">
+              <div className="text-[var(--text-muted)] text-[20px] font-normal leading-relaxed">
                 {col.text}
               </div>
             </div>
             {idx < columns.length - 1 && (
-              <div className="w-1 bg-gradient-to-b from-[#ede7ff] to-[#8C5BFF22] h-full self-center opacity-40 rounded-full" />
+              <div className="w-1 bg-gradient-to-b from-[var(--border-color)] to-[var(--primary)]/10 h-full self-center opacity-40 rounded-full" />
             )}
           </React.Fragment>
         ))}

@@ -2,19 +2,19 @@ import React from "react";
 
 export default function AboutHero() {
   return (
-    <section className="w-full min-h-[48vh] flex flex-col items-center justify-center py-16 bg-[#FAFEF6] relative overflow-hidden">
+    <section className="w-full min-h-[48vh] flex flex-col items-center justify-center py-16 bg-[var(--bg-secondary)] relative overflow-hidden">
       <div className="text-center w-full max-w-[1100px] mx-auto">
-        <div className="text-[#a18fff] font-bold text-[24px] mb-3 mt-16">
+        <div className="text-[var(--primary-light)] font-bold text-[24px] mb-3 mt-16">
           Discover Our Journey
         </div>
-        <h1 className="text-[56px] font-extrabold text-[#3c3450] leading-tight">
+        <h1 className="text-[56px] font-extrabold text-[var(--text-primary)] leading-tight">
           We&apos;re Empowering the Future of
           <br />
-          <span className="text-[#8C5BFF]">
+          <span className="text-[var(--primary)]">
             Financial Literacy & Leadership
           </span>
         </h1>
-        <div className="text-[#6d6a7c] text-[22px] font-normal mt-5">
+        <div className="text-[var(--text-muted)] text-[22px] font-normal mt-5">
           As a Finance Committee, we organize insightful workshops, interactive
           sessions, and events that focus on financial education, investment
           awareness, and economic understanding.
@@ -38,13 +38,13 @@ export default function AboutHero() {
             y1="16"
             x2="1180"
             y2="16"
-            stroke="#a18fff"
+            stroke="var(--primary-light)"
             strokeWidth="2"
             strokeLinecap="round"
-            opacity="0.18"
+            opacity="0.3"
           />
-          <circle cx="20" cy="16" r="3" fill="#a18fff" opacity="0.18" />
-          <circle cx="1180" cy="16" r="3" fill="#a18fff" opacity="0.18" />
+          <circle cx="20" cy="16" r="3" fill="var(--primary-light)" opacity="0.3" />
+          <circle cx="1180" cy="16" r="3" fill="var(--primary-light)" opacity="0.3" />
         </svg>
       </div>
     </section>

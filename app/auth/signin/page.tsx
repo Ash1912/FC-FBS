@@ -4,6 +4,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { z } from "zod";
 import Image from "next/image";
 import { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const signInSchema = z.object({
   email: z
@@ -59,22 +60,22 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen w-full font-sans bg-[#F1ECFF]">
+    <div className="flex flex-col md:flex-row min-h-screen w-full font-sans bg-[var(--bg-secondary)]">
       <Toaster position="top-center" />
       <div
-        className="md:hidden absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-[#313053] to-[#261753] z-[1000] flex justify-center items-center shadow-lg"
+        className="md:hidden absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-[var(--primary-dark)] to-[var(--footer-bg)] z-[1000] flex justify-center items-center shadow-lg"
         style={{
           borderBottomLeftRadius: "50% 20%",
           borderBottomRightRadius: "50% 20%",
         }}
       >
-        <div className="flex bg-[#313053]/80 backdrop-blur-sm rounded-full p-1.5 shadow-inner">
+        <div className="flex bg-[var(--card-bg)]/80 backdrop-blur-sm rounded-full p-1.5 shadow-inner">
           <button
             onClick={() => router.push("/auth/signin")}
             className={`px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 ${
               pathname === "/auth/signin"
-                ? "bg-gradient-to-r from-[#615fa1] to-[#313053] text-white shadow-md"
-                : "text-gray-300 hover:bg-[#615fa1] hover:text-white"
+                ? "bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] text-white shadow-md"
+                : "text-[var(--text-muted)] hover:bg-[var(--primary)] hover:text-white"
             }`}
           >
             Sign In
@@ -83,8 +84,8 @@ const SignIn = () => {
             onClick={() => router.push("/auth/signup")}
             className={`px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 ${
               pathname === "/auth/signup"
-                ? "bg-gradient-to-r from-[#615fa1] to-[#313053] text-white shadow-md"
-                : "text-gray-300 hover:bg-[#615fa1] hover:text-white"
+                ? "bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark)] text-white shadow-md"
+                : "text-[var(--text-muted)] hover:bg-[var(--primary)] hover:text-white"
             }`}
           >
             Sign Up
@@ -105,15 +106,15 @@ const SignIn = () => {
           autoComplete="on"
         >
           <div className="text-center md:text-left">
-            <h1 className="text-2xl sm:text-3xl font-bold text-black mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mb-2">
               Sign In to your Account
             </h1>
-            <p className="text-xs sm:text-sm text-gray-600 font-semibold">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold">
               Don&apos;t have an account?{" "}
               <button
                 type="button"
                 onClick={() => router.push("/auth/signup")}
-                className="text-[#6356D7] hover:underline font-semibold"
+                className="text-[var(--primary)] hover:underline font-semibold"
               >
                 Sign Up here.
               </button>
@@ -125,7 +126,7 @@ const SignIn = () => {
             ref={emailRef}
             name="email"
             autoComplete="username"
-            className="w-full p-2.5 sm:p-3 border-2 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6A4EFF] text-sm transition-all duration-300 focus:scale-[1.02] hover:border-[#B8AAFF]"
+            className="w-full p-2.5 sm:p-3 border-2 border-[var(--border-color)] bg-[var(--input-bg)] text-[var(--text-primary)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] text-sm transition-all duration-300 focus:scale-[1.02] hover:border-[var(--primary-light)] placeholder:text-[var(--text-dim)]"
             required
           />
           <div className="relative">
@@ -135,7 +136,7 @@ const SignIn = () => {
               ref={passwordRef}
               name="password"
               autoComplete="current-password"
-              className="w-full p-2.5 sm:p-3 border-2 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-[#6A4EFF] text-sm pr-10 transition-all duration-300 focus:scale-[1.02] hover:border-[#B8AAFF]"
+              className="w-full p-2.5 sm:p-3 border-2 border-[var(--border-color)] bg-[var(--input-bg)] text-[var(--text-primary)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] text-sm pr-10 transition-all duration-300 focus:scale-[1.02] hover:border-[var(--primary-light)] placeholder:text-[var(--text-dim)]"
               required
             />
             <button
@@ -143,37 +144,53 @@ const SignIn = () => {
               onClick={togglePasswordVisibility}
               className="absolute right-3 top-1/2 transform -translate-y-1/2"
             >
-              <span>{showPassword ? "🙈" : "👁️"}</span>
+              <span className="text-[var(--text-muted)]">{showPassword ? "🙈" : "👁️"}</span>
             </button>
           </div>
           <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center text-xs sm:text-sm">
             <label className="flex items-center space-x-1 mb-2 sm:mb-0">
               <input
                 type="checkbox"
-                className="accent-[#6356D7] w-3.5 h-3.5 sm:w-4 sm:h-4"
+                className="accent-[var(--primary)] w-3.5 h-3.5 sm:w-4 sm:h-4"
               />
-              <span className="font-semibold">Remember Me</span>
+              <span className="font-semibold text-[var(--text-secondary)]">Remember Me</span>
             </label>
-            {/* <button
-              type="button"
-              onClick={() => router.push("/auth/forgot-password")}
-              className="text-[#6356D7] hover:underline font-bold"
-            >
-              Forgot password?
-            </button> */}
           </div>
-          <button
+          <motion.button
             type="submit"
             disabled={isLoading}
-            className="w-full py-2.5 sm:py-3 bg-[#6356D7] text-white rounded-md hover:bg-[#7E5FFF] font-semibold transition-all text-sm shadow-md"
+            className="w-full py-2.5 sm:py-3 font-bold rounded-md text-sm transition-all duration-300 relative overflow-hidden group"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            style={{
+              background: 'var(--button-primary)',
+              color: 'white',
+              boxShadow: 'var(--neon-glow)',
+            }}
           >
-            {isLoading ? "Signing In..." : "Sign In"}
-          </button>
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
+              style={{
+                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+              }} />
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              {isLoading ? (
+                <>
+                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="white" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Signing In...
+                </>
+              ) : (
+                "Sign In"
+              )}
+            </span>
+          </motion.button>
         </form>
       </div>
-      <div className="hidden md:flex md:w-1/2 relative justify-center items-center overflow-hidden rounded-l-[75px] bg-[#B09EE4]">
+      <div className="hidden md:flex md:w-1/2 relative justify-center items-center overflow-hidden rounded-l-[75px] bg-[var(--card-bg-secondary)]">
         <div
-          className={`absolute inset-0 bg-[#261753] rounded-l-[75px] z-0 transition-all duration-700 ease-out ${
+          className={`absolute inset-0 bg-[var(--footer-bg)] rounded-l-[75px] z-0 transition-all duration-700 ease-out ${
             animatePanel ? "ml-[20px]" : "ml-[100%]"
           }`}
         />
@@ -194,10 +211,10 @@ const SignIn = () => {
             height={65}
           />
           <div className="flex flex-col leading-tight">
-            <span className="text-base sm:text-lg font-extrabold tracking-wider text-[#B09EE4]">
+            <span className="text-base sm:text-lg font-extrabold tracking-wider text-[var(--primary-light)]">
               Finance Committee
             </span>
-            <span className="text-sm sm:text-base font-semibold text-[#6d6a7c]">
+            <span className="text-sm sm:text-base font-semibold text-[var(--text-muted)]">
               FOSTIIMA Chapter
             </span>
           </div>

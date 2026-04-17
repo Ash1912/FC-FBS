@@ -1,51 +1,217 @@
 @import "tailwindcss";
 
 /* ============================= */
-/* 🎨 Global Styles for FinQuest */
+/* 🎨 Global Styles for Finance Committee - Solana NFT Theme */
 /* ============================= */
 
 :root {
-  /* Theme Colors */
+  /* Light Theme Colors (Existing -保持不变) */
   --finquest-primary: #8C5BFF;
   --finquest-secondary: #5E3AE6;
   --finquest-accent: #A383FF;
   --finquest-bg-dark: #0E0A1F;
   --finquest-text-light: #F8F6FF;
   --finquest-gradient: linear-gradient(135deg, #8C5BFF, #5E3AE6, #A383FF);
+  
+  /* Light Theme Variables */
+  --primary: #8C5BFF;
+  --primary-dark: #5E3AE6;
+  --primary-light: #A383FF;
+  --bg-primary: #ffffff;
+  --bg-secondary: #faf5ff;
+  --bg-gradient-from: #faf5ff;
+  --bg-gradient-via: #f3e8ff;
+  --bg-gradient-to: #c4b5fd;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --text-muted: #6d6a7c;
+  --text-dim: #a0aec0;
+  --card-bg: #ffffff;
+  --card-bg-secondary: #f8f5ff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --border-color: rgba(140, 91, 255, 0.2);
+  --navbar-bg: rgba(237, 233, 254, 0.9);
+  --footer-bg: #120C2C;
+  --accent-glow: rgba(140, 91, 255, 0.15);
+  --stat-bg: #f8f5ff;
+  --input-bg: #ffffff;
+  --button-primary: linear-gradient(135deg, #8C5BFF, #5E3AE6);
 }
 
-/* Reset and base */
+/* Dark Theme - Enhanced Black-Purple Gradient Background */
+[data-theme="dark"] {
+  /* Primary Colors - Neon Purple/Pink from image */
+  --primary: #9D4EDD;
+  --primary-dark: #7B2CBF;
+  --primary-light: #C77DFF;
+  --primary-neon: #E0AAFF;
+  
+  /* Enhanced Background Colors - Deep black to rich purple gradients */
+  --bg-primary: #05050A;
+  --bg-secondary: #0A0A14;
+  --bg-tertiary: #0F0F1A;
+  --bg-gradient-from: #05050A;
+  --bg-gradient-via: #0A0A18;
+  --bg-gradient-to: #1A0A2E;
+  
+  /* Additional gradient stops for richer backgrounds */
+  --bg-gradient-radial: radial-gradient(circle at top right, #0A0A18, #05050A, #1A0A2E);
+  --bg-gradient-mesh: linear-gradient(135deg, #05050A 0%, #0A0A18 25%, #1A0A2E 50%, #0F0F1A 75%, #05050A 100%);
+  --bg-gradient-glow: linear-gradient(180deg, #1A0A2E 0%, #0A0A18 50%, #05050A 100%);
+  
+  /* Text Colors - Matching the image */
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0FF;
+  --text-muted: #A0A0C0;
+  --text-dim: #6B6B8D;
+  
+  /* Card and Container Backgrounds - Glass morphism with purple tint */
+  --card-bg: rgba(18, 18, 30, 0.8);
+  --card-bg-secondary: rgba(26, 26, 46, 0.9);
+  --card-border: rgba(157, 78, 221, 0.3);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  
+  /* Stats and Numbers - Like 47M+ in the image */
+  --stat-number: #E0AAFF;
+  --stat-label: #9D4EDD;
+  
+  /* UI Elements */
+  --navbar-bg: rgba(5, 5, 10, 0.95);
+  --navbar-border: rgba(157, 78, 221, 0.4);
+  --footer-bg: #020205;
+  --border-color: rgba(157, 78, 221, 0.3);
+  --accent-glow: rgba(157, 78, 221, 0.35);
+  
+  /* Enhanced Button Colors */
+  --button-primary: linear-gradient(135deg, #9D4EDD, #7B2CBF, #5A189A);
+  --button-primary-hover: linear-gradient(135deg, #B05BFF, #9D4EDD, #7B2CBF);
+  --button-secondary: linear-gradient(135deg, #1A0A2E, #0F0F1A);
+  
+  /* Input and Form Backgrounds */
+  --input-bg: rgba(26, 26, 46, 0.8);
+  
+  /* Stat Card Background */
+  --stat-bg: linear-gradient(135deg, rgba(157, 78, 221, 0.15), rgba(123, 44, 191, 0.08), rgba(90, 24, 154, 0.05));
+  
+  /* Neon Glow Effects - Enhanced */
+  --neon-glow: 0 0 20px rgba(157, 78, 221, 0.5), 0 0 40px rgba(90, 24, 154, 0.3);
+  --neon-glow-strong: 0 0 30px rgba(157, 78, 221, 0.8), 0 0 60px rgba(90, 24, 154, 0.4);
+  --neon-glow-purple: 0 0 15px rgba(157, 78, 221, 0.6), 0 0 30px rgba(123, 44, 191, 0.4);
+}
+
+/* Reset and base with enhanced background */
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background-color: #ffffff; /* Pure white background */
-  color: #1a1a1a; /* Dark gray text for readability */
+  background: var(--bg-gradient-mesh);
+  color: var(--text-primary);
   scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+}
+
+/* Dark theme specific animated gradient background */
+[data-theme="dark"] body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-gradient-radial);
+  pointer-events: none;
+  z-index: -2;
+  animation: gradientShift 20s ease infinite;
+}
+
+[data-theme="dark"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(157, 78, 221, 0.08), transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(90, 24, 154, 0.08), transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+/* Keyframes for animated background */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  75% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Dark theme specific scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border-radius: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-light);
 }
 
 /* Form container enhancement */
 .form-container {
-  background-color: #ffffff;
+  background-color: var(--card-bg);
+  backdrop-filter: blur(10px);
   border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(140, 91, 255, 0.1);
+  box-shadow: var(--card-shadow);
   padding: 2rem;
   animation: fadeIn 1.2s ease;
+  border: 1px solid var(--border-color);
 }
 
 /* Card box (like Member sections) */
 .member-card {
-  background-color: #ffffff;
-  border: 1px solid rgba(140, 91, 255, 0.3);
+  background-color: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
   border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(140, 91, 255, 0.08);
+  box-shadow: var(--card-shadow);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .member-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(140, 91, 255, 0.15);
+  box-shadow: var(--neon-glow-purple);
 }
 
 /* Labels and Headings */
@@ -53,7 +219,7 @@ label,
 h3,
 h4,
 h5 {
-  color: #4A3BAE;
+  color: var(--primary-light);
   font-weight: 600;
 }
 
@@ -62,25 +228,25 @@ h5 {
 /* ============================= */
 
 .navbar {
-  background: var(--finquest-gradient);
+  background: var(--button-primary);
   background-size: 200% 200%;
   animation: gradientShift 10s ease infinite;
-  box-shadow: 0 2px 20px rgba(140, 91, 255, 0.25);
+  box-shadow: 0 2px 20px rgba(157, 78, 221, 0.25);
 }
 
 .footer {
-  background-color: #120C2C;
-  color: var(--finquest-text-light);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--footer-bg);
+  color: var(--text-primary);
+  border-top: 1px solid rgba(157, 78, 221, 0.2);
 }
 
 /* Highlighted Nav Button */
 .nav-highlight {
   color: #fff !important;
-  background: var(--finquest-gradient);
+  background: var(--button-primary);
   padding: 0.6rem 1.2rem;
   border-radius: 9999px;
-  box-shadow: 0 4px 15px rgba(140, 91, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
   transition: transform 0.3s ease;
 }
 
@@ -97,19 +263,20 @@ h5 {
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  background: var(--finquest-primary);
+  background: var(--button-primary);
   color: #fff;
   font-weight: bold;
   font-size: 1.25rem;
   width: 2.5rem;
   height: 2.5rem;
-  box-shadow: 0 2px 8px rgba(99, 86, 215, 0.25);
-  border: 4px solid #fff;
+  box-shadow: 0 2px 8px rgba(157, 78, 221, 0.25);
+  border: 4px solid var(--primary-light);
   transition: transform 0.2s ease;
 }
 
 .avatar-circle:hover {
   transform: scale(1.08);
+  box-shadow: var(--neon-glow);
 }
 
 /* ============================= */
@@ -153,22 +320,55 @@ h5 {
   animation: float 6s ease-in-out infinite 2s;
 }
 
+/* New animation for gradient border */
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(157, 78, 221, 0.3);
+    box-shadow: 0 0 5px rgba(157, 78, 221, 0.2);
+  }
+  50% {
+    border-color: rgba(157, 78, 221, 0.8);
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+  }
+}
+
+.animate-border-glow {
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
 /* ============================= */
 /* 💡 Utility Enhancements */
 /* ============================= */
 
 .btn-primary {
-  background: var(--finquest-gradient);
+  background: var(--button-primary);
   color: white;
   border-radius: 8px;
   font-weight: 600;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 .btn-primary:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(140, 91, 255, 0.4);
+  box-shadow: var(--neon-glow);
 }
 
 @keyframes gradient-rotate {
@@ -197,31 +397,16 @@ h5 {
 @keyframes pulse-soft {
   0%, 100% {
     transform: scale(1);
-    box-shadow: 0 0 10px rgba(140, 91, 255, 0.2);
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
   }
   50% {
     transform: scale(1.07);
-    box-shadow: 0 0 18px rgba(140, 91, 255, 0.4);
+    box-shadow: 0 0 18px rgba(157, 78, 221, 0.4);
   }
 }
 
 .animate-pulse-soft {
   animation: pulse-soft 2s ease-in-out infinite;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
 }
 
 @keyframes pulse-slow {
@@ -240,12 +425,297 @@ h5 {
   animation: bounce-slow 3s ease-in-out infinite;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fadeIn {
-  animation: fadeIn 1s ease-out forwards;
+/* ============================= */
+/* 🌙 Theme Toggle Button */
+/* ============================= */
+
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  border-radius: 30px;
+  background: var(--button-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+.theme-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: var(--neon-glow);
+}
 
+.theme-toggle .toggle-icon {
+  font-size: 14px;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle .toggle-ball {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .theme-toggle .toggle-ball {
+  transform: translateX(30px);
+}
+
+/* ============================= */
+/* 🎨 NFT/Solana Style Additions - Enhanced */
+/* ============================= */
+
+/* Large stat numbers like 47M+ in the image */
+[data-theme="dark"] .hero-stat {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #E0AAFF, #C77DFF, #9D4EDD);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  text-shadow: var(--neon-glow);
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+[data-theme="dark"] .hero-stat-label {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Statistics Card Style with glass morphism */
+.stat-card {
+  background: var(--stat-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--neon-glow);
+  border-color: var(--primary);
+}
+
+/* Category Tags */
+.category-tag {
+  background: rgba(157, 78, 221, 0.15);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  border-radius: 2rem;
+  padding: 0.5rem 1.25rem;
+  color: var(--primary-light);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.category-tag:hover {
+  background: rgba(157, 78, 221, 0.3);
+  transform: translateY(-2px);
+  box-shadow: var(--neon-glow-purple);
+}
+
+/* Project Card with gradient border */
+.project-card {
+  background: var(--card-bg-secondary);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--primary-light), transparent);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover::before {
+  transform: scaleX(1);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--neon-glow);
+  border-color: var(--primary);
+}
+
+/* Duration and Price tags */
+.duration-tag, .price-tag {
+  background: rgba(157, 78, 221, 0.2);
+  backdrop-filter: blur(5px);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.price-tag {
+  color: var(--primary-neon);
+  font-weight: 700;
+}
+
+/* Trending badge */
+[data-theme="dark"] .trending-badge {
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(90, 24, 154, 0.1));
+  border-left: 3px solid var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(5px);
+}
+
+/* Percentage indicators */
+[data-theme="dark"] .percentage-bar {
+  background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--primary-neon));
+  height: 4px;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .percentage-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Disable transitions for specific elements */
+img, video, iframe {
+  transition: none;
+}
+
+/* Dark mode input styling */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background-color: var(--input-bg);
+  backdrop-filter: blur(5px);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: var(--text-dim);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.2);
+  outline: none;
+}
+
+/* Dark mode card hover effects */
+[data-theme="dark"] .card-hover:hover {
+  box-shadow: var(--neon-glow);
+  transform: translateY(-4px);
+}
+
+/* Neon text effect */
+[data-theme="dark"] .neon-text {
+  color: var(--primary-neon);
+  text-shadow: var(--neon-glow);
+}
+
+/* Gradient text with animation */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light), var(--primary-neon));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 5s ease infinite;
+}
+
+/* Glass morphism card effect */
+.glass-card {
+  background: rgba(18, 18, 30, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(157, 78, 221, 0.2);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(18, 18, 30, 0.8);
+  border-color: rgba(157, 78, 221, 0.4);
+  box-shadow: var(--neon-glow-purple);
+}
+
+/* Loading skeleton animation for dark mode */
+[data-theme="dark"] .skeleton {
+  background: linear-gradient(90deg, var(--bg-secondary), var(--bg-tertiary), var(--bg-secondary));
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Glow button effect */
+.glow-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glow-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(157, 78, 221, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.glow-button:hover::after {
+  opacity: 1;
+}

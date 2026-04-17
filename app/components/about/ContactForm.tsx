@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -31,13 +32,17 @@ export default function ContactForm() {
   return (
     <section id="contact" className="w-full flex justify-center items-center mt-12">
       <form
-        className="w-[90%] max-w-[900px] bg-gradient-radial-ellipse-60-40 rounded-[32px] shadow-[0_4px_32px_#e6e0fa33] p-12 flex flex-col items-center"
+        className="w-[90%] max-w-[900px] rounded-[32px] shadow-[0_4px_32px_var(--card-shadow)] p-12 flex flex-col items-center"
+        style={{
+          background: 'var(--card-bg)',
+          border: '1px solid var(--border-color)',
+        }}
         onSubmit={handleSubmit}
       >
-        <div className="text-[40px] font-extrabold text-[#3c3450] mb-2 text-center">
-          Get In <span className="text-[#8C5BFF]">Touch</span>
+        <div className="text-[40px] font-extrabold text-[var(--text-primary)] mb-2 text-center">
+          Get In <span className="text-[var(--primary)]">Touch</span>
         </div>
-        <div className="text-[#6d6a7c] text-[20px] font-normal mb-8 text-center">
+        <div className="text-[var(--text-muted)] text-[20px] font-normal mb-8 text-center">
           Have questions about events? <br />
           Reach out to ensure clarity, transparency, and smooth collaboration.
         </div>
@@ -54,18 +59,13 @@ export default function ContactForm() {
               onChange={(e) =>
                 setFormData({ ...formData, [type.toLowerCase() + "Name"]: e.target.value })
               }
+              className="flex-1 p-4 text-[18px] rounded-lg outline-none transition-all duration-300 focus:scale-[1.02]"
               style={{
-              flex: 1,
-              padding: "16px 18px",
-              fontSize: 18,
-              borderRadius: 8,
-              border: "1.5px solid #b9aaff",
-              outline: "none",
-              background: "#fff",
-              color: "#313053",
-              fontWeight: 500,
-              transition: "border 0.2s",
-            }}
+                border: "1.5px solid var(--border-color)",
+                background: "var(--input-bg)",
+                color: "var(--text-primary)",
+                fontWeight: 500,
+              }}
             />
           ))}
         </div>
@@ -76,18 +76,12 @@ export default function ContactForm() {
           required
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          className="w-full p-4 text-[18px] rounded-lg outline-none mb-4 transition-all duration-300 focus:scale-[1.02]"
           style={{
-            width: "100%",
-            padding: "16px 18px",
-            fontSize: 18,
-            borderRadius: 8,
-            border: "1.5px solid #b9aaff",
-            outline: "none",
-            background: "#fff",
-            color: "#313053",
+            border: "1.5px solid var(--border-color)",
+            background: "var(--input-bg)",
+            color: "var(--text-primary)",
             fontWeight: 500,
-            marginBottom: 18,
-            transition: "border 0.2s",
           }}
         />
 
@@ -96,7 +90,13 @@ export default function ContactForm() {
           placeholder="Enter your phone number"
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          className="w-full px-4 py-4 text-[18px] rounded-[8px] border border-[#b9aaff] outline-none bg-white text-[#313053] font-medium mb-4 transition-colors duration-200"
+          className="w-full p-4 text-[18px] rounded-lg outline-none mb-4 transition-all duration-300 focus:scale-[1.02]"
+          style={{
+            border: "1.5px solid var(--border-color)",
+            background: "var(--input-bg)",
+            color: "var(--text-primary)",
+            fontWeight: 500,
+          }}
         />
 
         <textarea
@@ -105,15 +105,34 @@ export default function ContactForm() {
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           required
           rows={4}
-          className="w-full px-4 py-4 text-[18px] rounded-[8px] border border-[#b9aaff] outline-none bg-white text-[#313053] font-medium mb-7 resize-y transition-colors duration-200"
+          className="w-full p-4 text-[18px] rounded-lg outline-none mb-7 resize-y transition-all duration-300 focus:scale-[1.02]"
+          style={{
+            border: "1.5px solid var(--border-color)",
+            background: "var(--input-bg)",
+            color: "var(--text-primary)",
+            fontWeight: 500,
+          }}
         />
 
-        <button
+        <motion.button
           type="submit"
-          className="w-full bg-[#8C5BFF] text-white border-none rounded-[10px] text-[22px] font-semibold py-3 cursor-pointer shadow-[0_2px_8px_#8C5BFF22] transition-colors duration-200"
+          className="w-full font-bold rounded-[10px] text-[22px] py-3 cursor-pointer transition-all duration-300 relative overflow-hidden group"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          style={{
+            background: 'var(--button-primary)',
+            color: 'white',
+            boxShadow: 'var(--neon-glow)',
+          }}
         >
-          Send Message
-        </button>
+          <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
+            style={{
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+            }} />
+          <span className="relative z-10">
+            Send Message
+          </span>
+        </motion.button>
       </form>
     </section>
   );

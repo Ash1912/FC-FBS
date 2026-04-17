@@ -35,7 +35,6 @@ const TiltCard: React.FC<TiltCardProps> = ({
   const springConfig = { stiffness: 300, damping: 30 };
   const rotateX = useSpring(x, springConfig);
   const rotateY = useSpring(y, springConfig);
-  // Set `once: true` to trigger only once when card enters viewport
   const isInView = useInView(cardRef, { once: true, margin: "-50px" });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -60,20 +59,20 @@ const TiltCard: React.FC<TiltCardProps> = ({
   return (
     <motion.div
       ref={cardRef}
-      className="bg-white rounded-xl shadow-lg p-8 text-center w-full"
+      className="bg-[var(--card-bg)] rounded-xl shadow-lg p-8 text-center w-full border border-[var(--border-color)]"
       style={{
         perspective: 1000,
         rotateX,
         rotateY,
         boxShadow: `${rotateY.get() * 0.1}px ${rotateX.get() * 0.1}px ${
           10 + Math.abs(rotateX.get()) * 0.2 + Math.abs(rotateY.get()) * 0.2
-        }px rgba(0, 0, 0, 0.2)`,
+        }px var(--card-shadow)`,
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       whileHover={{
         scale: 1.05,
-        boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)",
+        boxShadow: "var(--neon-glow)",
         y: -10,
       }}
       initial={{ opacity: 0, y: 60, scale: 0.9, rotateX: -15 }}
@@ -91,7 +90,6 @@ const TiltCard: React.FC<TiltCardProps> = ({
     >
       <motion.div
         className="relative w-16 h-16 mx-auto mb-4 rounded-lg overflow-hidden"
-        // Changed to one-time animation triggered by isInView
         initial={{ rotate: 0, scale: 0.8 }}
         animate={{
           rotate: isInView ? 0 : 0,
@@ -112,11 +110,11 @@ const TiltCard: React.FC<TiltCardProps> = ({
         />
       </motion.div>
       <div className="relative w-full h-32 mb-4"></div>
-      <h3 className="text-2xl font-semibold text-gray-800">{title}</h3>
-      <p className="mt-2 text-gray-600 text-base">{description}</p>
+      <h3 className="text-2xl font-semibold text-[var(--text-primary)]">{title}</h3>
+      <p className="mt-2 text-[var(--text-muted)] text-base">{description}</p>
       <motion.a
         href="#"
-        className="mt-4 inline-block text-[#6B46C1] text-base hover:underline"
+        className="mt-4 inline-block text-[var(--primary)] text-base hover:underline"
         whileHover={{ x: 5, scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -128,7 +126,6 @@ const TiltCard: React.FC<TiltCardProps> = ({
 
 const Hero1: React.FC = () => {
   const sectionRef = useRef(null);
-  // Set `once: true` to trigger only once when section enters viewport
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -201,7 +198,7 @@ const Hero1: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.h1
-          className="mt-6 max-sm:mt-10 text-3xl md:text-4xl font-extrabold text-gray-600 leading-tight text-center"
+          className="mt-6 max-sm:mt-10 text-3xl md:text-4xl font-extrabold text-[var(--text-secondary)] leading-tight text-center"
           initial={{ opacity: 0, y: 60, rotateX: -15 }}
           animate={{
             opacity: isInView ? 1 : 0,
@@ -215,12 +212,12 @@ const Hero1: React.FC = () => {
           style={{ y }}
         >
           Finance Committee – FOSTIIMA Chapter{" "}
-          <span className="text-[#6B46C1]">
+          <span className="text-[var(--primary)]">
             Organizing Student Finance Events
           </span>
         </motion.h1>
         <motion.p
-          className="mt-4 max-sm:mt-8 text-gray-600 text-lg max-w-2xl mx-auto text-center translate-x-2 sm:translate-x-4 md:translate-x-6"
+          className="mt-4 max-sm:mt-8 text-[var(--text-muted)] text-lg max-w-2xl mx-auto text-center translate-x-2 sm:translate-x-4 md:translate-x-6"
           initial={{ opacity: 0, y: 60 }}
           animate={{
             opacity: isInView ? 1 : 0,
@@ -263,13 +260,13 @@ const Hero1: React.FC = () => {
               description={card.description}
               icon={card.icon}
               image={card.image}
-              index={index + 3} // Adjust index for staggered delay
+              index={index + 3}
             />
           ))}
         </motion.div>
 
         <motion.div
-          className="mt-20 bg-white rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6"
+          className="mt-20 bg-[var(--card-bg)] rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center justify-between gap-6 border border-[var(--border-color)]"
           initial={{ opacity: 0, y: 60, scale: 0.9 }}
           animate={{
             opacity: isInView ? 1 : 0,
@@ -282,19 +279,19 @@ const Hero1: React.FC = () => {
             delay: 0.6,
           }}
           whileHover={{
-            boxShadow: "0 25px 50px rgba(0, 0, 0, 0.1)",
+            boxShadow: "var(--neon-glow)",
             y: -5,
           }}
         >
           <div className="max-w-md">
-            <h2 className="text-3xl md:text-4xl font-semibold text-black leading-tight">
+            <h2 className="text-3xl md:text-4xl font-semibold text-[var(--text-primary)] leading-tight">
               Discover Our Events
             </h2>
-            <p className="mt-4 text-gray-600 text-lg">
+            <p className="mt-4 text-[var(--text-muted)] text-lg">
               Explore how the Finance Committee brings finance-focused events,
               workshops, and competitions to life for FOSTIIMA students.
             </p>
-            <ul className="mt-6 space-y-2 text-gray-600">
+            <ul className="mt-6 space-y-2 text-[var(--text-muted)]">
               <li className="flex items-center">
                 <span className="mr-2 text-green-600">✔</span> Interactive finance workshops
               </li>
@@ -305,12 +302,12 @@ const Hero1: React.FC = () => {
                 <span className="mr-2 text-green-600">✔</span> Competitions, quizzes, and networking sessions
               </li>
             </ul>
-            <button className="mt-6 cursor-pointer bg-[#8a6ec5] text-white px-6 py-3 rounded-lg hover:bg-[#6B46C1] transition">
+            <button className="mt-6 cursor-pointer bg-[var(--primary)] text-white px-6 py-3 rounded-lg hover:bg-[var(--primary-dark)] transition">
               Learn More
             </button>
           </div>
 
-          <div className="w-full md:w-1/2 h-[300px] bg-[#c2b3f5] rounded-lg flex items-center justify-center">
+          <div className="w-full md:w-1/2 h-[300px] bg-[var(--card-bg-secondary)] rounded-lg flex items-center justify-center border border-[var(--border-color)]">
             <video
               src="/icons/actionvideo.mp4"
               autoPlay

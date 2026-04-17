@@ -1,13 +1,13 @@
 "use client";
-import React, { useState } from "react";
-import Slider, { CustomArrowProps } from "react-slick";
+import React, { useState, useRef } from "react";
+import Slider from "react-slick";
 import Image from "next/image";
 import {
-  FaArrowLeft,
-  FaArrowRight,
   FaLinkedin,
   FaInstagram,
   FaEnvelope,
+  FaArrowLeft,
+  FaArrowRight,
 } from "react-icons/fa";
 
 const teamMembers = [
@@ -27,6 +27,15 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/rajat-jain-027978204/",
     instagram: "https://www.instagram.com/rajat_jain_____ ",
     email: "27rajat.jain@fostiima.org",
+  },
+  {
+    name: "Shagun Malhotra",
+    role: "",
+    image: "/images/teammembers/Shagun.jpg",
+    linkedin:
+      "https://www.linkedin.com/in/shagun-malhotra-83a4b4268?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+    instagram: "https://www.instagram.com/_ishagun09?igsh=ZGQwYTA5MW1xb2s3",
+    email: "27shagun.malhotra@fostiima.org",
   },
   {
     name: "Ashish Mishra",
@@ -130,28 +139,44 @@ const teamMembers = [
   },
 ];
 
-const NextArrow: React.FC<CustomArrowProps> = ({ onClick }) => (
-  <div
-    className="absolute right-[-30px] top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
-    onClick={onClick}
-  >
-    <FaArrowRight size={36} className="text-[#8C5BFF] hover:text-[#3c3450]" />
-  </div>
-);
+interface ArrowProps {
+  onClick?: () => void;
+  direction: "prev" | "next";
+}
 
-const PrevArrow: React.FC<CustomArrowProps> = ({ onClick }) => (
-  <div
-    className="absolute left-[-30px] top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
+const CustomArrow: React.FC<ArrowProps> = ({ onClick, direction }) => (
+  <button
     onClick={onClick}
+    className="absolute top-1/2 transform -translate-y-1/2 z-20 cursor-pointer transition-all duration-300 hover:scale-110 focus:outline-none"
+    style={{
+      left: direction === "prev" ? "-5px" : "auto",
+      right: direction === "next" ? "-5px" : "auto",
+      background: 'var(--card-bg)',
+      border: `2px solid var(--primary)`,
+      borderRadius: '50%',
+      width: '36px',
+      height: '36px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      boxShadow: 'var(--neon-glow)',
+    }}
   >
-    <FaArrowLeft size={36} className="text-[#8C5BFF] hover:text-[#3c3450]" />
-  </div>
+    {direction === "prev" ? (
+      <FaArrowLeft size={18} className="text-[var(--primary)]" />
+    ) : (
+      <FaArrowRight size={18} className="text-[var(--primary)]" />
+    )}
+  </button>
 );
 
 export default function TeamCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef<Slider>(null);
+
   const settings = {
-    dots: false,
+    dots: true,
+    dotsClass: "slick-dots custom-dots",
     infinite: true,
     speed: 800,
     slidesToShow: 3,
@@ -160,77 +185,186 @@ export default function TeamCarousel() {
     pauseOnHover: true,
     centerMode: true,
     centerPadding: "0px",
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    arrows: false,
     beforeChange: (_: number, next: number) => setCurrentSlide(next),
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3 } },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 1, arrows: false, dots: true },
+        settings: { slidesToShow: 1, dots: true, arrows: false },
       },
     ],
   };
 
+  const isCenterSlide = (index: number) => {
+    const totalSlides = teamMembers.length;
+    const centerIndex = currentSlide % totalSlides;
+    return index === centerIndex;
+  };
+
+  const goToPrev = () => {
+    sliderRef.current?.slickPrev();
+  };
+
+  const goToNext = () => {
+    sliderRef.current?.slickNext();
+  };
+
   return (
-    <div className="w-full mt-12 bg-gradient-to-tr from-[#faf5ff] via-[#f3e8ff] via-[#e9d5ff] to-[#c4b5fd] py-12">
+    <div className="w-full mt-12 bg-gradient-to-tr from-[var(--bg-gradient-from)] via-[var(--bg-gradient-via)] to-[var(--bg-gradient-to)] py-12 relative overflow-visible">
       <div className="text-center">
-        <h2 className="text-[48px] font-extrabold text-[#3c3450] mb-6">
+        <h2 className="text-[48px] font-extrabold text-[var(--text-primary)] mb-6">
           Meet{" "}
-          <span className="font-monospace font-bold text-[44px] align-middle text-[#8C5BFF] inline-block mx-1"></span>
-          our beautiful <span className="text-[#8C5BFF]">Team</span>
+          <span className="font-monospace font-bold text-[44px] align-middle text-[var(--primary)] inline-block mx-1"></span>
+          our beautiful <span className="text-[var(--primary)]">Team</span>
         </h2>
       </div>
-      <div className="max-w-6xl mx-auto px-1 team-carousel">
-        <Slider {...settings}>
-          {teamMembers.map((member, idx) => {
-            const isCenter = idx === currentSlide % teamMembers.length;
-            return (
-              <div key={idx} className="px-2">
-                <div
-                  className={`bg-white rounded-xl shadow-lg transition-transform duration-500 mx-auto ${
-                    isCenter ? "scale-99" : "scale-90 grayscale"
-                  }`}
-                  style={{
-                    minHeight: "380px",
-                    maxWidth: "300px",
-                    width: "90%",
-                  }}
-                >
-                  <div className="flex items-center justify-center overflow-hidden pt-3">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      width={250}
-                      height={250}
-                      className={`object-contain transition-transform duration-500 ${
-                        isCenter ? "scale-110" : "scale-95"
-                      }`}
-                    />
-                  </div>
-                  <div className="p-3 text-center">
-                    <h3 className="text-lg font-semibold text-[#3c3450]">
-                      {member.name}
-                    </h3>
-                    <p className="text-[#8C5BFF99] text-sm">{member.role}</p>
-                    <div className="flex justify-center space-x-4 mt-2">
-                      <a href={member.linkedin} target="_blank">
-                        <FaLinkedin size={26} className="text-[#0A66C2]" />
-                      </a>
-                      <a href={member.instagram} target="_blank">
-                        <FaInstagram size={26} className="text-[#E1306C]" />
-                      </a>
-                      <a href={`mailto:${member.email}`}>
-                        <FaEnvelope size={26} className="text-[#EA4335]" />
-                      </a>
+      
+      <div className="max-w-6xl mx-auto team-carousel relative">
+        <CustomArrow direction="prev" onClick={goToPrev} />
+        <CustomArrow direction="next" onClick={goToNext} />
+        
+        <div className="px-4">
+          <Slider ref={sliderRef} {...settings}>
+            {teamMembers.map((member, idx) => {
+              const isCenter = isCenterSlide(idx);
+              return (
+                <div key={idx} className="px-2">
+                  <div
+                    className={`rounded-xl shadow-lg transition-all duration-500 mx-auto ${
+                      isCenter ? "scale-105 shadow-2xl" : "scale-90 opacity-70"
+                    }`}
+                    style={{
+                      background: 'var(--card-bg)',
+                      border: `1px solid ${isCenter ? 'var(--primary)' : 'var(--border-color)'}`,
+                      minHeight: "380px",
+                      maxWidth: "300px",
+                      width: "90%",
+                      transition: "all 0.5s ease-in-out",
+                    }}
+                  >
+                    <div className="flex items-center justify-center overflow-hidden pt-3">
+                      <div className="relative w-[250px] h-[250px]">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className={`object-contain transition-all duration-700 ${
+                            isCenter ? "scale-110" : "scale-95 grayscale"
+                          }`}
+                          style={{
+                            filter: isCenter ? "none" : "grayscale(100%)",
+                            transition: "filter 0.5s ease-in-out, transform 0.5s ease-in-out",
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="p-3 text-center">
+                      <h3 className={`text-lg font-semibold transition-colors duration-300 ${
+                        isCenter ? "text-[var(--primary)]" : "text-[var(--text-muted)]"
+                      }`}>
+                        {member.name}
+                      </h3>
+                      <p className="text-[var(--text-dim)] text-sm">{member.role}</p>
+                      <div className={`flex justify-center space-x-4 mt-2 transition-all duration-300 ${
+                        isCenter ? "opacity-100" : "opacity-50"
+                      }`}>
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
+                          <FaLinkedin size={26} className="text-[#0A66C2] hover:opacity-80 transition-opacity" />
+                        </a>
+                        <a href={member.instagram} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
+                          <FaInstagram size={26} className="text-[#E1306C] hover:opacity-80 transition-opacity" />
+                        </a>
+                        <a href={`mailto:${member.email}`} className="hover:scale-110 transition-transform">
+                          <FaEnvelope size={26} className="text-[#EA4335] hover:opacity-80 transition-opacity" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </Slider>
+              );
+            })}
+          </Slider>
+        </div>
       </div>
+
+      <style jsx>{`
+        /* Hide default slick arrows */
+        .team-carousel :global(.slick-prev),
+        .team-carousel :global(.slick-next),
+        .team-carousel :global(.slick-arrow) {
+          display: none !important;
+        }
+        
+        .team-carousel :global(.slick-slide) {
+          transition: all 0.5s ease-in-out;
+        }
+        
+        .team-carousel :global(.slick-center) {
+          opacity: 1;
+        }
+        
+        .team-carousel :global(.slick-slide:not(.slick-center)) {
+          opacity: 0.7;
+        }
+        
+        /* Custom Dots Styling */
+        .team-carousel :global(.custom-dots) {
+          bottom: -40px;
+          display: flex !important;
+          justify-content: center;
+          gap: 12px;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+        }
+        
+        .team-carousel :global(.custom-dots li) {
+          display: inline-block;
+          margin: 0;
+          width: auto;
+          height: auto;
+          list-style: none;
+        }
+        
+        .team-carousel :global(.custom-dots li button) {
+          padding: 0;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: var(--text-dim);
+          opacity: 0.5;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+          text-indent: -9999px;
+          overflow: hidden;
+        }
+        
+        .team-carousel :global(.custom-dots li button:before) {
+          display: none;
+          content: none;
+        }
+        
+        .team-carousel :global(.custom-dots li.slick-active button) {
+          width: 30px;
+          border-radius: 10px;
+          background: var(--primary);
+          opacity: 1;
+        }
+        
+        .team-carousel :global(.custom-dots li button) {
+          font-size: 0;
+          line-height: 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .team-carousel :global(.custom-dots) {
+            bottom: -30px;
+          }
+        }
+      `}</style>
     </div>
   );
 }
