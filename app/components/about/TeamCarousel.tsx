@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
 import {
@@ -172,31 +172,58 @@ const CustomArrow: React.FC<ArrowProps> = ({ onClick, direction }) => (
 
 export default function TeamCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const sliderRef = useRef<Slider>(null);
+
+  // Check if screen is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const settings = {
     dots: true,
     dotsClass: "slick-dots custom-dots",
     infinite: true,
     speed: 800,
-    slidesToShow: 3,
+    slidesToShow: isMobile ? 1 : 3,
     autoplay: true,
     autoplaySpeed: 1500,
     pauseOnHover: true,
-    centerMode: true,
+    centerMode: !isMobile, // Disable center mode on mobile
     centerPadding: "0px",
     arrows: false,
     beforeChange: (_: number, next: number) => setCurrentSlide(next),
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 3 } },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 1, dots: true, arrows: false },
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+          dots: true,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          centerMode: true,
+          dots: true,
+          arrows: false,
+        },
       },
     ],
   };
 
   const isCenterSlide = (index: number) => {
+    if (isMobile) return true; // On mobile, all slides are center
     const totalSlides = teamMembers.length;
     const centerIndex = currentSlide % totalSlides;
     return index === centerIndex;
@@ -213,18 +240,23 @@ export default function TeamCarousel() {
   return (
     <div className="w-full mt-12 bg-gradient-to-tr from-[var(--bg-gradient-from)] via-[var(--bg-gradient-via)] to-[var(--bg-gradient-to)] py-12 relative overflow-visible">
       <div className="text-center">
-        <h2 className="text-[48px] font-extrabold text-[var(--text-primary)] mb-6">
+        <h2 className="text-[32px] sm:text-[48px] font-extrabold text-[var(--text-primary)] mb-6 px-4">
           Meet{" "}
-          <span className="font-monospace font-bold text-[44px] align-middle text-[var(--primary)] inline-block mx-1"></span>
+          <span className="font-monospace font-bold text-[28px] sm:text-[44px] align-middle text-[var(--primary)] inline-block mx-1"></span>
           our beautiful <span className="text-[var(--primary)]">Team</span>
         </h2>
       </div>
       
       <div className="max-w-6xl mx-auto team-carousel relative">
-        <CustomArrow direction="prev" onClick={goToPrev} />
-        <CustomArrow direction="next" onClick={goToNext} />
+        {/* Only show arrows on desktop */}
+        {!isMobile && (
+          <>
+            <CustomArrow direction="prev" onClick={goToPrev} />
+            <CustomArrow direction="next" onClick={goToNext} />
+          </>
+        )}
         
-        <div className="px-4">
+        <div className={isMobile ? "px-2" : "px-4"}>
           <Slider ref={sliderRef} {...settings}>
             {teamMembers.map((member, idx) => {
               const isCenter = isCenterSlide(idx);
@@ -232,51 +264,50 @@ export default function TeamCarousel() {
                 <div key={idx} className="px-2">
                   <div
                     className={`rounded-xl shadow-lg transition-all duration-500 mx-auto ${
-                      isCenter ? "scale-105 shadow-2xl" : "scale-90 opacity-70"
-                    }`}
+                      !isMobile && isCenter ? "scale-105 shadow-2xl" : ""
+                    } ${!isMobile && !isCenter ? "scale-90 opacity-70" : ""}`}
                     style={{
                       background: 'var(--card-bg)',
-                      border: `1px solid ${isCenter ? 'var(--primary)' : 'var(--border-color)'}`,
-                      minHeight: "380px",
-                      maxWidth: "300px",
+                      border: `1px solid ${(!isMobile && isCenter) ? 'var(--primary)' : 'var(--border-color)'}`,
+                      minHeight: isMobile ? "340px" : "380px",
+                      maxWidth: isMobile ? "280px" : "300px",
                       width: "90%",
+                      margin: isMobile ? "0 auto" : "0",
                       transition: "all 0.5s ease-in-out",
                     }}
                   >
                     <div className="flex items-center justify-center overflow-hidden pt-3">
-                      <div className="relative w-[250px] h-[250px]">
+                      <div className="relative w-[200px] sm:w-[250px] h-[200px] sm:h-[250px]">
                         <Image
                           src={member.image}
                           alt={member.name}
                           fill
                           className={`object-contain transition-all duration-700 ${
-                            isCenter ? "scale-110" : "scale-95 grayscale"
-                          }`}
+                            !isMobile && isCenter ? "scale-110" : "scale-95"
+                          } ${!isMobile && !isCenter ? "grayscale" : ""}`}
                           style={{
-                            filter: isCenter ? "none" : "grayscale(100%)",
+                            filter: (!isMobile && !isCenter) ? "grayscale(100%)" : "none",
                             transition: "filter 0.5s ease-in-out, transform 0.5s ease-in-out",
                           }}
                         />
                       </div>
                     </div>
                     <div className="p-3 text-center">
-                      <h3 className={`text-lg font-semibold transition-colors duration-300 ${
-                        isCenter ? "text-[var(--primary)]" : "text-[var(--text-muted)]"
+                      <h3 className={`text-base sm:text-lg font-semibold transition-colors duration-300 ${
+                        (!isMobile && isCenter) ? "text-[var(--primary)]" : "text-[var(--text-primary)]"
                       }`}>
                         {member.name}
                       </h3>
-                      <p className="text-[var(--text-dim)] text-sm">{member.role}</p>
-                      <div className={`flex justify-center space-x-4 mt-2 transition-all duration-300 ${
-                        isCenter ? "opacity-100" : "opacity-50"
-                      }`}>
+                      <p className="text-[var(--text-dim)] text-xs sm:text-sm">{member.role}</p>
+                      <div className={`flex justify-center space-x-3 sm:space-x-4 mt-2 transition-all duration-300`}>
                         <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-                          <FaLinkedin size={26} className="text-[#0A66C2] hover:opacity-80 transition-opacity" />
+                          <FaLinkedin size={isMobile ? 20 : 26} className="text-[#0A66C2] hover:opacity-80 transition-opacity" />
                         </a>
                         <a href={member.instagram} target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-                          <FaInstagram size={26} className="text-[#E1306C] hover:opacity-80 transition-opacity" />
+                          <FaInstagram size={isMobile ? 20 : 26} className="text-[#E1306C] hover:opacity-80 transition-opacity" />
                         </a>
                         <a href={`mailto:${member.email}`} className="hover:scale-110 transition-transform">
-                          <FaEnvelope size={26} className="text-[#EA4335] hover:opacity-80 transition-opacity" />
+                          <FaEnvelope size={isMobile ? 20 : 26} className="text-[#EA4335] hover:opacity-80 transition-opacity" />
                         </a>
                       </div>
                     </div>
@@ -287,6 +318,15 @@ export default function TeamCarousel() {
           </Slider>
         </div>
       </div>
+
+      {/* Mobile swipe indicator */}
+      {isMobile && (
+        <div className="flex justify-center mt-8 gap-1">
+          <span className="text-[var(--text-dim)] text-sm animate-pulse">
+            👉 Swipe to see more 👈
+          </span>
+        </div>
+      )}
 
       <style jsx>{`
         /* Hide default slick arrows */
@@ -313,7 +353,7 @@ export default function TeamCarousel() {
           bottom: -40px;
           display: flex !important;
           justify-content: center;
-          gap: 12px;
+          gap: 8px;
           padding: 0;
           margin: 0;
           list-style: none;
@@ -329,8 +369,8 @@ export default function TeamCarousel() {
         
         .team-carousel :global(.custom-dots li button) {
           padding: 0;
-          width: 10px;
-          height: 10px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
           background: var(--text-dim);
           opacity: 0.5;
@@ -347,8 +387,8 @@ export default function TeamCarousel() {
         }
         
         .team-carousel :global(.custom-dots li.slick-active button) {
-          width: 30px;
-          border-radius: 10px;
+          width: 24px;
+          border-radius: 12px;
           background: var(--primary);
           opacity: 1;
         }
@@ -362,6 +402,16 @@ export default function TeamCarousel() {
         @media (max-width: 768px) {
           .team-carousel :global(.custom-dots) {
             bottom: -30px;
+            gap: 6px;
+          }
+          
+          .team-carousel :global(.custom-dots li button) {
+            width: 6px;
+            height: 6px;
+          }
+          
+          .team-carousel :global(.custom-dots li.slick-active button) {
+            width: 20px;
           }
         }
       `}</style>
