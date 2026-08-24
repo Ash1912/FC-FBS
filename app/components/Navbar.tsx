@@ -73,7 +73,8 @@ const Navbar: React.FC = () => {
   shadow-md border-b border-[var(--navbar-border)] flex items-center transition-all duration-300"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center w-full">
-          <div className="flex items-center space-x-3">
+          {/* Logo and Text - Wrap in Link with href="/" */}
+          <Link href="/" className="flex items-center space-x-3">
             <Image
               src="/images/Transparent logo.png"
               alt="Finance Committee logo"
@@ -83,15 +84,15 @@ const Navbar: React.FC = () => {
               priority
             />
 
-            <Link href="/">
+            <div>
               <span className="block text-[var(--primary)] text-xl md:text-2xl font-semibold cursor-pointer hover:text-[var(--primary-light)] transition">
                 Finance Committee
               </span>
               <span className="block text-[var(--text-muted)] text-sm md:text-base font-medium">
                 FOSTIIMA Chapter
               </span>
-            </Link>
-          </div>
+            </div>
+          </Link>
 
           {/* ✅ Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8 text-[var(--text-secondary)] font-medium">
@@ -108,7 +109,7 @@ const Navbar: React.FC = () => {
               Blog
             </NavButton>
 
-             {/* ✅ New Buzzer Link */}
+            {/* ✅ New Buzzer Link */}
             {/* <NavButton
               href="/buzzer"
               className="text-[#8C5BFF] transition-colors"
@@ -122,14 +123,14 @@ const Navbar: React.FC = () => {
             >
               Event
             </NavButton>
-            <a
+            {/* <a
               href="https://fc-fbs-voting-system.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--primary)] font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[var(--primary)] after:rounded-full hover:text-[var(--primary-light)] hover:after:bg-[var(--primary-light)] transition-all"
             >
               VITT-MANTHAN
-            </a>
+            </a> */}
 
             {/* ✅ FinQuest Registration link */}
             {/* <NavButton
@@ -139,13 +140,12 @@ const Navbar: React.FC = () => {
               FinQuest Registration
             </NavButton> */}
 
-            {/* <NavButton
+            <NavButton
               href="/stockify/register"
               className="text-[#8C5BFF] font-semibold relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-[#8C5BFF] after:rounded-full hover:text-[#6356D7] hover:after:bg-[#6356D7] transition-all"
             >
               StockiFy Registration
-            </NavButton> */}
-
+            </NavButton>
 
             {/* Theme Toggle Button */}
             <div className="ml-2">
@@ -163,11 +163,12 @@ const Navbar: React.FC = () => {
                     {userInitials}
                   </button>
                   {showDropdown && (
-                    <div className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg p-4 z-50 border animate-fade-in"
+                    <div
+                      className="absolute right-0 mt-2 w-56 rounded-lg shadow-lg p-4 z-50 border animate-fade-in"
                       style={{
-                        background: 'var(--card-bg)',
-                        borderColor: 'var(--border-color)',
-                        boxShadow: 'var(--card-shadow)',
+                        background: "var(--card-bg)",
+                        borderColor: "var(--border-color)",
+                        boxShadow: "var(--card-shadow)",
                       }}
                     >
                       <div className="mb-2 text-base font-bold text-[var(--primary)]">
@@ -180,7 +181,7 @@ const Navbar: React.FC = () => {
                         onClick={handleLogout}
                         className="mt-3 w-full px-3 py-2 text-white rounded font-semibold transition-all text-sm hover:opacity-90"
                         style={{
-                          background: 'var(--button-primary)',
+                          background: "var(--button-primary)",
                         }}
                       >
                         Log out
@@ -224,9 +225,27 @@ const Navbar: React.FC = () => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect y="5" width="24" height="2.5" rx="1.25" fill="var(--text-secondary)" />
-              <rect y="11" width="24" height="2.5" rx="1.25" fill="var(--text-secondary)" />
-              <rect y="17" width="24" height="2.5" rx="1.25" fill="var(--text-secondary)" />
+              <rect
+                y="5"
+                width="24"
+                height="2.5"
+                rx="1.25"
+                fill="var(--text-secondary)"
+              />
+              <rect
+                y="11"
+                width="24"
+                height="2.5"
+                rx="1.25"
+                fill="var(--text-secondary)"
+              />
+              <rect
+                y="17"
+                width="24"
+                height="2.5"
+                rx="1.25"
+                fill="var(--text-secondary)"
+              />
             </svg>
           </button>
         </div>
@@ -237,10 +256,10 @@ const Navbar: React.FC = () => {
             className="md:hidden absolute top-[60px] left-0 right-0 w-[100vw] rounded-b-lg shadow-lg py-4 px-0 flex flex-col items-center gap-4 font-medium z-[1004] border-b border-x"
             style={{
               marginTop: "2px",
-              background: 'var(--card-bg)',
-              borderColor: 'var(--border-color)',
-              color: 'var(--text-secondary)',
-              boxShadow: 'var(--card-shadow)',
+              background: "var(--card-bg)",
+              borderColor: "var(--border-color)",
+              color: "var(--text-secondary)",
+              boxShadow: "var(--card-shadow)",
             }}
           >
             <Link href="/aboutus" onClick={() => setMenuOpen(false)}>
@@ -284,7 +303,6 @@ const Navbar: React.FC = () => {
                 StockiFy Registration
               </button>
             </Link> */}
-
 
             {/* Mobile Theme Toggle */}
             <div className="w-full flex justify-center py-2">

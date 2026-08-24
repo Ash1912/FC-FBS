@@ -10,20 +10,20 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { Twitter, Instagram, Linkedin } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 const socialIcons = [
-  { icon: Twitter, label: "Twitter", href: "https://x.com/fostiimab" },
+  // { icon: Twitter, label: "Twitter", href: "https://x.com/fostiimab" },
   {
     icon: Instagram,
     label: "Instagram",
     href: "https://www.instagram.com/finance_with_fbs?igsh=N2w5bGtkYXJmZDBr",
   },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    href: "https://in.linkedin.com/school/fostiimaa/",
-  },
+  // {
+  //   icon: Linkedin,
+  //   label: "LinkedIn",
+  //   href: "https://in.linkedin.com/school/fostiimaa/",
+  // },
 ];
 
 const LinkSection: React.FC<{
@@ -125,24 +125,24 @@ const Footer: React.FC = () => {
             }}
             transition={{ duration: 0.8, ease: easeOut, delay: 0.2 }}
           >
-            <div className="flex items-center space-x-3 mb-4">
+            <Link href="/" className="flex items-center space-x-3 mb-4">
               <Image
                 src="/images/Transparent logo.png"
-                alt="Marvedge logo"
+                alt="Finance Committee logo"
                 width={80}
                 height={80}
-                className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                className="w-12 h-12 md:w-16 md:h-16 object-contain hover:scale-105 transition-transform"
                 priority
               />
               <div className="flex flex-col">
-                <span className="text-[var(--primary)] text-xl md:text-2xl font-semibold">
+                <span className="text-[var(--primary)] text-xl md:text-2xl font-semibold hover:text-[var(--primary-light)] transition">
                   Finance Committee
                 </span>
                 <span className="text-[var(--text-muted)] text-sm md:text-base font-medium">
                   FOSTIIMA Chapter
                 </span>
               </div>
-            </div>
+            </Link>
 
             <p className="text-[var(--text-muted)] text-sm sm:text-base">
               Organizing campus events, managing budgets responsibly, and
